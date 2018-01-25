@@ -1,0 +1,65 @@
+2018-1-25 14:38:09 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:38:09 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:38:09 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:38:12 restartedMain INFO Started BbsApplication in 2.656 seconds (JVM running for 1095.894)
+2018-1-25 14:38:43 http-nio-18080-exec-1 DEBUG ==>  Preparing: SELECT * FROM tb_user a where a.login_name = ? and a.password = ? 
+2018-1-25 14:38:43 http-nio-18080-exec-1 DEBUG ==> Parameters: 123(String), 123(String)
+2018-1-25 14:38:43 http-nio-18080-exec-1 DEBUG <==      Total: 1
+2018-1-25 14:38:49 http-nio-18080-exec-4 DEBUG ==>  Preparing: SELECT * FROM tb_user a where a.login_name = ? and a.password = ? 
+2018-1-25 14:38:49 http-nio-18080-exec-4 DEBUG ==> Parameters: 123(String), 123(String)
+2018-1-25 14:38:49 http-nio-18080-exec-4 DEBUG <==      Total: 1
+2018-1-25 14:40:07 http-nio-18080-exec-6 DEBUG ==>  Preparing: SELECT * FROM tb_user a where a.login_name = ? and a.password = ? 
+2018-1-25 14:40:07 http-nio-18080-exec-6 DEBUG ==> Parameters: 123(String), 123(String)
+2018-1-25 14:40:07 http-nio-18080-exec-6 DEBUG <==      Total: 1
+2018-1-25 14:41:00 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:00 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:00 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:02 restartedMain INFO Started BbsApplication in 2.328 seconds (JVM running for 1266.25)
+2018-1-25 14:41:06 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:06 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:06 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:09 restartedMain INFO Started BbsApplication in 3.854 seconds (JVM running for 1273.777)
+2018-1-25 14:41:14 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:14 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:14 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:16 restartedMain INFO Started BbsApplication in 1.577 seconds (JVM running for 1279.848)
+2018-1-25 14:41:29 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:29 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:29 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:32 restartedMain INFO Started BbsApplication in 2.823 seconds (JVM running for 1295.833)
+2018-1-25 14:41:37 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:37 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:37 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:39 restartedMain INFO Started BbsApplication in 2.149 seconds (JVM running for 1302.866)
+2018-1-25 14:41:46 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:46 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:46 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:49 restartedMain INFO Started BbsApplication in 3.51 seconds (JVM running for 1313.698)
+2018-1-25 14:41:51 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:41:51 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:41:51 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:41:53 restartedMain INFO Started BbsApplication in 2.003 seconds (JVM running for 1317.319)
+2018-1-25 14:42:04 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:42:04 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:42:04 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:42:07 restartedMain INFO Started BbsApplication in 3.052 seconds (JVM running for 1331.454)
+2018-1-25 14:42:09 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:42:09 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:42:09 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:42:11 restartedMain INFO Started BbsApplication in 2.202 seconds (JVM running for 1335.531)
+2018-1-25 14:42:15 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 14:42:15 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 14:42:15 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 14:42:18 restartedMain INFO Started BbsApplication in 3.051 seconds (JVM running for 1342.214)
+2018-1-25 15:06:48 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 15:06:48 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 15:06:48 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 15:06:50 restartedMain INFO Started BbsApplication in 2.656 seconds (JVM running for 2814.436)
+2018-1-25 15:06:55 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 10188 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 15:06:55 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 15:06:55 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 15:06:59 restartedMain INFO Started BbsApplication in 4.166 seconds (JVM running for 2822.993)
+2018-1-25 15:08:10 restartedMain INFO Starting BbsApplication on AFOEB-706221306 with PID 12128 (F:\IdeaWorkSpace\bbs\target\classes started by Administrator in F:\IdeaWorkSpace\bbs)
+2018-1-25 15:08:10 restartedMain DEBUG Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2018-1-25 15:08:10 restartedMain INFO No active profile set, falling back to default profiles: default
+2018-1-25 15:08:30 restartedMain INFO Started BbsApplication in 22.428 seconds (JVM running for 24.863)
