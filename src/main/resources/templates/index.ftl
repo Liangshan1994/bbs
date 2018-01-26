@@ -8,7 +8,7 @@
 <#if user??>
 <h4>${user.loginName}</h4>
 </#if>
-<a href="/user/userInfo?userId=1">个人中心</a>
+<a href="/user/myInfo">个人中心</a>
 <a href="/toLogin">登录</a>
 </body>
 </html>

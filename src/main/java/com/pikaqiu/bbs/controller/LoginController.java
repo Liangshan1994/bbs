@@ -2,10 +2,12 @@ package com.pikaqiu.bbs.controller;
 
 import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.service.UserService;
+import com.pikaqiu.common.config.WebSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by lvls on 2018/1/24.
@@ -21,13 +23,12 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(User user, Model model){
+    public String login(User user,HttpSession session){
         User user1 = userService.checkPassword(user);
         if(user1!=null){
-            model.addAttribute("user",user1);
+            session.setAttribute(WebSecurityConfig.SESSION_KEY, user1);
             return "redirect:index";
         }else{
-            model.addAttribute("message","用户名与密码不匹配");
             return "redirect:login";
         }
     }

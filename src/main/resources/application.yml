@@ -28,17 +28,6 @@ spring:
       cache: false
     mvc:
       static-path-pattern: /static/**
-    redis:
-      database: 0
-      host: localhost
-      password:
-      port: 6379
-      timeout: 300
-      pool:
-        max-idle: 8
-        min-idle: 0
-        max-active: 8
-        max-wait: 1
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.pikaqiu.bbs.entity
