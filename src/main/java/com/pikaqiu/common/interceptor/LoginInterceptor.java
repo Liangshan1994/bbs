@@ -1,71 +1,43 @@
 package com.pikaqiu.common.interceptor;
 
-import com.pikaqiu.common.config.SessionData;
-import com.pikaqiu.common.utils.RedisUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
-import static com.pikaqiu.common.utils.Constants.*;
-
 /**
- * Created by lvls on 2018/1/25.
+ * Created by lvls on 2018/1/26.
  */
-@Component
-public class LoginInterceptor extends HandlerInterceptorAdapter {
-    @Autowired
-    private RedisUtil redisUtil;
-    private final static String SESSION_KEY_PREFIX = "session:";
 
-    public boolean preHandle(HttpServletRequest request,
-                             HttpServletResponse response, Object handler) throws Exception {
-        if (!handler.getClass().isAssignableFrom(HandlerMethod.class)) {
+public class LoginInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
+// 如果不是映射到方法直接通过
+        if (!(handler instanceof HandlerMethod)) {
             return true;
         }
-        handlerSession(request);
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        Method method = handlerMethod.getMethod();
 
-        final HandlerMethod handlerMethod = (HandlerMethod) handler;
-        final Method method = handlerMethod.getMethod();
-        final Class<?> clazz = method.getDeclaringClass();
-        if (clazz.isAnnotationPresent(Auth.class) ||
-                method.isAnnotationPresent(Auth.class)) {
-            if (request.getAttribute(USER_CODE_SESSION_KEY) == null) {
+        // 判断接口是否需要登录
+        LoginAuth methodAnnotation = method.getAnnotation(LoginAuth.class);
+        // 有 @LoginAuth 注解，需要认证
+        if (methodAnnotation != null) {
 
-                throw new Exception();
-
-            } else {
-                return true;
-            }
         }
+        return false;
+    }
 
-        return true;
+    @Override
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
 
     }
 
-    public void handlerSession(HttpServletRequest request) {
-        String sessionId = request.getHeader(SESSION_KEY);
-        if (sessionId == "" || sessionId == null) {
-            sessionId = (String) request.getSession().getAttribute(SESSION_KEY);
-        } else {
-            SessionData model = (SessionData) redisUtil.get(SESSION_KEY_PREFIX + sessionId);
-            if (model == null) {
-                return;
-            }
-            request.setAttribute(SESSION_KEY, sessionId);
-            Integer userCode = model.getUserCode();
-            if (userCode != null) {
-                request.setAttribute(USER_CODE_SESSION_KEY, Long.valueOf(userCode));
-            }
-            String mobile = model.getMobileNumber();
-            if (mobile != null) {
-                request.setAttribute(MOBILE_NUMBER_SESSION_KEY, mobile);
-            }
-        }
-        return;
+    @Override
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+
     }
 }

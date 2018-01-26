@@ -1,4 +1,4 @@
-package com.pikaqiu.bbs;
+package com.pikaqiu;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

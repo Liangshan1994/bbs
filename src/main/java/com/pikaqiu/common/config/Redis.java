@@ -19,13 +19,13 @@ public class Redis {
     private int port;
     @Value("${spring.redis.timeout}")
     private int timeout;
-    @Value("${spring.redis.pool.maxIdle}")
+    @Value("${spring.redis.pool.max-idle}")
     private String maxIdle;
-    @Value("${spring.redis.pool.minIdle}")
+    @Value("${spring.redis.pool.min-idle}")
     private String minIdle;
-    @Value("${spring.redis.pool.maxActive}")
+    @Value("${spring.redis.pool.max-active}")
     private String maxActive;
-    @Value("${spring.redis.pool.maxWait}")
+    @Value("${spring.redis.pool.max-wait}")
     private String maxWait;
 
     public String getDatabase() {
