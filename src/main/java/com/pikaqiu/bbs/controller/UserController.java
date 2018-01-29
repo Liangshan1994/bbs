@@ -3,6 +3,7 @@ package com.pikaqiu.bbs.controller;
 import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.service.UserService;
 import com.pikaqiu.common.config.WebSecurityConfig;
+import com.pikaqiu.common.interceptor.LoginAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class UserController {
         return "userInfo";
     }
 
+    @LoginAuth
     @RequestMapping(value = "/myInfo")
     public String MyInfo(HttpServletRequest request, HttpServletResponse response){
         HttpSession session = request.getSession();

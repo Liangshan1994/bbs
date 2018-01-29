@@ -1,5 +1,6 @@
-package com.pikaqiu.common.interceptor;
+package com.pikaqiu.common.config;
 
+import com.pikaqiu.common.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,7 +14,7 @@ public class WebMvcConfigurer  extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loginInterceptor())
-                .addPathPatterns("/**");    // 拦截所有请求，通过判断是否有 @LoginRequired 注解 决定是否需要登录
+                .addPathPatterns("/user/**");    // 拦截所有请求，通过判断是否有 @LoginRequired 注解 决定是否需要登录
         super.addInterceptors(registry);
     }
 

@@ -22,10 +22,10 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
-    freemarker:
-      template-loader-path: classpath:/templates
-      request-context-attribute: ctx
-      cache: false
+#    freemarker:
+#      template-loader-path: classpath:/templates
+#      request-context-attribute: ctx
+#      cache: false
     mvc:
       static-path-pattern: /static/**
 mybatis:
@@ -39,4 +39,8 @@ pagehelper:
     supportMethodsArguments: true
     params: count=countSql
 logging:
-  config: classpath:logback.xml
+    config: classpath:logback.xml
+sitemesh:
+    contentPath: /**
+    decoratorPath: /decorators/default.jsp
+    excludedPaths:
