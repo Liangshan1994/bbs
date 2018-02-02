@@ -1,9 +1,8 @@
 package com.pikaqiu.bbs.entity;
 
-import java.util.Date;
+import com.pikaqiu.common.base.BaseEntity;
 
-public class User {
-    private Integer id;
+public class User extends BaseEntity<User>{
 
     private String loginName;
 
@@ -14,24 +13,6 @@ public class User {
     private String userEmail;
 
     private Integer userRoleId;
-
-    private Integer createBy;
-
-    private Date createDate;
-
-    private Integer updateBy;
-
-    private Date updateDate;
-
-    private Integer delFlag;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getLoginName() {
         return loginName;
@@ -73,43 +54,4 @@ public class User {
         this.userRoleId = userRoleId;
     }
 
-    public Integer getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(Integer createBy) {
-        this.createBy = createBy;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Integer getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(Integer updateBy) {
-        this.updateBy = updateBy;
-    }
-
-    public Date getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Integer getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(Integer delFlag) {
-        this.delFlag = delFlag;
-    }
 }

@@ -5,7 +5,7 @@ h1, h2, h3, h4, h5, h6 {
     word-wrap: break-word;
 }
 body {
-    background: #FFF url(../img/bgimg.jpg) no-repeat 50% -20%;
+    background: #FFF url(../img/bgimg.jpg) no-repeat 50% -30px;
 }
 body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
     margin: 0;
@@ -194,9 +194,9 @@ ul li, .xl li {
     height: 33px;
 }
 .comiis_nav {
-    background: #F7F9FB url(../img/52pojie_navbg.jpg) repeat-x;
+    background: #F7F9FB url(../img/navbg.jpg) repeat-x;
     border: 1px solid #E2EAF1;
-    border-top: 0px solid #E2EAF1;
+    border-top: 0 solid #E2EAF1;
     height: 57px;
     overflow: hidden;
     padding-left: 10px;
@@ -292,6 +292,51 @@ ul li, .xl li {
 	margin-right: 8px;
 	white-space: nowrap;
 }
+
+/*用户登陆后*/
+#um {
+    padding-top: 10px;
+    padding-right: 60px;
+    _padding-right: 54px;
+    line-height: 2.3;
+    zoom: 1;
+}
+#um, #um a {
+    color: #444;
+}
+#um .avt {
+    display: inline;
+    margin-right: -60px;
+}
+#um p {
+    text-align: right;
+}
+#um .pipe {
+    margin: 0 5px 0 0;
+}
+#um .showmenu {
+    margin-right: -5px;
+}
+.qq_bind {
+    margin-top: -3px;
+}
+.avt img {
+    padding: 2px;
+    width: 48px;
+    height: 48px;
+    background: #FFF;
+    border: 1px solid;
+    border-color: #F2F2F2 #CDCDCD #CDCDCD #F2F2F2;
+}
+.vwmy {
+    padding-left: 16px;
+    background: url(/static/img/user_online.gif) no-repeat 0 2px;
+}
+.vwmy.qq {
+    background: url(/static/img/connect_qq.gif) no-repeat scroll 0 0;
+    padding-left: 20px;
+}
+/*用户登陆后结束*/
 /*head部分结束*/
 
 /*首页*/
@@ -512,7 +557,6 @@ ul li, .xl li {
     border-radius: 4px;
     text-decoration: none;
     background-color: #FFFFFF;
-    background: rgba(255,255,255,0.85);
     z-index: 9999;
 }
 /*返回顶部*/
@@ -522,7 +566,7 @@ ul li, .xl li {
     display: block;
     width: 40px;
     background: none repeat scroll 0% 0% transparent;
-    border: 0px #cdcdcd solid;
+    border: 0 #cdcdcd solid;
     border-radius: 3px;
     border-top: 0;
     cursor: pointer;
@@ -542,7 +586,7 @@ ul li, .xl li {
     color: #787878;
     text-decoration: none;
     background: #f8f8f8 url(../img/jz52top1.png) no-repeat 0 0;
-    border-top: 0px #cdcdcd solid;
+    border-top: 0 #cdcdcd solid;
 }
 #jz52top, #jz52top a {
     border: none;
@@ -611,7 +655,7 @@ ul#navmenu ul {
 #jzgrzxkp .jzgrzxkptop h3 {
     height: 16px;
     font-weight: normal;
-    padding: 8px 0px 0px 10px;
+    padding: 8px 0 0 10px;
     font-size: 16px;
 }
 #jzgrzxkp .jzgrzxkptop .jzgrzxkpimg {
@@ -644,25 +688,25 @@ ul#navmenu ul {
     width: 57px;
     height: 60px;
     float: left;
-    margin: 0px;
+    margin: 0;
 }
 .box01 {
-    background-position: 0px 0px !important;
+    background-position: 0 0 !important;
 }
 .box02 {
-    background-position: -57px 0px !important;
+    background-position: -57px 0 !important;
 }
 .box03 {
-    background-position: -114px 0px !important;
+    background-position: -114px 0 !important;
 }
 .box09 {
-    background-position: 0px -120px !important;
+    background-position: 0 -120px !important;
 }
 .box04 {
-    background-position: -171px 0px !important;
+    background-position: -171px 0 !important;
 }
 .box05 {
-    background-position: 0px -60px !important;
+    background-position: 0 -60px !important;
 }
 .box06 {
     background-position: -57px -60px !important;
@@ -716,14 +760,14 @@ ul#navmenu ul {
 }
 .bm {
     border: 1px solid #CDCDCD;
-    background: #FFF;
+    background: transparent;
 }
 .fa_fav_0, .fa_fav, .fa_rss, .fa_achv, .fa_bin, .fa_ivt {
     padding-left: 20px;
     background: no-repeat 0 50%;
 }
 .fa_fav {
-    background-image: url(https://static.52pojie.cn/static/image/common/fav.gif);
+    background-image: url(../img/fav.gif);
 }
 .tl .th {
     margin-top: 1px;
@@ -739,9 +783,20 @@ ul#navmenu ul {
     table-layout: fixed;
     border-collapse: separate;
 }
+.tl .bm_c {
+    padding-top: 0;
+}
 .tl th, .tl td {
     padding: 5px 0;
     border-bottom: 1px solid #C2D5E3;
+}
+.tl td em {
+    font-size: 11px;
+    font-family: Arial,PMingliu,sans-serif;
+    -webkit-text-size-adjust: none;
+}
+.tl td em, .tl td em a {
+    color: #999;
 }
 .tl th, .tl td.fn {
     padding-right: 1.5em;
@@ -756,7 +811,7 @@ ul#navmenu ul {
     border-bottom: none;
 }
 .tl .by {
-    width: 105px;
+    width: 120px;
     line-height: 14px;
 }
 .tl .tf {
@@ -765,6 +820,9 @@ ul#navmenu ul {
 .tl .num {
     width: 60px;
     line-height: 14px;
+}
+.tl cite, .tl .num em {
+    display: block;
 }
 .tl .icn {
     padding-left: 5px;
@@ -778,6 +836,10 @@ ul#navmenu ul {
     padding: 2px 4px;
     color: #444;
 }
+.ts {
+    display: inline;
+    font: 700 16px 'Microsoft Yahei','Hei',Tahoma,'SimHei',sans-serif;
+}
 .tl .ts th, .tl .ts td {
     padding: 3px 0;
     border-bottom-color: #CDCDCD;
@@ -786,20 +848,20 @@ ul#navmenu ul {
 .showhide {
     width: 12px;
     height: 12px;
-    background: url(https://static.52pojie.cn/static/image/common/close.gif) no-repeat 0 0;
+    background: url(../img/close.gif) no-repeat 0 0;
     text-indent: -999em;
     cursor: pointer;
     overflow: hidden;
-    margin: 5px 5px 0px 5px;
+    margin: 5px 5px 0 5px;
 }
 .forumrefresh {
     padding-right: 14px;
-    background: url(https://static.52pojie.cn/static/image/common/refresh.png) no-repeat 100% 50%;
+    background: url(../img/refresh.png) no-repeat 100% 50%;
 }
 #atarget, .unchk, .chked {
     padding-left: 15px;
     line-height: 16px;
-    background: url(https://static.52pojie.cn/static/image/common/atarget.png) no-repeat 0 3px;
+    background: url(../img/atarget.png) no-repeat 0 3px;
     color: #369;
     cursor: pointer;
 }
@@ -808,7 +870,7 @@ ul#navmenu ul {
 }
 .showmenu {
     padding-right: 16px;
-    background: url(https://static.52pojie.cn/static/image/common/arrwd.gif) no-repeat 100% 50%;
+    background: url(../img/arrwd.gif) no-repeat 100% 50%;
     cursor: pointer;
     white-space: nowrap;
 }
@@ -841,8 +903,7 @@ ul#navmenu ul {
     margin-left: 4px;
     padding: 0 8px;
     height: 26px;
-    border: 1px solid;
-    border-color: #C2D5E3;
+    border: 1px solid #C2D5E3;
     background-color: #FFF;
     background-repeat: no-repeat;
     color: #333;
@@ -889,11 +950,11 @@ ul#navmenu ul {
 .px, .pt, .ps, select {
     border: 1px solid;
     border-color: #848484 #E0E0E0 #E0E0E0 #848484;
-    background: #FFF url(https://static.52pojie.cn/static/image/common/px.png) repeat-x 0 0;
+    background: #FFF url(../img/px.png) repeat-x 0 0;
 }
 .pgb a {
     padding-left: 25px;
-    background-image: url(https://static.52pojie.cn/static/image/common/arw_l.gif);
+    background-image: url(../img/arw_l.gif);
     background-position: 10px 50%;
 }
 .pg a:hover, .pgb a:hover {
@@ -944,6 +1005,9 @@ ul#navmenu ul {
 
 
 /*帖子*/
+.bdsharebuttonbox{
+    min-height:30px;
+}
 .pl table {
     table-layout: fixed;
     width: 100%;
@@ -973,7 +1037,7 @@ ul#navmenu ul {
 .pls .favatar {
     background: transparent;
     height: auto;
-    border-width: 0px;
+    border-width: 0;
     overflow: visible;
 }
 .pi {
@@ -995,7 +1059,7 @@ ul#navmenu ul {
 }
 .pls .avatar img {
     padding: 5px 5px 8px;
-    background: #FFF url(https://static.52pojie.cn/static/image/common/midavt_shadow.gif) 0 100% repeat-x;
+    background: #FFF url(../img/midavt_shadow.gif) 0 100% repeat-x;
     width: 120px;
 }
 .tns {
@@ -1027,7 +1091,7 @@ ul#navmenu ul {
 }
 .pls .o li {
     display: inline;
-    margin-left: 0px;
+    margin-left: 0;
     width: 120px;
     height: 30px;
     line-height: 30px;
@@ -1043,7 +1107,7 @@ ul#navmenu ul {
     color: #0ef;
     display: block;
     padding-left: 50px;
-    background: url(https://static.52pojie.cn/static/image/common/flw_ico.png) no-repeat 15px 50%;
+    background: url(../img/flw_ico.png) no-repeat 15px 50%;
 }
 .ad .pls {
     background: #C2D5E3;
@@ -1079,10 +1143,6 @@ ul#navmenu ul {
 .vm {
     vertical-align: middle;
 }
-.ts {
-    display: inline;
-    font: 700 16px 'Microsoft Yahei','Hei',Tahoma,'SimHei',sans-serif;
-}
 .vwthd {
     padding-right: 80px !important;
 }
@@ -1097,9 +1157,6 @@ ul#navmenu ul {
     background: #FEFEFE;
     box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
 }
-.card_gender_1 {
-    background: #bbebf9 url(https://static.52pojie.cn/static/image/common/gentlemanbg.png) no-repeat bottom right;
-}
 .bui {
     position: absolute;
     margin: -1px 0 0 -1px;
@@ -1112,7 +1169,7 @@ ul#navmenu ul {
     -moz-box-shadow: 2px 2px 3px #CCC;
 }
 .card_gender_1 {
-    background: #bbebf9 url(https://static.52pojie.cn/static/image/common/gentlemanbg.png) no-repeat bottom right;
+    background: #bbebf9 url(../img/gentlemanbg.png) no-repeat bottom right;
 }
 #fj {
     margin-left: 5px;
@@ -1192,7 +1249,7 @@ ul#navmenu ul {
     margin: 2em 0 2em -20px;
     padding: 5px 45px 5px 20px;
     width: 240px;
-    background: #FFF4DD url(https://static.52pojie.cn/static/image/common/arw.gif) no-repeat 100% 50%;
+    background: #FFF4DD url(../img/arw.gif) no-repeat 100% 50%;
     color: #F26C4F;
     font-size: 14px;
 }
@@ -1206,7 +1263,7 @@ ul#navmenu ul {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 0 1px rgba(0,0,0,0.2);
     overflow: hidden;
 }
 
@@ -1238,7 +1295,7 @@ ul#navmenu ul {
 }
 .rate .op {
     padding-right: 16px;
-    background: url(https://static.52pojie.cn/static/image/common/arrow_top.gif) no-repeat 100% 50%;
+    background: url(../img/arrow_top.gif) no-repeat 100% 50%;
 }
 .ratl img {
     height: 24px;
@@ -1255,14 +1312,14 @@ ul#navmenu ul {
     margin-right: 3px;
     padding-right: 4px;
     padding-left: 8px;
-    background: url(https://static.52pojie.cn/static/image/common/share_btn.png) no-repeat 0 0;
+    background: url(../img/share_btn.png) no-repeat 0 0;
     vertical-align: top;
     white-space: nowrap;
 }
 #p_btn i {
     display: block;
     padding: 4px 8px 4px 0;
-    background: url(https://static.52pojie.cn/static/image/common/share_btn.png) no-repeat 100% 100%;
+    background: url(../img/share_btn.png) no-repeat 100% 100%;
     font-style: normal;
     cursor: pointer;
 }
@@ -1279,7 +1336,7 @@ ul#navmenu ul {
     margin-bottom: 10px;
     padding-top: 20px;
     line-height: 1.6em;
-    background: url(https://static.52pojie.cn/static/image/common/sigline.gif) no-repeat 0 0;
+    background: url(../img/sigline.gif) no-repeat 0 0;
 }
 .dnch_eo_pt, .dnch_eo_pb {
     margin-bottom: 6px;
@@ -1298,7 +1355,7 @@ ul#navmenu ul {
     padding: 5px 10px 5px 25px;
 }
 .fastre {
-    background: url(https://static.52pojie.cn/static/image/common/fastreply.gif) no-repeat 0 50%;
+    background: url(../img/fastreply.gif) no-repeat 0 50%;
 }
 .po p {
     float: right;
@@ -1308,9 +1365,8 @@ ul#navmenu ul {
 }
 .p_pop, .p_pof, .sllt {
     padding: 4px;
-    border: 1px solid;
+    border: 1px solid #DDD;
     min-width: 60px;
-    border-color: #DDD;
     background: #FEFEFE;
     box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
 }
@@ -1350,7 +1406,6 @@ ul#navmenu ul {
 
 /*注册*/
 .nfl {
-    height: auto !important;
     height: 320px;
     min-height: 320px;
 }
@@ -1364,7 +1419,6 @@ ul#navmenu ul {
 .alert_right, .alert_error, .alert_info {
     padding: 6px 0 6px 58px;
     min-height: 40px;
-    height: auto !important;
     height: 40px;
     line-height: 160%;
     background: url(../img/right.gif) no-repeat 8px 8px;
@@ -1419,3 +1473,103 @@ ul#navmenu ul {
     font-weight: 700;
     font-family: 'Segoe UI',Tahoma,'Hiragino Sans GB','Microsoft Yahei','Simsun';
 }
+
+/*个人资料*/
+#uhd {
+    padding-top: 10px;
+    border: 1px solid #CCC;
+    border-bottom: none;
+    background: #E5EDF2;
+}
+.ct1 {
+    border: 1px solid #CCC;
+    border-top: none;
+}
+#uhd .h {
+    padding-left: 75px;
+}
+#uhd .avt {
+    display: inline;
+    float: left;
+    margin-left: -65px;
+}
+#uhd .mn {
+    float: right;
+    margin-right: 15px;
+    margin-bottom: -30px;
+    line-height: 28px;
+}
+#uhd .mn a {
+    padding: 2px 0 2px 20px;
+    background: no-repeat 0 50%;
+    color: #666;
+}
+#uhd .mn .addflw a {
+    background-image: url(/static/img/flw_ico.png);
+}
+#uhd .mn .addf a {
+    background-image: url(/static/img/friend.gif);
+}
+#uhd .mn .pm2 a {
+    background-image: url(/static/img/pmto.gif);
+}
+.avt img {
+    padding: 2px;
+    width: 48px;
+    height: 48px;
+    background: #FFF;
+    border: 1px solid;
+    border-color: #F2F2F2 #CDCDCD #CDCDCD #F2F2F2;
+}
+#uhd .mt {
+    padding-bottom: 0;
+}
+.tb {
+    margin-top: 10px;
+    padding-left: 5px;
+    line-height: 30px;
+    border-bottom: 1px solid #CDCDCD;
+}
+.tb a {
+    display: block;
+    padding: 0 10px;
+    border: 1px solid #CDCDCD;
+    background: #E5EDF2;
+}
+.tb .a a, .tb .current a {
+    border-bottom-color: #FFF;
+    background: #FFF;
+    font-weight: 700;
+}
+.tb li {
+    float: left;
+    margin: 0 3px -1px 0;
+}
+#uhd .tb a {
+    border-width: 1px 0;
+    border-top-color: #E5EDF2;
+}
+#uhd .tb .a a {
+    border: 1px solid #CCC;
+    border-bottom-color: #FFF;
+}
+.bbda {
+    border-bottom: 1px dashed #CDCDCD;
+}
+.pbm {
+    padding-bottom: 10px !important;
+}
+.mbn {
+    margin-bottom: 5px !important;
+}
+.pf_l li {
+    float: left;
+    width: 300px;
+}
+.pf_l em {
+    padding-right: 10px;
+    color: #666;
+}
+
+
+/*个人资料结束*/

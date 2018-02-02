@@ -1,5 +1,7 @@
 server:
   port: 18080
+  session:
+    timeout: 3600
 spring:
     datasource:
         name: bbs
@@ -22,12 +24,14 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
-#    freemarker:
-#      template-loader-path: classpath:/templates
-#      request-context-attribute: ctx
-#      cache: false
+    freemarker:
+      template-loader-path: classpath:/templates
+      request-context-attribute: request
+      cache: false
     mvc:
       static-path-pattern: /static/**
+    thymeleaf:
+      cache: false
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.pikaqiu.bbs.entity
@@ -41,6 +45,13 @@ pagehelper:
 logging:
     config: classpath:logback.xml
 sitemesh:
-    contentPath: /**
-    decoratorPath: /decorators/default.jsp
-    excludedPaths:
+    contentPath: /admin/*
+    decoratorPath: /admin/index
+    excludedPaths: /plugin/*,/test
+pikaqiu:
+    board:
+        limit: 10
+        parentLimit: 3
+    page:
+        pageSize: 10
+

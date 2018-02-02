@@ -1,6 +1,6 @@
 package com.pikaqiu.common.interceptor;
 
-import com.pikaqiu.common.config.WebSecurityConfig;
+import com.pikaqiu.common.config.Global;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +29,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = httpServletRequest.getSession();
         if (methodAnnotation != null) {
             //这里是认证的方法
-            if(session.getAttribute(WebSecurityConfig.SESSION_KEY) != null){
+            if(session.getAttribute(Global.SESSION_LOGIN_USER) != null){
                 return true;
             }else{
                 String url = "/toLogin";
