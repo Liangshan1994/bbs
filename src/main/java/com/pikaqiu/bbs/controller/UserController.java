@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by lvls on 2018/1/23.
@@ -28,6 +30,12 @@ public class UserController {
         UserInfo homeUser = userInfoService.get(userId);
         model.addAttribute("homeUser",homeUser);
         return "home";
+    }
+
+    @ResponseBody
+    @RequestMapping("getActiveUser")
+    public List<UserInfo> getActiveUser(Integer size){
+        return userInfoService.getActiveUser(size);
     }
 
 }

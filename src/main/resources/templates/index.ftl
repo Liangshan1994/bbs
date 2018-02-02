@@ -3,10 +3,110 @@
 <head>
     <#include "common/head.ftl">
     <title>首页</title>
-<script>
+<script type="application/javascript">
     $(function(){
-
+        getNewTopic();
+        getTypeTopic();
+        getEliteTopic();
+        getHotTopic();
+        getActiveUser();
     })
+    function getNewTopic(){
+        $.ajax({
+            url:'/getNewTopic',
+            asynx:false,
+            data:{"size":10},
+            type:"post",
+            success:function(result){
+                if(result!=null){
+                    var html = '';
+                    $.each(result,function(key,value){
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '</div>';
+                    })
+                    $("#newTopicList").html(html);
+                }
+            }
+        })
+    }
+    function getEliteTopic(){
+        $.ajax({
+            url:'/getEliteTopic',
+            asynx:false,
+            data:{"size":10},
+            type:"post",
+            success:function(result){
+                if(result!=null){
+                    var html = '';
+                    $.each(result,function(key,value){
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '</div>';
+                    })
+                    $("#eliteTopicList").html(html);
+                }
+            }
+        })
+    }
+    function getHotTopic(){
+        $.ajax({
+            url:'/getEliteTopic',
+            asynx:false,
+            data:{"size":10},
+            type:"post",
+            success:function(result){
+                if(result!=null){
+                    var html = '';
+                    $.each(result,function(key,value){
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '</div>';
+                    })
+                    $("#hotTopicList").html(html);
+                }
+            }
+        })
+    }
+    function getTypeTopic(){
+        $.ajax({
+            url:'/getEliteTopic',
+            asynx:false,
+            data:{"size":10},
+            type:"post",
+            success:function(result){
+                if(result!=null){
+                    var html = '';
+                    $.each(result,function(key,value){
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '</div>';
+                    })
+                    $("#typeTopicList").html(html);
+                }
+            }
+        })
+    }
+    function getActiveUser(){
+        $.ajax({
+            url:'/getActiveUser',
+            asynx:false,
+            data:{"size":10},
+            type:"post",
+            success:function(result){
+                if(result!=null){
+                    var html = '';
+                    $.each(result,function(key,value){
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<span class="y" style="margin-right:5px; color:#999999;">'+value.userTopicNum+'</span>';
+                        html += '<a href="/home-'+value.userId+'.html" target="_blank" c="1">'+value.userName+'</a>';
+                        html += '</div>';
+                    })
+                    $("#activeUserList").html(html);
+                }
+            }
+        })
+    }
 </script>
 </head>
 <body>
@@ -84,40 +184,27 @@
                             </tr>
                             <tr class="fl_row">
                                 <td valign="top" width="21.428571428571%" style="border-right:1px solid #CDCDCD; padding:5px;">
-                                    <div class="boxbg_7ree">
-                                        <div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">
-                                            <a href="thread-689032-1-1.html" target="_blank">mebook.cc 我的小书屋助手，支持批量下载</a>
-                                        </div>
+                                    <div class="boxbg_7ree" id="newTopicList">
                                     </div>
                                 </td>
                                 <td valign="top" width="21.428571428571%" style="border-right:1px solid #CDCDCD; padding:5px;">
-                                    <div class="boxbg_7ree">
-                                        <div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">
-                                            <a href="thread-688965-1-1.html" style="color: #3C9D40" target="_blank" >{吾爱破解}专用 白色简约版＋紫金版 Skin for dUP 2.26.x</a>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td valign="top" width="21.428571428571%" style="border-right:1px solid #CDCDCD; padding:5px;">
-                                    <div class="boxbg_7ree">
-                                        <div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">
+                                    <div class="boxbg_7ree" id="typeTopicList">
 
-                                            <a href="thread-688051-1-1.html" style="color: #3C9D40" target="_blank" >【Na系列】Na百度云1.5 - 紧急修复无限刷新 原百度云Down ◆2018 ...</a>
-                                        </div>
                                     </div>
                                 </td>
                                 <td valign="top" width="21.428571428571%" style="border-right:1px solid #CDCDCD; padding:5px;">
-                                    <div class="boxbg_7ree">
-                                        <div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">
-                                            <a href="thread-687701-1-1.html" style="font-weight: bold;color: #EE1B2E" target="_blank" >{吾爱破解}专用 精简LOGO版＋咖啡版 Skin for dUP 2.26.x</a>
-                                        </div>
+                                    <div class="boxbg_7ree" id="hotTopicList">
+
+                                    </div>
+                                </td>
+                                <td valign="top" width="21.428571428571%" style="border-right:1px solid #CDCDCD; padding:5px;">
+                                    <div class="boxbg_7ree" id="eliteTopicList">
+
                                     </div>
                                 </td>
                                 <td valign="top" width="14.285714285714%" style=" padding:5px;">
-                                    <div class="boxbg_7ree">
-                                        <div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">
-                                            <span class="y" style="margin-right:5px; color:#999999;">[37帖]</span>
-                                            <a href="home.php?mod=space&amp;uid=610147" target="_blank" c="1"> akylq110</a>
-                                        </div>
+                                    <div class="boxbg_7ree" id="activeUserList">
+
                                     </div>
                                 </td>
                             </tr>

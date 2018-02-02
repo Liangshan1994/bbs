@@ -32,4 +32,14 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
     public Topic getTopicById(Integer id) {
         return topicMapper.get(id);
     }
+
+    @Override
+    public List<Topic> getNewTopic(Integer size) {
+        return topicMapper.getNewTopic(size);
+    }
+
+    @Override
+    public List<Topic> getEliteTopic(Integer size) {
+        return topicMapper.getEliteTopic(size);
+    }
 }

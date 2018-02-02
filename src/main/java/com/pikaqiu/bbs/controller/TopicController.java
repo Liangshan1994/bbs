@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -36,6 +37,18 @@ public class TopicController {
         model.addAttribute("board",board);
         model.addAttribute("replyList",replyList);
         return "topic";
+    }
+
+    @ResponseBody
+    @RequestMapping("getNewTopic")
+    public List<Topic> getNewTopic(Integer size){
+        return topicService.getNewTopic(size);
+    }
+
+    @ResponseBody
+    @RequestMapping("getEliteTopic")
+    public List<Topic> getEliteTopic(Integer size){
+        return topicService.getEliteTopic(size);
     }
 
 }

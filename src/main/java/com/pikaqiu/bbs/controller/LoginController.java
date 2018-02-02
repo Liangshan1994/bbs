@@ -44,7 +44,7 @@ public class LoginController {
             if("header".equals(loginFrom)){
                 return "redirect:index";
             }else{
-                return "redirect:" + referer;
+                return "redirect:index";
             }
         }else{
             return "redirect:toLogin";
