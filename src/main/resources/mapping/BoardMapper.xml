@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pikaqiu.bbs.dao.BoardMapper" >
+  <resultMap id="BaseResultMap" type="com.pikaqiu.bbs.entity.Board" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="board_name" property="boardName" jdbcType="VARCHAR" />
+    <result column="board_info" property="boardInfo" jdbcType="VARCHAR" />
+    <result column="board_admin" property="boardAdmin" jdbcType="INTEGER" />
+    <result column="board_parent_id" property="boardParentId" jdbcType="INTEGER" />
+    <result column="board_type" property="boardType" jdbcType="INTEGER" />
+    <result column="is_recommend" property="isRecommend" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, board_name,board_info, board_admin, board_parent_id, board_type, is_recommend, create_by,
+    create_date, update_by, update_date, del_flag
+  </sql>
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_board
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="delete" parameterType="java.lang.Integer" >
+    UPDATE tb_board SET del_flag = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.pikaqiu.bbs.entity.Board" >
+    insert into tb_board
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="boardName != null" >
+        board_name,
+      </if><if test="boardInfo != null" >
+        board_info,
+      </if>
+      <if test="boardAdmin != null" >
+        board_admin,
+      </if>
+      <if test="boardParentId != null" >
+        board_parent_id,
+      </if>
+      <if test="boardType != null" >
+        board_type,
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="boardName != null" >
+        #{boardName,jdbcType=VARCHAR},
+      </if>
+      <if test="boardInfo != null" >
+        #{boardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="boardAdmin != null" >
+        #{boardAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="boardParentId != null" >
+        #{boardParentId,jdbcType=INTEGER},
+      </if>
+      <if test="boardType != null" >
+        #{boardType,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommend != null" >
+        #{isRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="com.pikaqiu.bbs.entity.Board" >
+    update tb_board
+    <set >
+      <if test="boardName != null" >
+        board_name = #{boardName,jdbcType=VARCHAR},
+      </if>
+      <if test="boardInfo != null" >
+        board_info = #{boardInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="boardAdmin != null" >
+        board_admin = #{boardAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="boardParentId != null" >
+        board_parent_id = #{boardParentId,jdbcType=INTEGER},
+      </if>
+      <if test="boardType != null" >
+        board_type = #{boardType,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommend != null" >
+        is_recommend = #{isRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--自定义sql-->
+  <select id="getRecommendBoard" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_board a
+    WHERE
+    a.del_flag = 0 AND is_recommend = 1 and board_type = 2
+  </select>
+  <select id="getBoardsByLimit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from tb_board a
+    WHERE
+    a.del_flag = 0 and board_type = 2
+    limit #{boardLimit}
+  </select>
+  <select id="getBoardsByParents" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from tb_board a
+    WHERE
+    a.del_flag = 0 and board_type = 2 AND a.board_parent_id = #{parentId}
+  </select>
+  <select id="getParentsBoards" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select
+    <include refid="Base_Column_List" />
+    from tb_board a
+    WHERE
+    a.del_flag = 0 and board_type = 1 limit #{parentBoardLimit}
+  </select>
+</mapper>
