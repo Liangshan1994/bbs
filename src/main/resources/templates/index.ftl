@@ -242,13 +242,13 @@
                                                 <tr class="fl_row">
                                             </#if>
                                                 <td class="fl_icn">
-                                                    <a href="/board-${childrenBoard.id}.html">
+                                                    <a href="/board-${childrenBoard.id}-1.html">
                                                         <img src="/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <h2>
-                                                        <a href="/board-${childrenBoard.id}.html">『${childrenBoard.boardName}』</a>
+                                                        <a href="/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
                                                         <em class="xw0 xi1" title="今日">
                                                             (
                                                                 <#if childrenBoard.topicList?exists>

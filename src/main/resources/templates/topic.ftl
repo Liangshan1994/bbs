@@ -12,9 +12,9 @@
             <a href="./" class="nvhm" title="首页"></a><em>»</em>
             <a rel="/" href="/">网站</a> <em>›</em>
             <#if board.parentBoard?exists>
-                <a href="/board-${board.parentBoard.id}">【${board.parentBoard.boardName}】</a> <em>›</em>
+                <a href="/board-${board.parentBoard.id}-1.html">【${board.parentBoard.boardName}】</a> <em>›</em>
             </#if>
-            <a href="/board-${board.id}.html">『${board.boardName}』</a> <em>›</em>
+            <a href="/board-${board.id}-1.html">『${board.boardName}』</a> <em>›</em>
             <a href="/topic-${topic.id}-1.html">${topic.title}</a>
         </div>
     </div>

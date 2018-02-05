@@ -31,8 +31,8 @@ public class BoardController {
         List<Board> recommendBoard = boardService.getRecommendBoard();
         return recommendBoard;
     }
-    @RequestMapping("/board-{id}.html")
-    public String goBoard(@PathVariable("id") Integer id,Model model){
+    @RequestMapping("/board-{id}-{pageNo}.html")
+    public String goBoard(@PathVariable("id") Integer id, @PathVariable("pageNo") Integer pageNo, Model model){
         Board board = boardService.getBoardById(id);
         //当版块类型为1时为一级版块
         if(board.getBoardType()==1){

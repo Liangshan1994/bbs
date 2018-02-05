@@ -28,7 +28,7 @@
                 var html = '';
                 html += '<ul class="nav_ico02">';
                 $.each(result,function(key,value){
-                    html += '<li><a href="/board-'+value.id+'" target="_blank" title="'+value.boardName+'"><font color="green">'+value.boardName+'</font></a></li>';
+                    html += '<li><a href="/board-'+value.id+'-1.html" target="_blank" title="'+value.boardName+'"><font color="green">'+value.boardName+'</font></a></li>';
                 });
                 html += '</ul>';
                 $("#recommendBoard").html(html);

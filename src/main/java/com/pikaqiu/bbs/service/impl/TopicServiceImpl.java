@@ -24,17 +24,23 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
 
     @Override
     public List<Topic> getTopTopic() {
-        return topicMapper.getTopTopic();
+        List<Topic> topics = topicMapper.getTopTopic();
+        setUserInfoToTopic(topics);
+        return topics;
     }
 
     @Override
     public List<Topic> getTopicByBoardId(Integer boardId) {
         List<Topic> topics = topicMapper.selectByBoardId(boardId);
+        setUserInfoToTopic(topics);
+        return topics;
+    }
+
+    private void setUserInfoToTopic(List<Topic> topics) {
         for (Topic topic : topics) {
             UserInfo userInfo = userInfoMapper.get(topic.getUserId());
             topic.setUserInfo(userInfo);
         }
-        return topics;
     }
 
     @Override
