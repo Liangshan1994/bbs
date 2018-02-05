@@ -16,7 +16,7 @@ public class Board extends BaseEntity<Board>{
 
     private Board parentBoard;
 
-    private Integer boardType;
+    private Integer boardType;  //1 一级版块   2 二级版块
 
     private Integer isRecommend;
 
@@ -25,6 +25,10 @@ public class Board extends BaseEntity<Board>{
     private List<Topic> topicList;
 
     private List<Board> childrenBoardList;
+
+    private UserInfo adminUserInfo;
+
+    private Topic lastTopic;
 
     public String getBoardName() {
         return boardName;
@@ -104,5 +108,21 @@ public class Board extends BaseEntity<Board>{
 
     public void setParentBoard(Board parentBoard) {
         this.parentBoard = parentBoard;
+    }
+
+    public UserInfo getAdminUserInfo() {
+        return adminUserInfo;
+    }
+
+    public void setAdminUserInfo(UserInfo adminUserInfo) {
+        this.adminUserInfo = adminUserInfo;
+    }
+
+    public Topic getLastTopic() {
+        return lastTopic;
+    }
+
+    public void setLastTopic(Topic lastTopic) {
+        this.lastTopic = lastTopic;
     }
 }

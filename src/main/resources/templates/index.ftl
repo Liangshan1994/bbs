@@ -22,7 +22,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#newTopicList").html(html);
@@ -41,7 +41,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#eliteTopicList").html(html);
@@ -60,7 +60,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#hotTopicList").html(html);
@@ -79,7 +79,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#typeTopicList").html(html);
@@ -131,7 +131,7 @@
         <div class="z">
             <a href="./" class="nvhm" title="首页"></a>
             <em>»</em>
-            <a rel="index" href="forum.php">网站</a>
+            <a rel="index" href="/">网站</a>
         </div>
     </div>
     <div id="ct" class="wp cl">
@@ -155,7 +155,7 @@
                             <div id="diymsg">
                                 <div id="indiymsg">
                                     <div id="diymsg1">
-                                        <a style="color:blue" href="thread-688978-1-1.html" target="_blank">【活动】活动名</a>
+                                        <a style="color:blue" href="/topic-${topic.id}1-1.html" target="_blank">【活动】活动名</a>
                                     </div>
                                 </div>
                             </div>
@@ -167,19 +167,19 @@
                             <tbody>
                             <tr class="toptitle_7ree">
                                 <td align="center" width="21.428571428571%">
-                                    <a href="https://www.52pojie.cn/forum.php?mod=guide&amp;view=newthread" target="_blank"><strong>新鲜出炉（更多）</strong></a>
+                                    <a href="javascript:alert('等待开发')" target="_blank"><strong>新鲜出炉（更多）</strong></a>
                                 </td>
                                 <td align="center" width="21.428571428571%">
-                                    <a href="https://www.52pojie.cn/forum.php?mod=guide&amp;view=new" target="_blank"><strong>技术分享</strong></a>
+                                    <a href="javascript:alert('等待开发')" target="_blank"><strong>技术分享</strong></a>
                                 </td>
                                 <td align="center" width="21.428571428571%">
-                                    <a href="https://www.52pojie.cn/forum.php?mod=guide&amp;view=hot" target="_blank"><strong>人气热门（更多）</strong></a>
+                                    <a href="javascript:alert('等待开发')" target="_blank"><strong>人气热门（更多）</strong></a>
                                 </td>
                                 <td align="center" width="21.428571428571%">
-                                    <a href="https://www.52pojie.cn/forum.php?mod=guide&amp;view=digest" target="_blank"><strong>精华采撷（更多）</strong></a>
+                                    <a href="javascript:alert('等待开发')" target="_blank"><strong>精华采撷（更多）</strong></a>
                                 </td>
                                 <td align="center" width="14.285714285714%" style="border-right:none;">
-                                    <a href="https://www.52pojie.cn/misc.php?mod=ranklist&amp;type=member&amp;view=post&amp;orderby=today" target="_blank"><strong>活跃榜</strong></a>
+                                    <a href="javascript:alert('等待开发')" target="_blank"><strong>活跃榜</strong></a>
                                 </td>
                             </tr>
                             <tr class="fl_row">
@@ -227,8 +227,8 @@
 							<span class="o">
 								<img id="category_26_img" src="/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开" onclick="toggle_collapse('category_26');">
 							</span>
-                                <span class="y">分区版主: <a href="home.php?mod=space&amp;username=Hmily" class="notabs" c="1">Hmily</a></span>
-                                <h2><a href="forum.php?gid=26" style="">${board.boardName}</a></h2>
+                                <span class="y">分区版主: <a href="/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a></span>
+                                <h2><a href="javascript:alert('等待开发')" style="">${board.boardName}</a></h2>
                             </div>
                             <div id="category_26" class="bm_c" style="">
                                 <#if board.childrenBoardList?exists>
@@ -242,18 +242,24 @@
                                                 <tr class="fl_row">
                                             </#if>
                                                 <td class="fl_icn">
-                                                    <a href="/board-${childrenBoard.id}.html"><img src="/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』"></a>
+                                                    <a href="/board-${childrenBoard.id}.html">
+                                                        <img src="/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <h2>
                                                         <a href="/board-${childrenBoard.id}.html">『${childrenBoard.boardName}』</a>
-                                                        <em class="xw0 xi1" title="今日"> (231)</em>
+                                                        <em class="xw0 xi1" title="今日">
+                                                            (
+                                                                <#if childrenBoard.topicList?exists>
+                                                                    ${childrenBoard.topicList?size}
+                                                                </#if>
+                                                            )</em>
                                                     </h2>
                                                     <p class="xg2">${childrenBoard.boardInfo}</p>
                                                     <p>版主:
                                                         <span class="xi2">
-                                                        <a href="home.php?mod=space&amp;username=kuwo911" class="notabs" c="1">kuwo911</a>,
-                                                        <a href="home.php?mod=space&amp;username=%B7%E3%D2%B6%C6%AE%C1%E3" class="notabs" c="1">枫叶飘零</a>
+                                                        <a href="/home-${childrenBoard.adminUserInfo.userId}.html" class="notabs" c="1">${childrenBoard.adminUserInfo.userName}</a>
                                                         </span>
                                                     </p>
                                                 </td>
@@ -267,7 +273,12 @@
                                                 </td>
                                                 <td class="fl_by">
                                                     <div>
-                                                        <a href="forum.php?mod=redirect&amp;tid=689641&amp;goto=lastpost#lastpost" class="xi2">寻找外挂制作教程</a> <cite>2018-1-21 13:41 <a href="home.php?mod=space&amp;username=E%B7%C9%CF%E8">E飞翔</a></cite>
+                                                        <a href="/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
+                                                            ${childrenBoard.lastTopic.title}
+                                                        </a>
+                                                        <cite>${childrenBoard.lastTopic.createDate?datetime}
+                                                            <a href="home-${childrenBoard.lastTopic.userInfo.userId}.html">${childrenBoard.lastTopic.userInfo.userName}</a>
+                                                        </cite>
                                                     </div>
                                                 </td>
                                             </tr>

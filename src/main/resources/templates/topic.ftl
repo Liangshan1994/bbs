@@ -10,38 +10,35 @@
     <div id="pt" class="bm cl">
         <div class="z">
             <a href="./" class="nvhm" title="首页"></a><em>»</em>
-            <a rel="/" href="forum.php">网站</a> <em>›</em>
-            <a href="forum.php?gid=11">【 管 理 】</a> <em>›</em>
-            <a href="forum-13-1.html">『站点公告』</a> <em>›</em>
-            <a href="/topic-${topic.id}.html">${topic.title}</a>
+            <a rel="/" href="/">网站</a> <em>›</em>
+            <#if board.parentBoard?exists>
+                <a href="/board-${board.parentBoard.id}">【${board.parentBoard.boardName}】</a> <em>›</em>
+            </#if>
+            <a href="/board-${board.id}.html">『${board.boardName}』</a> <em>›</em>
+            <a href="/topic-${topic.id}-1.html">${topic.title}</a>
         </div>
-    </div>
-    <style id="diy_style" type="text/css"></style>
-    <div class="wp">
-        <div id="diy1" class="area"></div>
     </div>
     <div id="ct" class="wp cl">
         <div id="pgt" class="pgs mbm cl ">
             <div class="pgt">
                 <div class="pg"><strong>1</strong>
-                    <a href="thread-688978-2-1.html">2</a>
-                    <a href="thread-688978-3-1.html">3</a>
-                    <a href="thread-688978-4-1.html">4</a>
-                    <a href="thread-688978-5-1.html">5</a>
-                    <a href="thread-688978-6-1.html">6</a>
-                    <a href="thread-688978-7-1.html">7</a>
-                    <a href="thread-688978-8-1.html">8</a>
-                    <a href="thread-688978-9-1.html">9</a>
-                    <a href="thread-688978-10-1.html">10</a>
-                    <a href="thread-688978-35-1.html" class="last">... 35</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" onkeydown="if(event.keyCode==13) {window.location='forum.php?mod=viewthread&amp;tid=688978&amp;extra=page%3D1&amp;page='+this.value;; doane(event);}"><span title="共 35 页"> / 35 页</span></label>
-                    <a href="thread-688978-2-1.html" class="nxt">下一页</a>
+                    <a href="/topic-${topic.id}-1.html">2</a>
+                    <a href="/topic-${topic.id}-1.html">3</a>
+                    <a href="/topic-${topic.id}-1.html">4</a>
+                    <a href="/topic-${topic.id}-1.html">5</a>
+                    <a href="/topic-${topic.id}-1.html">6</a>
+                    <a href="/topic-${topic.id}-1.html">7</a>
+                    <a href="/topic-${topic.id}-1.html">8</a>
+                    <a href="/topic-${topic.id}-1.html">9</a>
+                    <a href="/topic-${topic.id}-1.html">10</a>
+                    <a href="/topic-${topic.id}-1.html" class="last">... 35</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" ><span title="共 35 页"> / 35 页</span></label>
+                    <a href="/topic-${topic.id}-1.html" class="nxt">下一页</a>
                 </div>
             </div>
             <span class="y pgb" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id,'pos':'34'})" initialized="true"><a href="forum-13-1.html">返回列表</a></span>
             <a id="newspecial" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})" onclick="showWindow('newthread', 'forum.php?mod=post&amp;action=newthread&amp;fid=13')" href="javascript:;" title="发新帖"><img src="https://static.52pojie.cn/static/image/common/pn_post.png" alt="发新帖"></a>
             <a id="post_reply" onclick="showWindow('reply', 'forum.php?mod=post&amp;action=reply&amp;fid=13&amp;tid=688978')" href="javascript:;" title="回复"><img src="https://static.52pojie.cn/static/image/common/pn_reply.png" alt="回复"></a>
         </div>
-
         <div id="postlist" class="pl bm">
             <table cellspacing="0" cellpadding="0">
                 <tbody>
@@ -53,10 +50,10 @@
                     </td>
                     <td class="plc ptm pbn vwthd">
                         <h1 class="ts">
-                            <span id="thread_subject">${topic.title}</span>
+                            <span>${topic.title}</span>
                         </h1>
                         <span class="xg1">
-                            <a href="/topic-${topic.id}.html" onclick="return copyThreadUrl(this)">[复制链接]</a>
+                            <a href="/topic-${topic.id}-1.html">[复制链接]</a>
                         </span>
                     </td>
                 </tr>
@@ -73,24 +70,27 @@
                 </tr>
                 </tbody>
             </table>
-            <div id="post_18644255">
-                <div id="threadstamp"><img src="https://static.52pojie.cn/static/image/stamp/005.gif" title="置顶"></div>
-                <table id="pid18644255" class="plhin" summary="pid18644255" cellspacing="0" cellpadding="0">
+            <div>
+                <div id="threadstamp">
+                    <img src="/static/img/stamp/005.gif" title="置顶">
+                </div>
+                <table class="plhin" cellspacing="0" cellpadding="0">
                     <tbody>
                     <tr>
                         <td class="pls" rowspan="2">
-                            <div id="favatar18644255" class="pls favatar" style="top: 33px;">
+                            <div class="pls favatar" style="top: 33px;">
                                 <div class="pi">
                                     <div class="authi">
-                                        <a target="_blank" class="xw1" style="color: #FF0000">Peace</a>
+                                        <a target="_blank" class="xw1" style="color: #FF0000">${topic.userInfo.userName}</a>
                                         <a target="_blank">
-                                            <img src="/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛"></a>
+                                            <img src="/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
+                                        </a>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="avatar">
-                                        <a href="home.php?mod=space&amp;uid=64932" class="avtm" target="_blank">
-                                            <img src="/static/img/defaultImg.jpg">
+                                        <a href="/home-${topic.userInfo.userId}.html" class="avtm" target="_blank">
+                                            <img src="${topic.userInfo.userHeadImg}">
                                         </a>
                                     </div>
                                 </div>
@@ -98,8 +98,8 @@
                                     <table cellspacing="0" cellpadding="0">
                                         <tbody>
                                         <tr>
-                                            <th><p><a href="javascript:void(0)" class="xi2">422</a></p>主题</th>
-                                            <th><p><a href="javascript:void(0)" class="xi2">4580</a></p>帖子</th>
+                                            <th><p><a href="javascript:void(0)" class="xi2">${topic.userInfo.userTopicNum}</a></p>主题</th>
+                                            <th><p><a href="javascript:void(0)" class="xi2">${topic.userInfo.userReplyNum}</a></p>帖子</th>
                                             <td><p><a href="javascript:void(0)" class="xi2">5078</a></p>积分</td>
                                         </tr>
                                         </tbody>
@@ -107,7 +107,7 @@
                                 </div>
                                 <ul class="xl xl2 o cl">
                                     <li class="addflw">
-                                        <a href="javascript:void(0)"  title="收听TA" class="xi2">收听TA</a>
+                                        <a href="javascript:alert('等待开发')"  title="收听TA" class="xi2">收听TA</a>
                                     </li>
                                 </ul>
                             </div>
@@ -116,24 +116,26 @@
                             <div class="pi">
                                 <div id="fj" class="y">
                                     <label class="z">电梯直达</label>
-                                    <input type="text" class="px p_fre z" size="2" onkeyup="$('fj_btn').href='forum.php?mod=redirect&amp;ptid=688978&amp;authorid=0&amp;postno='+this.value" onkeydown="if(event.keyCode==13) {window.location=$('fj_btn').href;return false;}" title="跳转到指定楼层">
-                                    <a href="javascript:;" id="fj_btn" class="z" title="跳转到指定楼层"><img src="https://static.52pojie.cn/static/image/common/fj_btn.png" alt="跳转到指定楼层" class="vm"></a>
+                                    <input type="text" class="px p_fre z" size="2" title="跳转到指定楼层">
+                                    <a href="javascript:alert('等待开发')" id="fj_btn" class="z" title="跳转到指定楼层">
+                                        <img src="/static/img/fj_btn.png" alt="跳转到指定楼层" class="vm">
+                                    </a>
                                 </div>
                                 <strong>
-                                    <a href="thread-688978-1-1.html" id="postnum18644255" onclick="setCopy(this.href, '帖子地址复制成功');return false;">
-                                        <font color="red"><b>楼主</b></font></a>
+                                    <a href="/topic-${topic.id}-1.html">
+                                        <font color="red"><b>楼主</b></font>
+                                    </a>
                                 </strong>
                                 <div class="pti">
                                     <div class="pdbt">
                                     </div>
                                     <div class="authi">
-                                        <img class="authicn vm" id="authicon18644255" src="https://static.52pojie.cn/static/image/common/fanyinwen.gif">
-                                        <em id="authorposton18644255">发表于 2018-1-19 11:34</em>
+                                        <img class="authicn vm" src="/static/img/fanyinwen.gif">
+                                        <em>发表于 ${topic.createDate?datetime}</em>
                                         <span class="pipe">|</span>
-                                        <a href="forum.php?mod=viewthread&amp;tid=688978&amp;page=1&amp;authorid=64932" rel="nofollow">只看该作者</a>
-                                        <span class="none"><img src="https://static.52pojie.cn/static/image/common/arw_r.gif" class="vm" alt="回帖奖励"></span>
+                                        <a href="javascript:alert('等待开发')" rel="nofollow">只看该作者</a>
                                         <span class="pipe show">|</span>
-                                        <a href="forum.php?mod=viewthread&amp;tid=688978&amp;extra=page%3D1&amp;ordertype=1" rel="nofollow" class="show">倒序浏览</a>
+                                        <a href="javascript:alert('等待开发')" rel="nofollow" class="show">倒序浏览</a>
                                     </div>
                                 </div>
                             </div>
@@ -144,13 +146,13 @@
                                     }
                                 </style>
                                 <div class="bdsharebuttonbox bdshare-button-style1-16">
-                                    <a href="#" class="bds_more" data-cmd="more">分享到：</a>
-                                    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a>
-                                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
-                                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
-                                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
-                                    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网">豆瓣网</a>
-                                    <a href="#" class="bds_mail" data-cmd="mail" title="分享到邮件分享">邮件分享</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_more" data-cmd="more">分享到：</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_douban" data-cmd="douban" title="分享到豆瓣网">豆瓣网</a>
+                                    <a href="javascript:alert('等待开发')" class="bds_mail" data-cmd="mail" title="分享到邮件分享">邮件分享</a>
                                 </div>
                                 <div class="pcb">
                                     <div class="cm">
@@ -163,14 +165,14 @@
                     <tr>
                         <td class="plc plm">
                             <div id="p_btn" class="mtw mbm hm cl">
-                                <a href="javascript:void(0)" rel="nofollow" title="收藏本帖"><i><img src="/static/img/fav.gif" alt="收藏">收藏<span>3</span></i></a>
-                                <a href="javascript:void(0)" rel="nofollow" title="评分表立场"><i><img src="/static/img/agree.gif" alt="免费评分">免费评分</i></a>
-                                <a href="javascript:void(0)" rel="nofollow" title="淘好帖进专辑"><i><img src="/static/img/collection.png" alt="分享">淘帖<span>0</span></i></a>
-                                <a href="javascript:void(0)" rel="nofollow" title="顶一下"><i><img src="/static/img/rec_add.gif" alt="送鲜花">送鲜花<span>1</span></i></a>
-                                <a href="javascript:void(0)" rel="nofollow" title="踩一下"><i><img src="/static/img/rec_subtract.gif" alt="扔鸡蛋">扔鸡蛋<span>0</span></i></a>
+                                <a href="javascript:alert('等待开发')" rel="nofollow" title="收藏本帖"><i><img src="/static/img/fav.gif" alt="收藏">收藏<span>3</span></i></a>
+                                <a href="javascript:alert('等待开发')" rel="nofollow" title="评分表立场"><i><img src="/static/img/agree.gif" alt="免费评分">免费评分</i></a>
+                                <a href="javascript:alert('等待开发')" rel="nofollow" title="淘好帖进专辑"><i><img src="/static/img/collection.png" alt="分享">淘帖<span>0</span></i></a>
+                                <a href="javascript:alert('等待开发')" rel="nofollow" title="顶一下"><i><img src="/static/img/rec_add.gif" alt="送鲜花">送鲜花<span>1</span></i></a>
+                                <a href="javascript:alert('等待开发')" rel="nofollow" title="踩一下"><i><img src="/static/img/rec_subtract.gif" alt="扔鸡蛋">扔鸡蛋<span>0</span></i></a>
                                 <a class="followp" href=""><i><img src="/static/img/wx.png">分享到朋友圈</i></a>
                             </div>
-                            <div class="sign">头顶飘过 蛋蛋的忧伤！！！</div>
+                            <div class="sign">${topic.userInfo.userSign}</div>
                         </td>
                     </tr>
                     <tr class="ad"><td class="pls"></td><td class="plc"></td></tr>
@@ -190,8 +192,8 @@
                                             </div>
                                             <div>
                                                 <div class="avatar">
-                                                    <a href="home.php?mod=space&amp;uid=709689" class="avtm" target="_blank">
-                                                        <img src="/static/img/defaultImg.jpg">
+                                                    <a href="/home-${reply.userId}.html" class="avtm" target="_blank">
+                                                        <img src="${reply.userImg}">
                                                     </a>
                                                 </div>
                                             </div>
@@ -265,25 +267,25 @@
             </#if>
         </div>
         <div class="pgbtn">
-            <a href="thread-688978-2-1.html" hidefocus="true" class="bm_h">下一页 »</a>
+            <a href="/topic-${topic.id}-1.html" hidefocus="true" class="bm_h">下一页 »</a>
         </div>
         <div class="pgs mtm mbm cl">
             <div class="pg"><strong>1</strong>
-                <a href="thread-688978-2-1.html">2</a>
-                <a href="thread-688978-3-1.html">3</a>
-                <a href="thread-688978-4-1.html">4</a>
-                <a href="thread-688978-5-1.html">5</a>
-                <a href="thread-688978-6-1.html">6</a>
-                <a href="thread-688978-7-1.html">7</a>
-                <a href="thread-688978-8-1.html">8</a>
-                <a href="thread-688978-9-1.html">9</a>
-                <a href="thread-688978-10-1.html">10</a>
-                <a href="thread-688978-35-1.html" class="last">... 35</a>
+                <a href="/topic-${topic.id}-1.html">2</a>
+                <a href="/topic-${topic.id}-1.html">3</a>
+                <a href="/topic-${topic.id}-1.html">4</a>
+                <a href="/topic-${topic.id}-1.html">5</a>
+                <a href="/topic-${topic.id}-1.html">6</a>
+                <a href="/topic-${topic.id}-1.html">7</a>
+                <a href="/topic-${topic.id}-1.html">8</a>
+                <a href="/topic-${topic.id}-1.html">9</a>
+                <a href="/topic-${topic.id}-1.html">10</a>
+                <a href="/topic-${topic.id}-1.html" class="last">... 35</a>
                 <label>
                     <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" onkeydown="if(event.keyCode==13) {window.location='forum.php?mod=viewthread&amp;tid=688978&amp;extra=page%3D1&amp;page='+this.value;; doane(event);}">
                     <span title="共 35 页"> / 35 页</span>
                 </label>
-                <a href="thread-688978-2-1.html" class="nxt">下一页</a>
+                <a href="/topic-${topic.id}-1.html" class="nxt">下一页</a>
             </div><span class="pgb y" id="visitedforumstmp" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id,'pos':'21'})"><a href="forum-13-1.html">返回列表</a></span>
             <a id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})" onclick="showWindow('newthread', 'forum.php?mod=post&amp;action=newthread&amp;fid=13')" href="javascript:;" title="发新帖"><img src="https://static.52pojie.cn/static/image/common/pn_post.png" alt="发新帖"></a>
             <a id="post_replytmp" onclick="showWindow('reply', 'forum.php?mod=post&amp;action=reply&amp;fid=13&amp;tid=688978')" href="javascript:;" title="回复"><img src="https://static.52pojie.cn/static/image/common/pn_reply.png" alt="回复"></a>

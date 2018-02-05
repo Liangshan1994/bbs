@@ -24,6 +24,8 @@ public class Topic extends BaseEntity<Topic> {
 
     private Date lastReplyDate; //最后回复时间
 
+    private UserInfo userInfo;
+
     public String getTitle() {
         return title;
     }
@@ -78,5 +80,29 @@ public class Topic extends BaseEntity<Topic> {
 
     public void setIsElite(Integer isElite) {
         this.isElite = isElite;
+    }
+
+    public Integer getLastReplyUserId() {
+        return lastReplyUserId;
+    }
+
+    public void setLastReplyUserId(Integer lastReplyUserId) {
+        this.lastReplyUserId = lastReplyUserId;
+    }
+
+    public Date getLastReplyDate() {
+        return lastReplyDate;
+    }
+
+    public void setLastReplyDate(Date lastReplyDate) {
+        this.lastReplyDate = lastReplyDate;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 }

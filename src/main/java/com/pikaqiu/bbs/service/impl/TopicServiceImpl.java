@@ -1,7 +1,9 @@
 package com.pikaqiu.bbs.service.impl;
 
 import com.pikaqiu.bbs.dao.TopicMapper;
+import com.pikaqiu.bbs.dao.UserInfoMapper;
 import com.pikaqiu.bbs.entity.Topic;
+import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.TopicService;
 import com.pikaqiu.common.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
 
     @Autowired
     private TopicMapper topicMapper;
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     @Override
     public List<Topic> getTopTopic() {
@@ -25,7 +29,12 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
 
     @Override
     public List<Topic> getTopicByBoardId(Integer boardId) {
-        return topicMapper.selectByBoardId(boardId);
+        List<Topic> topics = topicMapper.selectByBoardId(boardId);
+        for (Topic topic : topics) {
+            UserInfo userInfo = userInfoMapper.get(topic.getUserId());
+            topic.setUserInfo(userInfo);
+        }
+        return topics;
     }
 
     @Override

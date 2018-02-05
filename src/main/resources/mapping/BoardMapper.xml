@@ -5,7 +5,6 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="board_name" property="boardName" jdbcType="VARCHAR" />
     <result column="board_info" property="boardInfo" jdbcType="VARCHAR" />
-    <result column="board_admin" property="boardAdmin" jdbcType="INTEGER" />
     <result column="board_parent_id" property="boardParentId" jdbcType="INTEGER" />
     <result column="board_type" property="boardType" jdbcType="INTEGER" />
     <result column="is_recommend" property="isRecommend" jdbcType="INTEGER" />
@@ -14,6 +13,7 @@
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <result column="board_admin" property="boardAdmin" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, board_name,board_info, board_admin, board_parent_id, board_type, is_recommend, create_by,

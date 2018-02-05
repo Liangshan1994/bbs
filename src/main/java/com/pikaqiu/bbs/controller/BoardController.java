@@ -34,12 +34,20 @@ public class BoardController {
     @RequestMapping("/board-{id}.html")
     public String goBoard(@PathVariable("id") Integer id,Model model){
         Board board = boardService.getBoardById(id);
-        List<Topic> topTopic = topicService.getTopTopic();
-        List<Topic> topicByBoardId = topicService.getTopicByBoardId(id);
-        model.addAttribute("topTopics",topTopic);
-        model.addAttribute("topicByBoardId",topicByBoardId);
-        model.addAttribute("board",board);
-        return "board";
+        //当版块类型为1时为一级版块
+        if(board.getBoardType()==1){
+            //获取该一级版块下的所有二级版块
+            Board boardDetail = boardService.getBoardDetail(id);
+            model.addAttribute("board",boardDetail);
+            return "boardList";
+        }else{//当版块类型为2时为二级版块
+            model.addAttribute("board",board);
+            List<Topic> topTopic = topicService.getTopTopic();
+            List<Topic> topicByBoardId = topicService.getTopicByBoardId(id);
+            model.addAttribute("topTopics",topTopic);
+            model.addAttribute("topicByBoardId",topicByBoardId);
+            return "board";
+        }
     }
 
 }

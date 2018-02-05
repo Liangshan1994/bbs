@@ -172,6 +172,7 @@
     WHERE
       del_flag = 0 AND
       board_id = #{boardId}
+    ORDER BY create_date desc
   </select>
   <select id="getTopTopic"  resultMap="BaseResultMap">
     SELECT

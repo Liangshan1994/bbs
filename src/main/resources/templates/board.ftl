@@ -141,12 +141,12 @@
                                     <tbody>
                                     <tr>
                                         <td class="icn">
-                                            <a href="/topic-${topTopic.id}.html" title="全局置顶主题 - 新窗口打开" target="_blank">
+                                            <a href="/topic-${topTopic.id}-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
                                                 <img src="/static/img/pin_3.gif" alt="全局置顶">
                                             </a>
                                         </td>
                                         <th class="common">
-                                            <a href="/topic-${topTopic.id}.html" style="font-weight: bold;color: #2B65B7;" class="s xst">【权威发布】${topTopic.title}</a>
+                                            <a href="/topic-${topTopic.id}-1.html" style="font-weight: bold;color: #2B65B7;" class="s xst">【权威发布】${topTopic.title}</a>
                                         </th>
                                         <td class="by">
                                             <cite>
@@ -158,10 +158,10 @@
                                             <em><span>${topTopic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="/topic-${topTopic.id}.html" class="xi2">430</a><em>24272</em></td>
+                                            <a href="/topic-${topTopic.id}-1.html" class="xi2">430</a><em>24272</em></td>
                                         <td class="by">
-                                            <cite><a href="/home?id=${topTopic.userId}">yesav123</a></cite>
-                                            <em><a href="/home?id=${topTopic.userId}">${topTopic.createDate?datetime}</a></em>
+                                            <cite><a href="/home?id=${topTopic.userId}.html">${topTopic.userName}</a></cite>
+                                            <em><a href="/home?id=${topTopic.userId}.html">${topTopic.createDate?datetime}</a></em>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -183,25 +183,25 @@
                                     <tbody>
                                     <tr>
                                         <td class="icn">
-                                            <a href="/topic-${topic.id}.html" title="新窗口打开" target="_blank">
+                                            <a href="/topic-${topic.id}-1.html" title="新窗口打开" target="_blank">
                                                 <img src="/static/img/folder_new.gif">
                                             </a>
                                         </td>
                                         <th class="new">
                                             <em>[<a>测试帖子</a>]</em>
-                                            <a href="/topic-${topic.id}.html" class="s xst">${topic.title}</a>
+                                            <a href="/topic-${topic.id}-1.html" class="s xst">${topic.title}</a>
                                         </th>
                                         <td class="by">
                                             <cite>
-                                                <a href="/home?id=1">Ericky</a>
-                                                <a href="/home?id=1" target="_blank">
-                                                    <img src="/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
+                                                <a href="/home-${topic.userId}.html">${topic.userInfo.userName}</a>
+                                                <a href="/home-${topic.userId}.html" target="_blank">
+                                                    <img src="${topic.userInfo.userHeadImg}" class="vm" alt="论坛大牛" title="论坛大牛">
                                                 </a>
                                             </cite>
                                             <em><span>${topic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="/topic-${topic.id}.html" class="xi2">1</a><em>519</em></td>
+                                            <a href="/topic-${topic.id}-1.html" class="xi2">1</a><em>519</em></td>
                                         <td class="by">
                                             <cite><a href="/home?id=1">ximo</a></cite>
                                             <em><a>${topic.createDate?datetime}</a></em>

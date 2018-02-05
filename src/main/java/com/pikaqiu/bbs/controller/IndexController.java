@@ -2,6 +2,7 @@ package com.pikaqiu.bbs.controller;
 
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.service.BoardService;
+import com.pikaqiu.bbs.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class IndexController {
 
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Value("${pikaqiu.board.limit}")
     private Integer boardLimit;

@@ -3,9 +3,11 @@ package com.pikaqiu.bbs.controller;
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.entity.Reply;
 import com.pikaqiu.bbs.entity.Topic;
+import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.bbs.service.ReplyService;
 import com.pikaqiu.bbs.service.TopicService;
+import com.pikaqiu.bbs.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +28,15 @@ public class TopicController {
     @Autowired
     private BoardService boardService;
     @Autowired
+    private UserInfoService userInfoService;
+    @Autowired
     private ReplyService replyService;
 
-    @RequestMapping("/topic-{id}.html")
-    public String topic(@PathVariable("id") Integer id,Model model){
+    @RequestMapping("/topic-{id}-{pageNo}.html")
+    public String topic(@PathVariable("id") Integer id,@PathVariable("pageNo") Integer pageNo,Model model){
         Topic topic = topicService.get(id);
+        UserInfo userInfo = userInfoService.get(topic.getUserId());
+        topic.setUserInfo(userInfo);
         Board board = boardService.getBoardById(topic.getBoardId());
         List<Reply> replyList = replyService.selectByTopicId(topic.getId());
         model.addAttribute("topic",topic);

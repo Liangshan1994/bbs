@@ -35,7 +35,6 @@ spring:
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.pikaqiu.bbs.entity
-
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql

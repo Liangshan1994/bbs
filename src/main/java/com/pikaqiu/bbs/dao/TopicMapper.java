@@ -14,4 +14,5 @@ public interface TopicMapper extends BaseMapper<Topic>{
     List<Topic> getNewTopic(Integer size);
 
     List<Topic> getEliteTopic(Integer size);
+
 }
