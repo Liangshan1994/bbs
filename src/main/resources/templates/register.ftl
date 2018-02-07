@@ -36,11 +36,11 @@
             <div class="bm">
                 <div class="bm_h bbs">
                     <span class="y">
-                        <a href="/toLogin" class="xi2">已有帐号？现在登录</a>
+                        <a href="${base}/toLogin" class="xi2">已有帐号？现在登录</a>
                     </span>
                     <h3 class="xs2">注册[Register] </h3>
                 </div>
-                <form method="post" autocomplete="off" id="registerform" enctype="multipart/form-data" onsubmit="checksubmit();return false;" action="/register">
+                <form method="post" autocomplete="off" id="registerform" enctype="multipart/form-data" onsubmit="checksubmit();return false;" action="${base}/register">
                     <div class="bm_c">
                         <input type="hidden" name="referer" value="${referer}">
                         <div class="mtw">

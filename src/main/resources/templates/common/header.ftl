@@ -6,7 +6,7 @@
     //获取所有nav
     function getAllNav(){
         $.ajax({
-            url:'/getAllNav',
+            url:'${base}/getAllNav',
             asynx:false,
             success:function(result){
                 var html = '';
@@ -22,13 +22,13 @@
     //获取推荐版块
     function getRecommendBoard(){
         $.ajax({
-            url:'/board/getRecommendBoard',
+            url:'${base}/board/getRecommendBoard',
             asynx:false,
             success:function(result){
                 var html = '';
                 html += '<ul class="nav_ico02">';
                 $.each(result,function(key,value){
-                    html += '<li><a href="/board-'+value.id+'-1.html" target="_blank" title="'+value.boardName+'"><font color="green">'+value.boardName+'</font></a></li>';
+                    html += '<li><a href="${base}/board-'+value.id+'-1.html" target="_blank" title="'+value.boardName+'"><font color="green">'+value.boardName+'</font></a></li>';
                 });
                 html += '</ul>';
                 $("#recommendBoard").html(html);
@@ -41,19 +41,19 @@
 	<div class="wp">
 		<div class="head_top cl">
 			<h2>
-				<a href="/">
-					<img src="/static/img/logo.png"/>
+				<a href="${base}">
+					<img src="${base}/static/img/logo.png"/>
 				</a>
 			</h2>
 			<#if loginUser?exists>
 				<div id="um">
 					<div class="avt y">
-						<a href="home.php?mod=space&amp;uid=313493">
+						<a href="${base}/home-${loginUser.userId}.html">
 							<img src="${loginUser.userHeadImg}">
 						</a>
 					</div>
 					<p>
-						<strong class="vwmy qq"><a href="/home-${loginUser.userId}.html" target="_blank" title="访问我的空间">${loginUser.userName}</a></strong>
+						<strong class="vwmy qq"><a href="${base}/home-${loginUser.userId}.html" target="_blank" title="访问我的空间">${loginUser.userName}</a></strong>
 						<span class="pipe">|</span><a href="javascript:alert('等待开发')" class="showmenu">我的</a>
 						<span class="pipe">|</span><a href="javascript:alert('等待开发')">设置</a>
 						<span class="pipe">|</span><a href="javascript:alert('等待开发')">消息</a>
@@ -68,7 +68,7 @@
 					</p>
 				</div>
 			<#else>
-				<form method="post" id="loginForm" action="/login">
+				<form method="post" id="loginForm" action="${base}/login">
 					<input type="hidden" value="header" name="loginFrom">
 					<div class="fastlg cl">
 						<div class="y pns">
@@ -101,7 +101,7 @@
 											<button type="submit" class="pn vm" style="width: 75px;"><em>登录</em></button>
 										</td>
 										<td>&nbsp;
-											<a href="/toRegister" class="xi2 xw1">注册[Register] </a>
+											<a href="${base}/toRegister" class="xi2 xw1">注册[Register] </a>
 										</td>
 									</tr>
 								</tbody>

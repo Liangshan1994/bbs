@@ -2,7 +2,7 @@
 <html>
 <head>
     <#include "common/head.ftl">
-    <title>首页</title>
+    <title>首页 - 皮卡丘</title>
 <script type="application/javascript">
     $(function(){
         getNewTopic();
@@ -13,7 +13,7 @@
     })
     function getNewTopic(){
         $.ajax({
-            url:'/getNewTopic',
+            url:'${base}/getNewTopic',
             asynx:false,
             data:{"size":10},
             type:"post",
@@ -22,7 +22,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#newTopicList").html(html);
@@ -32,7 +32,7 @@
     }
     function getEliteTopic(){
         $.ajax({
-            url:'/getEliteTopic',
+            url:'${base}/getEliteTopic',
             asynx:false,
             data:{"size":10},
             type:"post",
@@ -41,7 +41,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#eliteTopicList").html(html);
@@ -51,7 +51,7 @@
     }
     function getHotTopic(){
         $.ajax({
-            url:'/getEliteTopic',
+            url:'${base}/getEliteTopic',
             asynx:false,
             data:{"size":10},
             type:"post",
@@ -60,7 +60,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#hotTopicList").html(html);
@@ -70,7 +70,7 @@
     }
     function getTypeTopic(){
         $.ajax({
-            url:'/getEliteTopic',
+            url:'${base}/getEliteTopic',
             asynx:false,
             data:{"size":10},
             type:"post",
@@ -79,7 +79,7 @@
                     var html = '';
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
-                        html += '<a href="/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
+                        html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
                     })
                     $("#typeTopicList").html(html);
@@ -89,7 +89,7 @@
     }
     function getActiveUser(){
         $.ajax({
-            url:'/getActiveUser',
+            url:'${base}/getActiveUser',
             asynx:false,
             data:{"size":10},
             type:"post",
@@ -99,7 +99,7 @@
                     $.each(result,function(key,value){
                         html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
                         html += '<span class="y" style="margin-right:5px; color:#999999;">'+value.userTopicNum+'</span>';
-                        html += '<a href="/home-'+value.userId+'.html" target="_blank" c="1">'+value.userName+'</a>';
+                        html += '<a href="${base}/home-'+value.userId+'.html" target="_blank" c="1">'+value.userName+'</a>';
                         html += '</div>';
                     })
                     $("#activeUserList").html(html);
@@ -129,9 +129,9 @@
             </div>
         </div>
         <div class="z">
-            <a href="./" class="nvhm" title="首页"></a>
+            <a href="${base}" class="nvhm" title="首页"></a>
             <em>»</em>
-            <a rel="index" href="/">网站</a>
+            <a rel="index" href="${base}">网站</a>
         </div>
     </div>
     <div id="ct" class="wp cl">
@@ -155,12 +155,12 @@
                             <div id="diymsg">
                                 <div id="indiymsg">
                                     <div id="diymsg1">
-                                        <a style="color:blue" href="/topic-${topic.id}1-1.html" target="_blank">【活动】活动名</a>
+                                        <a style="color:blue" href="${base}/topic-1-1.html" target="_blank">【活动】活动名</a>
                                     </div>
                                 </div>
                             </div>
                         </h2>
-                        <img src="static/img/collapsed_no.gif" height="0" width="0">
+                        <img src="${base}/static/img/collapsed_no.gif" height="0" width="0">
                     </div>
                     <div id="category_">
                         <table cellspacing="0" cellpadding="0" width="100%" class="toplist_7ree">
@@ -225,9 +225,9 @@
                         <div class="bm bmw  flg cl">
                             <div class="bm_h cl">
 							<span class="o">
-								<img id="category_26_img" src="/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开" onclick="toggle_collapse('category_26');">
+								<img id="category_26_img" src="${base}/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开" onclick="toggle_collapse('category_26');">
 							</span>
-                                <span class="y">分区版主: <a href="/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a></span>
+                                <span class="y">分区版主: <a href="${base}/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a></span>
                                 <h2><a href="javascript:alert('等待开发')" style="">${board.boardName}</a></h2>
                             </div>
                             <div id="category_26" class="bm_c" style="">
@@ -242,13 +242,13 @@
                                                 <tr class="fl_row">
                                             </#if>
                                                 <td class="fl_icn">
-                                                    <a href="/board-${childrenBoard.id}-1.html">
-                                                        <img src="/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
+                                                    <a href="${base}/board-${childrenBoard.id}-1.html">
+                                                        <img src="${base}/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <h2>
-                                                        <a href="/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
+                                                        <a href="${base}/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
                                                         <em class="xw0 xi1" title="今日">
                                                             (
                                                                 <#if childrenBoard.topicList?exists>
@@ -259,7 +259,7 @@
                                                     <p class="xg2">${childrenBoard.boardInfo}</p>
                                                     <p>版主:
                                                         <span class="xi2">
-                                                        <a href="/home-${childrenBoard.adminUserInfo.userId}.html" class="notabs" c="1">${childrenBoard.adminUserInfo.userName}</a>
+                                                        <a href="${base}/home-${childrenBoard.adminUserInfo.userId}.html" class="notabs" c="1">${childrenBoard.adminUserInfo.userName}</a>
                                                         </span>
                                                     </p>
                                                 </td>
@@ -273,7 +273,7 @@
                                                 </td>
                                                 <td class="fl_by">
                                                     <div>
-                                                        <a href="/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
+                                                        <a href="${base}/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
                                                             ${childrenBoard.lastTopic.title}
                                                         </a>
                                                         <cite>${childrenBoard.lastTopic.createDate?datetime}

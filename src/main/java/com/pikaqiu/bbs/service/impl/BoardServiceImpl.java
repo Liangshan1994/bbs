@@ -92,6 +92,9 @@ public class BoardServiceImpl extends BaseServiceImpl<BoardMapper,Board> impleme
         }
     }
 
+    /**
+     * 获取父级版块
+     */
     @Override
     public Board getBoardById(Integer id) {
         Board board = boardMapper.get(id);
@@ -104,7 +107,7 @@ public class BoardServiceImpl extends BaseServiceImpl<BoardMapper,Board> impleme
 
     @Override
     public Board getBoardDetail(Integer id) {
-        Board board = boardMapper.get(id);
+        Board board = getBoardById(id);
         getChildrenDetilList(board);
         return board;
     }

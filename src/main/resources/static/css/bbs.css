@@ -330,10 +330,10 @@ ul li, .xl li {
 }
 .vwmy {
     padding-left: 16px;
-    background: url(/static/img/user_online.gif) no-repeat 0 2px;
+    background: url(${base}/static/img/user_online.gif) no-repeat 0 2px;
 }
 .vwmy.qq {
-    background: url(/static/img/connect_qq.gif) no-repeat scroll 0 0;
+    background: url(${base}/static/img/connect_qq.gif) no-repeat scroll 0 0;
     padding-left: 20px;
 }
 /*用户登陆后结束*/
@@ -1004,7 +1004,7 @@ ul#navmenu ul {
 }
 
 
-/*帖子*/
+/*主题*/
 .bdsharebuttonbox{
     min-height:30px;
 }
@@ -1053,6 +1053,38 @@ ul#navmenu ul {
 .pls .avatar {
     margin: 10px 15px;
 }
+.pbt {
+    margin-bottom: 10px;
+}
+.ftid {
+    float: left;
+    margin-right: 6px;
+}
+.ftid select {
+    width: 120px;
+}
+.ftid select {
+    float: left;
+    height: 23px;
+}
+.ftid a {
+    display: block;
+    overflow: hidden;
+    padding: 0 17px 0 4px;
+    height: 21px;
+    line-height: 21px;
+    text-decoration: none !important;
+    font-size: 12px;
+    font-weight: 400;
+    color: #444 !important;
+    border: 1px solid;
+    border-color: #848484 #E0E0E0 #E0E0E0 #848484;
+    background: #FFF url(/static/img/newarow.gif) no-repeat 100% 0;
+}
+#psd .bn .mbn input, #postbox input {
+    margin-right: 4px;
+}
+
 .avtm img {
     width: 120px;
     height: auto;
@@ -1376,7 +1408,9 @@ ul#navmenu ul {
 .mbm {
     margin-bottom: 10px !important;
 }
-
+.mbw {
+    margin-bottom: 20px !important;
+}
 .mtm {
     margin-top: 10px !important;
 }
@@ -1505,13 +1539,13 @@ ul#navmenu ul {
     color: #666;
 }
 #uhd .mn .addflw a {
-    background-image: url(/static/img/flw_ico.png);
+    background-image: url(${base}/static/img/flw_ico.png);
 }
 #uhd .mn .addf a {
-    background-image: url(/static/img/friend.gif);
+    background-image: url(${base}/static/img/friend.gif);
 }
 #uhd .mn .pm2 a {
-    background-image: url(/static/img/pmto.gif);
+    background-image: url(${base}/static/img/pmto.gif);
 }
 .avt img {
     padding: 2px;
@@ -1544,6 +1578,9 @@ ul#navmenu ul {
 .tb li {
     float: left;
     margin: 0 3px -1px 0;
+}
+.ct2_a .tb {
+    margin-top: 3px;
 }
 #uhd .tb a {
     border-width: 1px 0;

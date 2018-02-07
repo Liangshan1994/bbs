@@ -12,8 +12,8 @@
             <div class="bm">
                 <div class="bm_h bbs">
                     <span class="y">
-                        <a href="/toRegister" class="xi2">没有帐号？</a>
-                        <a href="/toRegister">注册[Register] </a>
+                        <a href="${base}/toRegister" class="xi2">没有帐号？</a>
+                        <a href="${base}/toRegister">注册[Register] </a>
                     </span>
                     <h3 class="xs2">登录</h3>
                 </div>
@@ -30,7 +30,7 @@
                                                     <label for="username_Ldm0V">帐号:</label></th>
                                                 <td><input type="text" name="loginName" id="username_Ldm0V" class="px p_fre" tabindex="1" value=""></td>
                                                 <td class="tipcol">
-                                                    <a href="/toRegister">注册[Register] </a>
+                                                    <a href="${base}/toRegister">注册[Register] </a>
                                                 </td>
                                             </tr>
                                             </tbody>

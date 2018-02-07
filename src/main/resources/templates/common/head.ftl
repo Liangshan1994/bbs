@@ -1,8 +1,12 @@
+<#assign base=request.contextPath/>
 <meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="${base}/static/img/favicon.ico">
+<script src="${base}/static/js/jquery-1.11.0.js"></script>
+<script src="${base}/static/js/jquery.jBox-2.3.min.js"></script>
+<script src="${base}/static/js/func.js"></script>
+<script src="${base}/static/plugins/ueditor/ueditor.config.js"></script>
+<script src="${base}/static/plugins/ueditor/ueditor.all.min.js"></script>
+<script src="${base}/static/plugins/ueditor/ueditor.all.js"></script>
+<script src="${base}/static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
 
-<script src="/static/js/jquery-1.11.0.js"></script>
-<script src="/static/js/jquery.jBox-2.3.min.js"></script>
-<script src="/static/js/func.js"></script>
-
-
-<link rel="stylesheet" href="/static/css/bbs.css" />
+<link rel="stylesheet" href="${base}/static/css/bbs.css" />

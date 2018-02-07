@@ -22,7 +22,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         Method method = handlerMethod.getMethod();
-
         // 判断接口是否需要登录
         LoginAuth methodAnnotation = method.getAnnotation(LoginAuth.class);
         // 有 @LoginAuth 注解，需要认证

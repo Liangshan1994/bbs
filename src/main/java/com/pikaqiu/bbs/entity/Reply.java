@@ -1,5 +1,6 @@
 package com.pikaqiu.bbs.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pikaqiu.common.base.BaseEntity;
 
 import java.util.Date;
@@ -10,6 +11,7 @@ public class Reply extends BaseEntity<Reply>{
 
     private Integer userId; //回复人id
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
     private Date replyTime; //回复时间
 
     private Integer replySort;  //回复顺序

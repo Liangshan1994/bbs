@@ -57,4 +57,5 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
     public List<Topic> getEliteTopic(Integer size) {
         return topicMapper.getEliteTopic(size);
     }
+
 }

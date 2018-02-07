@@ -12,4 +12,5 @@ public interface ReplyService extends BaseService<Reply>{
 
     List<Reply> selectByTopicId(Integer topicId);
 
+    Integer getReplyNumByTopicId(Integer topicId);
 }

@@ -22,4 +22,9 @@ public class ReplyServiceImpl extends BaseServiceImpl<ReplyMapper,Reply> impleme
     public List<Reply> selectByTopicId(Integer topicId) {
         return replyMapper.selectByTopicId(topicId);
     }
+
+    @Override
+    public Integer getReplyNumByTopicId(Integer topicId) {
+        return replyMapper.getReplyNumByTopicId(topicId);
+    }
 }

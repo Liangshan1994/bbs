@@ -10,9 +10,9 @@
 <div class="wp" id="wp">
     <div id="pt" class="bm cl">
         <div class="z">
-            <a href="./" class="nvhm" title="首页"></a><em>»</em>
-            <a rel="index" href="/">网站</a><em>›</em>
-            <a href="/board-${board.id}-1.html">【${board.boardName}】</a>
+            <a href="${base}" class="nvhm" title="首页"></a><em>»</em>
+            <a rel="index" href="${base}">网站</a><em>›</em>
+            <a href="${base}/board-${board.id}-1.html">【${board.boardName}】</a>
         </div>
     </div>
     <div id="ct" class="wp cl">
@@ -21,10 +21,10 @@
                 <div class="bm bmw  flg cl">
                     <div class="bm_h cl">
                     <span class="o">
-                        <img src="/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开" >
+                        <img src="${base}/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开" >
                     </span>
                         <span class="y">分区版主:
-                            <a href="/home-${board.adminUserInfo.userId}.html" class="notabs">
+                            <a href="${base}/home-${board.adminUserInfo.userId}.html" class="notabs">
                                 ${board.adminUserInfo.userName}
                             </a>
                         </span>
@@ -42,13 +42,13 @@
                                         <tr class="fl_row">
                                     </#if>
                                         <td class="fl_icn">
-                                            <a href="/board-${childrenBoard.id}-1.html">
-                                                <img src="/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
+                                            <a href="${base}/board-${childrenBoard.id}-1.html">
+                                                <img src="${base}/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
                                             </a>
                                         </td>
                                         <td>
                                             <h2>
-                                                <a href="/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
+                                                <a href="${base}/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
                                                 <em class="xw0 xi1" title="今日">
                                                     (
                                                         <#if childrenBoard.topicList?exists>
@@ -59,7 +59,7 @@
                                             <p class="xg2">${childrenBoard.boardInfo}</p>
                                             <p>版主:
                                                 <span class="xi2">
-                                                <a href="/home-${childrenBoard.adminUserInfo.userId}.html" class="notabs" c="1">${childrenBoard.adminUserInfo.userName}</a>
+                                                <a href="${base}/home-${childrenBoard.adminUserInfo.userId}.html" class="notabs" c="1">${childrenBoard.adminUserInfo.userName}</a>
                                                 </span>
                                             </p>
                                         </td>
@@ -73,7 +73,7 @@
                                         </td>
                                         <td class="fl_by">
                                             <div>
-                                                <a href="/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
+                                                <a href="${base}/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
                                                     ${childrenBoard.lastTopic.title}
                                                 </a>
                                                 <cite>${childrenBoard.lastTopic.createDate?datetime}

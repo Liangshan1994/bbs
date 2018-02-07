@@ -18,4 +18,5 @@ public interface TopicService extends BaseService<Topic> {
     List<Topic> getNewTopic(Integer size);
 
     List<Topic> getEliteTopic(Integer size);
+
 }

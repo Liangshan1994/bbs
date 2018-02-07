@@ -43,7 +43,7 @@
         <li><a href="javascript:alert('等待开发');">日志</a></li>
         <li><a href="javascript:alert('等待开发');">相册</a></li>
         <li><a href="javascript:alert('等待开发');">留言板</a></li>
-        <li class="a"><a href="/home-${homeUser.userId}.html">个人资料</a></li>
+        <li class="a"><a href="${base}/home-${homeUser.userId}.html">个人资料</a></li>
     </ul>
 </div>
     <div id="ct" class="ct1 wp cl">
@@ -54,7 +54,7 @@
                     <div class="bm_c u_profile">
                         <div class="pbm mbm bbda cl">
                             <h2 class="mbn">
-                                ${homeUser.userName}<img src="/static/img/ol.gif" alt="online" title="在线" class="vm">&nbsp;
+                                ${homeUser.userName}<img src="${base}/static/img/ol.gif" alt="online" title="在线" class="vm">&nbsp;
                                 <span class="xw0">(UID: ${homeUser.userId})</span>
                             </h2>
                             <ul class="pf_l cl pbm mbm">

@@ -13,9 +13,9 @@
         <div class="z">
             <a href="/" class="nvhm" title="首页"></a><em>»</em>
             <#if board.parentBoard?exists>
-                <a href="/board-${board.parentBoard.id}-1.html">${board.parentBoard.boardName}</a><em>›</em>
+                <a href="${base}/board-${board.parentBoard.id}-1.html">${board.parentBoard.boardName}</a><em>›</em>
             </#if>
-            <a href="/board-${board.id}-1.html">${board.boardName}</a>
+            <a href="${base}/board-${board.id}-1.html">${board.boardName}</a>
         </div>
     </div>
     <div class="boardnav">
@@ -24,14 +24,14 @@
                 <div class="bm bml pbn">
                     <div class="bm_h cl">
                         <span class="o">
-                            <img src="/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开">
+                            <img src="${base}/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开">
                         </span>
                         <span class="y">
 							<a href="javascript:void(0)" class="fa_fav">收藏本版
 							</a>
 							</span>
                         <h1 class="xs2">
-                            <a href="/board-${board.id}-1.html">${board.boardName}</a>
+                            <a href="${base}/board-${board.id}-1.html">${board.boardName}</a>
                             <span class="xs1 xw0 i">
                                 今日: <strong class="xi1">0</strong>
                                 <span class="pipe">|</span>
@@ -44,7 +44,7 @@
                     <div class="bm_c cl pbn">
                         <div>版主:
                             <span class="xi2">
-                                <a href="/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a>,
+                                <a href="${base}/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a>,
                             </span>
                         </div>
                         <div id="forum_rules_29" style=";">
@@ -68,14 +68,14 @@
                                 <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1">
                                 <span title="共 3 页"> / 3 页</span>
                             </label>
-                            <a href="/board-${board.id}-2.html" class="nxt">下一页</a>
+                            <a href="${base}/board-${board.id}-2.html" class="nxt">下一页</a>
                         </div>
                     </span>
                     <span class="pgb y" id="visitedforums">
 							<a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
 						</span>
                     <a href="javascript:alert('等待开发')" id="newspecial" title="发新帖">
-                        <img src="/static/img/pn_post.png" alt="发新帖">
+                        <img src="${base}/static/img/pn_post.png" alt="发新帖">
                     </a>
                 </div>
                 <ul id="thread_types" class="ttp bm cl">
@@ -126,27 +126,27 @@
                                     <tbody>
                                     <tr>
                                         <td class="icn">
-                                            <a href="/topic-${topTopic.id}-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
-                                                <img src="/static/img/pin_3.gif" alt="全局置顶">
+                                            <a href="${base}/topic-${topTopic.id}-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
+                                                <img src="${base}/static/img/pin_3.gif" alt="全局置顶">
                                             </a>
                                         </td>
                                         <th class="common">
-                                            <a href="/topic-${topTopic.id}-1.html" style="font-weight: bold;color: #2B65B7;" class="s xst">【权威发布】${topTopic.title}</a>
+                                            <a href="${base}/topic-${topTopic.id}-1.html" style="font-weight: bold;color: #2B65B7;" class="s xst">【权威发布】${topTopic.title}</a>
                                         </th>
                                         <td class="by">
                                             <cite>
                                                 <a href="/home?id=${topTopic.userId}" style="color: #FF0000;">Hmily</a>
                                                 <a href="/home?id=${topTopic.userId}" target="_blank">
-                                                    <img src="/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
+                                                    <img src="${base}/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
                                                 </a>
                                             </cite>
                                             <em><span>${topTopic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="/topic-${topTopic.id}-1.html" class="xi2">430</a><em>24272</em></td>
+                                            <a href="${base}/topic-${topTopic.id}-1.html" class="xi2">430</a><em>24272</em></td>
                                         <td class="by">
-                                            <cite><a href="/home-${topTopic.userId}.html">${topTopic.userInfo.userName}</a></cite>
-                                            <em><a href="/home-${topTopic.userId}.html">${topTopic.createDate?datetime}</a></em>
+                                            <cite><a href="${base}/home-${topTopic.userId}.html">${topTopic.userInfo.userName}</a></cite>
+                                            <em><a href="${base}/home-${topTopic.userId}.html">${topTopic.createDate?datetime}</a></em>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -168,25 +168,25 @@
                                     <tbody>
                                     <tr>
                                         <td class="icn">
-                                            <a href="/topic-${topic.id}-1.html" title="新窗口打开" target="_blank">
-                                                <img src="/static/img/folder_new.gif">
+                                            <a href="${base}/topic-${topic.id}-1.html" title="新窗口打开" target="_blank">
+                                                <img src="${base}/static/img/folder_new.gif">
                                             </a>
                                         </td>
                                         <th class="new">
                                             <em>[<a>测试帖子</a>]</em>
-                                            <a href="/topic-${topic.id}-1.html" class="s xst">${topic.title}</a>
+                                            <a href="${base}/topic-${topic.id}-1.html" class="s xst">${topic.title}</a>
                                         </th>
                                         <td class="by">
                                             <cite>
-                                                <a href="/home-${topic.userId}.html">${topic.userInfo.userName}</a>
-                                                <a href="/home-${topic.userId}.html" target="_blank">
-                                                    <img src="/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
+                                                <a href="${base}/home-${topic.userId}.html">${topic.userInfo.userName}</a>
+                                                <a href="${base}/home-${topic.userId}.html" target="_blank">
+                                                    <img src="${base}/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
                                                 </a>
                                             </cite>
                                             <em><span>${topic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="/topic-${topic.id}-1.html" class="xi2">1</a><em>519</em></td>
+                                            <a href="${base}/topic-${topic.id}-1.html" class="xi2">1</a><em>519</em></td>
                                         <td class="by">
                                             <cite><a href="/home?id=1">ximo</a></cite>
                                             <em><a>${topic.createDate?datetime}</a></em>
@@ -203,20 +203,20 @@
 					<span id="fd_page_bottom">
 						<div class="pg">
 							<strong>1</strong>
-							<a href="/board-${board.id}-1.html">2</a>
-							<a href="/board-${board.id}-1.html">3</a>
+							<a href="${base}/board-${board.id}-1.html">2</a>
+							<a href="${base}/board-${board.id}-1.html">3</a>
 							<label>
 								<input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1">
 								<span title="共 3 页"> / 3 页</span>
 							</label>
-							<a href="/board-${board.id}-1.html" class="nxt">下一页</a>
+							<a href="${base}/board-${board.id}-1.html" class="nxt">下一页</a>
 						</div>
 					</span>
                     <span class="pgb y">
                         <a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
                     </span>
                     <a href="javascript:alert('等待开发')" title="发新帖">
-                        <img src="/static/img/pn_post.png" alt="发新帖">
+                        <img src="${base}/static/img/pn_post.png" alt="发新帖">
                     </a>
                 </div>
             </div>
