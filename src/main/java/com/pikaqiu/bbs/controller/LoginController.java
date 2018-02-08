@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -24,7 +25,9 @@ public class LoginController {
     private UserInfoService userInfoService;
 
     @RequestMapping("/toLogin")
-    public String toLogin(){
+    public String toLogin(HttpServletRequest request, HttpServletResponse response,Model model) {
+        String referer = request.getParameter("referer");
+        model.addAttribute("referer",referer);
         return "login";
     }
 
@@ -44,10 +47,10 @@ public class LoginController {
             if("header".equals(loginFrom)){
                 return "redirect:index";
             }else{
-                return "redirect:index";
+                return "redirect:" + referer==null?"index":referer;
             }
         }else{
-            return "redirect:toLogin";
+            return "toLogin";
         }
     }
     @RequestMapping("/logout")

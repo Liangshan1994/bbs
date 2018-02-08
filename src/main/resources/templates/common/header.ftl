@@ -49,7 +49,7 @@
 				<div id="um">
 					<div class="avt y">
 						<a href="${base}/home-${loginUser.userId}.html">
-							<img src="${loginUser.userHeadImg}">
+							<img src="${base}${loginUser.userHeadImg}">
 						</a>
 					</div>
 					<p>
@@ -87,7 +87,7 @@
 											</label>
 										</td>
 										<td>&nbsp;
-											<a href="javascript:void " >找回密码</a>
+											<a href="javascript:alert('等待开发')" >找回密码</a>
 										</td>
 									</tr>
 									<tr>

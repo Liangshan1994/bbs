@@ -135,8 +135,8 @@
                                         </th>
                                         <td class="by">
                                             <cite>
-                                                <a href="/home?id=${topTopic.userId}" style="color: #FF0000;">Hmily</a>
-                                                <a href="/home?id=${topTopic.userId}" target="_blank">
+                                                <a href="/home-${topTopic.userId}.html" style="color: #FF0000;">${topTopic.userName}</a>
+                                                <a href="/home-${topTopic.userId}.html" target="_blank">
                                                     <img src="${base}/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
                                                 </a>
                                             </cite>

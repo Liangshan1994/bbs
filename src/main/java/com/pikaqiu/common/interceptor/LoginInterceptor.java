@@ -32,7 +32,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 return true;
             }else{
                 String url = "/toLogin";
-                httpServletResponse.sendRedirect(url);
+                httpServletRequest.getRequestDispatcher(url).forward(httpServletRequest,httpServletResponse);
+//                httpServletResponse.sendRedirect(url);
                 return false;
             }
         }

@@ -1,4 +1,4 @@
-<#assign base=request.contextPath/>
+<#assign base = request.contextPath/>
 <meta charset="UTF-8">
 <link rel="icon" type="image/x-icon" href="${base}/static/img/favicon.ico">
 <script src="${base}/static/js/jquery-1.11.0.js"></script>

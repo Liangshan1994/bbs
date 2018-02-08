@@ -3,6 +3,12 @@
 <head>
   <#include "common/head.ftl">
   <title>${topic.title} -皮卡丘</title>
+    <script>
+        $(function(){
+            var url = window.location.href;
+            $("#referer").val(url);
+        })
+    </script>
 </head>
 <body>
 <#include "common/header.ftl">
@@ -38,7 +44,7 @@
             <span class="y pgb" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id,'pos':'34'})" initialized="true"><a href="forum-13-1.html">返回列表</a></span>
             <a id="newspecial"  href="${base}/newTopic-${board.id}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖"></a>
-            <a id="post_reply" href="javascript:;" title="回复"><img src="${base}/static/img/pn_reply.png" alt="回复"></a>
+            <a id="post_reply" href="javascript:alert('等待开发')" title="回复"><img src="${base}/static/img/pn_reply.png" alt="回复"></a>
         </div>
         <div id="postlist" class="pl bm">
             <table cellspacing="0" cellpadding="0">
@@ -91,7 +97,7 @@
                                 <div>
                                     <div class="avatar">
                                         <a href="${base}/home-${topic.userInfo.userId}.html" class="avtm" target="_blank">
-                                            <img src="${topic.userInfo.userHeadImg}">
+                                            <img src="${base}${topic.userInfo.userHeadImg}">
                                         </a>
                                     </div>
                                 </div>
@@ -194,7 +200,7 @@
                                             <div>
                                                 <div class="avatar">
                                                     <a href="${base}/home-${reply.userId}.html" class="avtm" target="_blank">
-                                                        <img src="${reply.userImg}">
+                                                        <img src="${base}${reply.userImg}">
                                                     </a>
                                                 </div>
                                             </div>
@@ -289,7 +295,7 @@
                 <a href="${base}/topic-${topic.id}-1.html" class="nxt">下一页</a>
             </div>
             <span class="pgb y" id="visitedforumstmp" >
-                <a href="forum-13-1.html">返回列表</a>
+                <a href="${base}/topic-${topic.id}-1.html">返回列表</a>
             </span>
             <a id="newspecialtmp" href="${base}/newTopic-${board.id}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖">
@@ -300,9 +306,10 @@
         </div>
         <div id="diyfastposttop" class="area"></div>
         <div id="f_pst" class="pl bm bmw">
-            <form method="post" action="/saveReply">
+            <form method="post" action="${base}/saveReply">
                 <input type="hidden" name="boardId" value="${board.id}">
                 <input type="hidden" name="topicId" value="${topic.id}">
+                <input type="hidden" name="referer" id="referer">
                 <table cellspacing="0" cellpadding="0">
                     <tbody>
                     <tr>

@@ -32,7 +32,7 @@
         <div class="h cl">
             <div class="icn avt">
                 <a href="home-${homeUser.userId}.html">
-                    <img src="${homeUser.userHeadImg}">
+                    <img src="${base}${homeUser.userHeadImg}">
                 </a></div>
             <h2 class="mt">${homeUser.userName}</h2>
             <p><a href="/" class="xg1">https://www.pikaqiu.com/?${homeUser.userId}</a></p>

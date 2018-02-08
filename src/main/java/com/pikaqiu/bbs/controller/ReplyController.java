@@ -32,6 +32,7 @@ public class ReplyController {
         Integer replynum = replyService.getReplyNumByTopicId(topicId);
         reply.setUserId(user.getUserId());
         reply.setReplyTime(new Date());
+        reply.setCreateBy(user.getUserId());
         reply.setUpdateBy(user.getUserId());
         reply.setReplySort(replynum+1);
         replyService.insert(reply);
