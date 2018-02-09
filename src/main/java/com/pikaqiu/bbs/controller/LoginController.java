@@ -62,10 +62,16 @@ public class LoginController {
     @RequestMapping("/register")
     public String register(User user,String referer){
         userService.save(user);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(user.getId());
+        userInfo.setCreateBy(user.getId());
+        userInfo.setUserName(user.getLoginName());
+        userInfo.setUpdateBy(user.getId());
+        userInfoService.insert(userInfo);
         if("/toRegister".equals(referer)){
             return "index";
         }else{
-            return referer;
+            return "index";
         }
     }
 }

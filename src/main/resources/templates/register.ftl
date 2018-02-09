@@ -10,6 +10,27 @@
     //防止重复提交
     var registerFlag = true;
     function checksubmit(){
+        var loginName = $("#loginName").val();
+        var password = $("#password").val();
+        var password2 = $("#password2").val();
+        var userEmail = $("#userEmail").val();
+        if(loginName==null){
+            alert("请输入用户名");
+            return false;
+        }if(password==null){
+            alert("请输入密码");
+            return false;
+        }if(password2==null){
+            alert("请重复密码");
+            return false;
+        }if(userEmail==null){
+            alert("请输入邮箱");
+            return false;
+        }
+        if(password!=password2){
+            alert("两次密码不一致，请重新输入");
+            return false;
+        }
         if(registerFlag){
             registerFlag = false;
             $("#registerform").submit();
@@ -40,7 +61,7 @@
                     </span>
                     <h3 class="xs2">注册[Register] </h3>
                 </div>
-                <form method="post" autocomplete="off" id="registerform" enctype="multipart/form-data" onsubmit="checksubmit();return false;" action="${base}/register">
+                <form method="post" autocomplete="off" id="registerform" enctype="multipart/form-data"  action="${base}/register">
                     <div class="bm_c">
                         <input type="hidden" name="referer" value="${referer}">
                         <div class="mtw">
@@ -50,9 +71,10 @@
                                         <tbody>
                                         <tr>
                                             <th><span class="rq">*</span><label for="PJ52username">用户名:</label></th>
-                                            <td><input type="text" id="PJ52username" name="PJ52username" class="px er" tabindex="1" value="" autocomplete="off" size="25" maxlength="15" required=""></td>
-                                            <td class="tipcol"><i id="tip_PJ52username" class="p_tip" style="display: none;">用户名由 3 到 15 个字符组成，禁止使用QQ或者邮箱等联系方式作为用户名！</i>
-                                                <kbd id="chk_PJ52username" class="p_chk"></kbd></td>
+                                            <td><input type="text" id="loginName" name="loginName" class="px er"  required=""></td>
+                                            <td class="tipcol">
+                                                <i class="p_tip" style="display: none;">用户名由 3 到 15 个字符组成，禁止使用QQ或者邮箱等联系方式作为用户名！</i>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -62,9 +84,10 @@
                                         <tbody>
                                         <tr>
                                             <th><span class="rq">*</span><label for="PJ52password">密码:</label></th>
-                                            <td><input type="password" id="PJ52password" name="PJ52password" size="25" tabindex="1" class="px" required=""></td>
-                                            <td class="tipcol"><i id="tip_PJ52password" class="p_tip" style="display: none;">请填写密码, 最小长度为 9 个字符</i>
-                                                <kbd id="chk_PJ52password" class="p_chk"></kbd></td>
+                                            <td><input type="password" id="password" name="password" class="px" required=""></td>
+                                            <td class="tipcol">
+                                                <i class="p_tip" style="display: none;">请填写密码, 最小长度为 9 个字符</i>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -73,9 +96,11 @@
                                     <table>
                                         <tbody>
                                         <tr>
-                                            <th><span class="rq">*</span><label for="PJ52password2">确认密码:</label></th>
-                                            <td><input type="password" id="PJ52password2" name="PJ52password2" size="25" tabindex="1" value="" class="px" required=""></td>
-                                            <td class="tipcol"><i id="tip_PJ52password2" class="p_tip" style="display: none;">请再次输入密码</i><kbd id="chk_PJ52password2" class="p_chk"></kbd></td>
+                                            <th><span class="rq">*</span><label for="password2">确认密码:</label></th>
+                                            <td><input type="password" id="password2" name="password2" class="px"  required=""></td>
+                                            <td class="tipcol">
+                                                <i class="p_tip" style="display: none;">请再次输入密码</i>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -84,9 +109,11 @@
                                     <table>
                                         <tbody>
                                         <tr>
-                                            <th><span class="rq">*</span><label for="PJ52email">Email:</label></th>
-                                            <td><input type="text" id="PJ52email" name="PJ52email" autocomplete="off" size="25" tabindex="1" class="px" value="" required=""><br><em id="emailmore">&nbsp;</em></td>
-                                            <td class="tipcol"><i id="tip_PJ52email" class="p_tip" style="display: none;"><b><font color="blue">请输入正确的邮箱地址并仔细检查，注册后邮箱地址无法更改，需要邮件激活账号！</font></b></i><kbd id="chk_PJ52email" class="p_chk"></kbd></td>
+                                            <th><span class="rq">*</span><label for="userEmail">Email:</label></th>
+                                            <td><input type="text" id="userEmail" name="userEmail" autocomplete="off" size="25" tabindex="1" class="px" value="" required=""><br><em id="emailmore">&nbsp;</em></td>
+                                            <td class="tipcol">
+                                                <i class="p_tip" style="display: none;"><b><font color="blue">请输入正确的邮箱地址并仔细检查，注册后邮箱地址无法更改，需要邮件激活账号！</font></b></i>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
