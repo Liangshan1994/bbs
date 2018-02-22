@@ -4,9 +4,11 @@
   <resultMap id="BaseResultMap" type="com.pikaqiu.bbs.entity.News" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
     <result column="source" property="source" jdbcType="INTEGER" />
+    <result column="link" property="link" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
@@ -17,7 +19,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, source, author, type, create_by, create_date, update_by, update_date, 
+    id, title, info, source, link, author, type, create_by, create_date, update_by, update_date, 
     del_flag
   </sql>
   <sql id="Blob_Column_List" >
@@ -36,14 +38,16 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.pikaqiu.bbs.entity.News" >
-    insert into tb_news (id, title, source, 
-      author, type, create_by, 
-      create_date, update_by, update_date, 
-      del_flag, content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{source,jdbcType=INTEGER}, 
-      #{author,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{delFlag,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+    insert into tb_news (id, title, info, 
+      source, link, author, 
+      type, create_by, create_date, 
+      update_by, update_date, del_flag, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
+      #{source,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{createBy,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.pikaqiu.bbs.entity.News" >
     insert into tb_news
@@ -54,8 +58,14 @@
       <if test="title != null" >
         title,
       </if>
+      <if test="info != null" >
+        info,
+      </if>
       <if test="source != null" >
         source,
+      </if>
+      <if test="link != null" >
+        link,
       </if>
       <if test="author != null" >
         author,
@@ -89,14 +99,20 @@
       <if test="title != null" >
         #{title,jdbcType=VARCHAR},
       </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
       <if test="source != null" >
         #{source,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        #{link,jdbcType=VARCHAR},
       </if>
       <if test="author != null" >
         #{author,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=INTEGER},
+        #{type,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=INTEGER},
@@ -124,14 +140,20 @@
       <if test="title != null" >
         title = #{title,jdbcType=VARCHAR},
       </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
       <if test="source != null" >
         source = #{source,jdbcType=INTEGER},
+      </if>
+      <if test="link != null" >
+        link = #{link,jdbcType=VARCHAR},
       </if>
       <if test="author != null" >
         author = #{author,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=INTEGER},
+        type = #{type,jdbcType=VARCHAR},
       </if>
       <if test="createBy != null" >
         create_by = #{createBy,jdbcType=INTEGER},
@@ -157,9 +179,11 @@
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pikaqiu.bbs.entity.News" >
     update tb_news
     set title = #{title,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
       source = #{source,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_by = #{updateBy,jdbcType=INTEGER},
@@ -171,9 +195,11 @@
   <update id="updateByPrimaryKey" parameterType="com.pikaqiu.bbs.entity.News" >
     update tb_news
     set title = #{title,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
       source = #{source,jdbcType=INTEGER},
+      link = #{link,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
-      type = #{type,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR},
       create_by = #{createBy,jdbcType=INTEGER},
       create_date = #{createDate,jdbcType=TIMESTAMP},
       update_by = #{updateBy,jdbcType=INTEGER},

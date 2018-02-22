@@ -1,9 +1,13 @@
 package com.pikaqiu.common.processor;
 
+import com.pikaqiu.bbs.entity.News;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
+import us.codecraft.webmagic.selector.Selectable;
+
+import java.util.List;
 
 /**
  * 简书首页
@@ -20,7 +24,25 @@ public class JianShuProcessor implements PageProcessor {
 
     @Override
     public void process(Page page) {
-        System.out.println("爬虫测试process:"+page.getHtml());
+        if (page.getUrl().regex(list).match()) {
+            List<Selectable> list = page.getHtml().xpath("//ul[@class='note-list']/li").nodes();
+            for (Selectable s : list) {
+                String title = s.xpath("//div/a[@class='title']/text()").toString();
+                String info = s.xpath("//div/p[@class='abstract']/text()").toString();
+                String type = s.xpath("//div/a[@class='collection-tag']/text()").toString();
+                String link = s.xpath("//div/").links().toString();
+                String author = s.xpath("//div/a[@class='nickname']/text()").toString();
+                News news = new News();
+                news.setAuthor(author);
+                news.setSource(1);
+                news.setLink(link);
+                news.setInfo(info);
+                news.setType(type);
+                news.setTitle(title);
+                page.putField("news"+title, news);
+            }
+            System.out.println("爬了"+list.size()+"条数据");
+        }
     }
 
     @Override
@@ -29,7 +51,7 @@ public class JianShuProcessor implements PageProcessor {
     }
 
     public static void main(String[] args) {
-        Spider spider=Spider.create(new JianShuProcessor());
+        Spider spider = Spider.create(new JianShuProcessor());
         spider.addUrl("http://www.jianshu.com");
         spider.addPipeline(new NewsPipeline());
         spider.thread(5);

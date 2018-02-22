@@ -1,19 +1,7 @@
 package com.pikaqiu.bbs.dao;
 
 import com.pikaqiu.bbs.entity.News;
+import com.pikaqiu.common.base.BaseMapper;
 
-public interface NewsMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(News record);
-
-    int insertSelective(News record);
-
-    News selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(News record);
-
-    int updateByPrimaryKeyWithBLOBs(News record);
-
-    int updateByPrimaryKey(News record);
+public interface NewsMapper extends BaseMapper<News> {
 }
