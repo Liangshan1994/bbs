@@ -7,6 +7,10 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 /**
@@ -31,10 +35,12 @@ public class JianShuProcessor implements PageProcessor {
                 String info = s.xpath("//div/p[@class='abstract']/text()").toString();
                 String type = s.xpath("//div/a[@class='collection-tag']/text()").toString();
                 String link = s.xpath("//div/").links().toString();
+                String content = getContent(link);
                 String author = s.xpath("//div/a[@class='nickname']/text()").toString();
                 News news = new News();
                 news.setAuthor(author);
                 news.setSource(1);
+                news.setContent(content);
                 news.setLink(link);
                 news.setInfo(info);
                 news.setType(type);
@@ -50,6 +56,9 @@ public class JianShuProcessor implements PageProcessor {
         return site;
     }
 
+    public String getContent(String url){
+        return "";
+    }
     public static void main(String[] args) {
         Spider spider = Spider.create(new JianShuProcessor());
         spider.addUrl("http://www.jianshu.com");

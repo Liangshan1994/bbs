@@ -26,7 +26,7 @@ public class WebmagicSchedulingConfig {
     /**
      * 简书
      */
-    @Scheduled(cron = "0 0 0/2 * * ? ")//从0点开始,每2个小时执行一次
+    @Scheduled(cron = "0 0 3 * * ? ")//3点触发
     public void jianShuScheduled() {
         logger.info(new Date()+"----开始执行简书定时任务");
         Spider spider = Spider.create(new JianShuProcessor());
