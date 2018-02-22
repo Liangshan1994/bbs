@@ -277,7 +277,9 @@
                                                             ${childrenBoard.lastTopic.title}
                                                         </a>
                                                         <cite>${childrenBoard.lastTopic.createDate?datetime}
-                                                            <a href="home-${childrenBoard.lastTopic.userInfo.userId}.html">${childrenBoard.lastTopic.userInfo.userName}</a>
+                                                            <#if childrenBoard.lastTopic.userInfo?exists>
+                                                                <a href="home-${childrenBoard.lastTopic.userInfo.userId}.html">${childrenBoard.lastTopic.userInfo.userName}</a>
+                                                            </#if>
                                                         </cite>
                                                     </div>
                                                 </td>

@@ -33,9 +33,24 @@ spring:
       static-path-pattern: classpath:${base}/static/**
     thymeleaf:
       cache: false
+    mail:
+      host: smtp.163.com
+      username: lls758831364@163.com
+      password: lls19940420
+      properties:
+        mail:
+          smth:
+            auth: true
+            starttls:
+              enable: true
+              required: true
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.pikaqiu.bbs.entity
+  configuration:
+    aggressive-lazy-loading: true
+    lazy-loading-enabled: true
+    map-underscore-to-camel-case: true
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql
@@ -44,6 +59,7 @@ pagehelper:
     params: count=countSql
 logging:
     config: classpath:logback.xml
+
 sitemesh:
     contentPath: /admin/*
     decoratorPath: /admin/index

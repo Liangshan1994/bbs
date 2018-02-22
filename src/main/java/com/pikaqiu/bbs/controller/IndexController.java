@@ -3,6 +3,7 @@ package com.pikaqiu.bbs.controller;
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.bbs.service.UserInfoService;
+import com.pikaqiu.common.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,8 @@ public class IndexController {
     private BoardService boardService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private MailService mailService;
 
     @Value("${pikaqiu.board.limit}")
     private Integer boardLimit;
@@ -34,6 +37,7 @@ public class IndexController {
 
     @RequestMapping(value={"/","/index"})
     public String index(Model model) {
+        mailService.sendSimpleMail("758831364@qq.com","这是一个简单邮件","这是邮件内容");
         List<Board> parentsBoards = boardService.getParentsBoards(parentBoardLimit);
         model.addAttribute("parentsBoards",parentsBoards);
         return "index";

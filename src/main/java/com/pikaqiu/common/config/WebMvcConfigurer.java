@@ -3,9 +3,13 @@ package com.pikaqiu.common.config;
 import com.pikaqiu.common.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.nio.charset.Charset;
 
 /**
  * Created by lvls on 2018/1/26.
@@ -29,5 +33,10 @@ public class WebMvcConfigurer  extends WebMvcConfigurerAdapter {
     @Bean
     public LoginInterceptor loginInterceptor() {
         return new LoginInterceptor();
+    }
+    @Bean
+    public HttpMessageConverter<String> responseBodyConverter() {
+        StringHttpMessageConverter converter = new StringHttpMessageConverter(Charset.forName("UTF-8"));
+        return converter;
     }
 }

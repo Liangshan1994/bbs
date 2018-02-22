@@ -26,6 +26,8 @@ public class Topic extends BaseEntity<Topic> {
 
     private UserInfo userInfo;
 
+    private Board board;
+
     public String getTitle() {
         return title;
     }
@@ -104,5 +106,13 @@ public class Topic extends BaseEntity<Topic> {
 
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }
