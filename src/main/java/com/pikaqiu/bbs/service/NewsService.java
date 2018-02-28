@@ -7,5 +7,5 @@ import com.pikaqiu.common.base.BaseService;
  * Created by lvls on 2018/2/22.
  */
 public interface NewsService extends BaseService<News> {
-
+    boolean isExist(String link);
 }

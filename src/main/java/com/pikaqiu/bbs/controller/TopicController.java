@@ -7,6 +7,7 @@ import com.pikaqiu.bbs.service.TopicService;
 import com.pikaqiu.bbs.service.UserInfoService;
 import com.pikaqiu.bbs.utils.UserUtils;
 import com.pikaqiu.common.interceptor.LoginAuth;
+import com.pikaqiu.common.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,11 +38,16 @@ public class TopicController {
         Topic topic = topicService.get(id);
         UserInfo userInfo = userInfoService.get(topic.getUserId());
         topic.setUserInfo(userInfo);
+        topic.setView(topic.getView() + 1);
+        topicService.update(topic);
         Board board = boardService.getBoardById(topic.getBoardId());
-        List<Reply> replyList = replyService.selectByTopicId(topic.getId());
+        PageInfo<Reply> pageInfo = replyService.selectPageByTopicId(topic.getId(), pageNo);
+        List<Reply> replyList = pageInfo.getList();
+        model.addAttribute("replyNum",replyList.size());
         model.addAttribute("topic",topic);
         model.addAttribute("board",board);
         model.addAttribute("replyList",replyList);
+        model.addAttribute("pageInfo",pageInfo);
         return "topic";
     }
 
@@ -62,20 +68,21 @@ public class TopicController {
         topic.setUserId(user.getUserId());
         topic.setIsElite(0);
         topic.setIsTop(0);
+        topic.setView(0);
         topicService.insert(topic);
         return "redirect:/topic-"+topic.getId()+"-1.html";
     }
 
     @ResponseBody
     @RequestMapping("getNewTopic")
-    public List<Topic> getNewTopic(Integer size){
-        return topicService.getNewTopic(size);
+    public List<Topic> getNewTopic(){
+        return topicService.getNewTopic();
     }
 
     @ResponseBody
     @RequestMapping("getEliteTopic")
-    public List<Topic> getEliteTopic(Integer size){
-        return topicService.getEliteTopic(size);
+    public List<Topic> getEliteTopic(){
+        return topicService.getEliteTopic();
     }
 
 }

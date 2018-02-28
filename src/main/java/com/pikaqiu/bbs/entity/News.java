@@ -2,6 +2,8 @@ package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.util.Date;
+
 public class News extends BaseEntity<News> {
 
     private String title;
@@ -17,6 +19,8 @@ public class News extends BaseEntity<News> {
     private String type;
 
     private String content;
+
+    private Date pushDate;
 
     public String getTitle() {
         return title;
@@ -72,5 +76,13 @@ public class News extends BaseEntity<News> {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public Date getPushDate() {
+        return pushDate;
+    }
+
+    public void setPushDate(Date pushDate) {
+        this.pushDate = pushDate;
     }
 }

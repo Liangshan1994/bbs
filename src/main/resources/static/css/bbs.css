@@ -330,10 +330,10 @@ ul li, .xl li {
 }
 .vwmy {
     padding-left: 16px;
-    background: url(${base}/static/img/user_online.gif) no-repeat 0 2px;
+    background: url(../img/user_online.gif) no-repeat 0 2px;
 }
 .vwmy.qq {
-    background: url(${base}/static/img/connect_qq.gif) no-repeat scroll 0 0;
+    background: url(../img/connect_qq.gif) no-repeat scroll 0 0;
     padding-left: 20px;
 }
 /*用户登陆后结束*/
@@ -1539,13 +1539,13 @@ ul#navmenu ul {
     color: #666;
 }
 #uhd .mn .addflw a {
-    background-image: url(${base}/static/img/flw_ico.png);
+    background-image: url(../img/flw_ico.png);
 }
 #uhd .mn .addf a {
-    background-image: url(${base}/static/img/friend.gif);
+    background-image: url(../img/friend.gif);
 }
 #uhd .mn .pm2 a {
-    background-image: url(${base}/static/img/pmto.gif);
+    background-image: url(../img/pmto.gif);
 }
 .avt img {
     padding: 2px;

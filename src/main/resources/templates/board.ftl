@@ -3,7 +3,7 @@
 <html>
 <head>
   <#include "common/head.ftl">
-  <title>${board.boardName}</title>
+  <title>${board.boardName} - 皮卡丘</title>
 </head>
 <body>
 <#include "common/header.ftl">
@@ -33,11 +33,11 @@
                         <h1 class="xs2">
                             <a href="${base}/board-${board.id}-1.html">${board.boardName}</a>
                             <span class="xs1 xw0 i">
-                                今日: <strong class="xi1">0</strong>
+                                今日: <strong class="xi1">${toDayTopicNum}</strong>
                                 <span class="pipe">|</span>
-                                主题: <strong class="xi1">122</strong>
-                                <span class="pipe">|</span>
-                                排名: <strong class="xi1" title="上次排名:45">45</strong>
+                                主题: <strong class="xi1">${pageInfo.total}</strong>
+                               <#-- <span class="pipe">|</span>
+                                排名: <strong class="xi1" title="上次排名:45">45</strong>-->
                             </span>
                         </h1>
                     </div>
@@ -61,20 +61,33 @@
                 <div id="pgt" class="bm bw0 pgs cl">
                     <span id="fd_page_top">
                         <div class="pg">
-                            <strong>1</strong>
-                            <a href="forum-29-2.html">2</a>
-                            <a href="forum-29-3.html">3</a>
+                            <#if pageInfo.hasPreviousPage>
+                                <a href="${base}/board-${board.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
+                            <#else >
+                                <strong>上一页</strong>
+                            </#if>
+                            <#list 1..pageInfo.pages as page>
+                            <#if page=pageInfo.pageNum>
+                                <strong>${page}</strong>
+                            <#else >
+                                <a href="${base}/board-${board.id}-${page}.html" class="nxt">${page}</a>
+                            </#if>
+                            </#list>
                             <label>
-                                <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1">
-                                <span title="共 3 页"> / 3 页</span>
+                                <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/board-${board.id}-'+this.value+'.html';}">
+                                <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
                             </label>
-                            <a href="${base}/board-${board.id}-2.html" class="nxt">下一页</a>
+                            <#if pageInfo.hasNextPage>
+                                <a href="${base}/board-${board.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
+                                <#else >
+                                <strong>下一页</strong>
+                            </#if>
                         </div>
                     </span>
                     <span class="pgb y" id="visitedforums">
 							<a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
 						</span>
-                    <a href="javascript:alert('等待开发')" id="newspecial" title="发新帖">
+                    <a href="${base}/newTopic-${board.id}.html" title="发新帖">
                         <img src="${base}/static/img/pn_post.png" alt="发新帖">
                     </a>
                 </div>
@@ -127,7 +140,7 @@
                                     <tr>
                                         <td class="icn">
                                             <a href="${base}/topic-${topTopic.id}-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
-                                                <img src="${base}/static/img/pin_3.gif" alt="全局置顶">
+                                                <img src="${base}/static/img/pin_${topTopic_index + 1}.gif" alt="全局置顶">
                                             </a>
                                         </td>
                                         <th class="common">
@@ -135,7 +148,7 @@
                                         </th>
                                         <td class="by">
                                             <cite>
-                                                <a href="/home-${topTopic.userId}.html" style="color: #FF0000;">${topTopic.userName}</a>
+                                                <a href="/home-${topTopic.userId}.html" style="color: #FF0000;">${topTopic.userInfo.userName}</a>
                                                 <a href="/home-${topTopic.userId}.html" target="_blank">
                                                     <img src="${base}/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
                                                 </a>
@@ -143,7 +156,7 @@
                                             <em><span>${topTopic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="${base}/topic-${topTopic.id}-1.html" class="xi2">430</a><em>24272</em></td>
+                                            <a href="${base}/topic-${topTopic.id}-1.html" class="xi2">${topTopic.replyNum}</a><em>${topTopic.view}</em></td>
                                         <td class="by">
                                             <cite><a href="${base}/home-${topTopic.userId}.html">${topTopic.userInfo.userName}</a></cite>
                                             <em><a href="${base}/home-${topTopic.userId}.html">${topTopic.createDate?datetime}</a></em>
@@ -151,18 +164,20 @@
                                     </tr>
                                     </tbody>
                                 </#list>
+                                <#if topTopics?size gt 0>
+                                    <tbody id="separatorline">
+                                    <tr class="ts" style="display: table-row;">
+                                        <td>&nbsp;</td>
+                                        <th>
+                                            <a href="javascript:void(0)" title="查看更新" class="forumrefresh">版块主题</a>
+                                        </th>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    </tbody>
+                                </#if>
                             </#if>
-                            <tbody id="separatorline">
-                            <tr class="ts" style="display: table-row;">
-                                <td>&nbsp;</td>
-                                <th>
-                                    <a href="javascript:void(0)" title="查看更新" class="forumrefresh">版块主题</a>
-                                </th>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                                <td>&nbsp;</td>
-                            </tr>
-                            </tbody>
                             <#if topicByBoardId?exists>
                                 <#list topicByBoardId as topic>
                                     <tbody>
@@ -186,9 +201,9 @@
                                             <em><span>${topic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="${base}/topic-${topic.id}-1.html" class="xi2">1</a><em>519</em></td>
+                                            <a href="${base}/topic-${topic.id}-1.html" class="xi2">${topic.replyNum}</a><em>${topic.view}</em></td>
                                         <td class="by">
-                                            <cite><a href="/home?id=1">ximo</a></cite>
+                                            <cite><a href="${base}/home-${topic.userId}.html">${topic.userInfo.userName}</a></cite>
                                             <em><a>${topic.createDate?datetime}</a></em>
                                         </td>
                                     </tr>
@@ -198,24 +213,39 @@
                         </table>
                     </div>
                 </div>
-                <a class="bm_h" href="javascript:;" rel="forum.php?mod=forumdisplay&amp;fid=29&amp;page=2" curpage="1" id="autopbn" totalpage="3" picstyle="0" forumdefstyle="">下一页 »</a>
+            <#if pageInfo.hasNextPage>
+                <a class="bm_h" href="${base}/board-${board.id}-${pageInfo.nextPage}.html" id="autopbn" >下一页 »</a>
+            </#if>
                 <div class="bm bw0 pgs cl">
 					<span id="fd_page_bottom">
 						<div class="pg">
-							<strong>1</strong>
-							<a href="${base}/board-${board.id}-1.html">2</a>
-							<a href="${base}/board-${board.id}-1.html">3</a>
-							<label>
-								<input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1">
-								<span title="共 3 页"> / 3 页</span>
-							</label>
-							<a href="${base}/board-${board.id}-1.html" class="nxt">下一页</a>
+							<#if pageInfo.hasPreviousPage>
+                                <a href="${base}/board-${board.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
+                            <#else >
+                                <strong>上一页</strong>
+                            </#if>
+                            <#list 1..pageInfo.pages as page>
+                                <#if page=pageInfo.pageNum>
+                                    <strong>${page}</strong>
+                                <#else >
+                                    <a href="${base}/board-${board.id}-${page}.html" class="nxt">${page}</a>
+                                </#if>
+                            </#list>
+                                <label>
+                                <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/board-${board.id}-'+this.value+'.html';}">
+                                <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
+                            </label>
+                            <#if pageInfo.hasNextPage>
+                                <a href="${base}/board-${board.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
+                            <#else >
+                                <strong>下一页</strong>
+                            </#if>
 						</div>
 					</span>
                     <span class="pgb y">
                         <a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
                     </span>
-                    <a href="javascript:alert('等待开发')" title="发新帖">
+                    <a href="${base}/newTopic-${board.id}.html" title="发新帖">
                         <img src="${base}/static/img/pn_post.png" alt="发新帖">
                     </a>
                 </div>

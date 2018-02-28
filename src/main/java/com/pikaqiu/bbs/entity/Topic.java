@@ -28,6 +28,10 @@ public class Topic extends BaseEntity<Topic> {
 
     private Board board;
 
+    private Integer view;//访问量
+
+    private Integer replyNum;
+
     public String getTitle() {
         return title;
     }
@@ -114,5 +118,21 @@ public class Topic extends BaseEntity<Topic> {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public Integer getView() {
+        return view;
+    }
+
+    public void setView(Integer view) {
+        this.view = view;
+    }
+
+    public Integer getReplyNum() {
+        return replyNum;
+    }
+
+    public void setReplyNum(Integer replyNum) {
+        this.replyNum = replyNum;
     }
 }

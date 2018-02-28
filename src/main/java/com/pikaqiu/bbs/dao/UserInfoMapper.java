@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface UserInfoMapper extends BaseMapper<UserInfo>{
 
-    List<UserInfo> getActiveUser(Integer size);
+    List<UserInfo> getActiveUser();
+
+    List<UserInfo> getAllUser();
 }

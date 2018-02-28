@@ -1,5 +1,7 @@
 package com.pikaqiu.bbs.controller;
 
+import com.pikaqiu.bbs.utils.TopicUtils;
+import com.pikaqiu.common.pagehelper.PageInfo;
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.entity.Topic;
 import com.pikaqiu.bbs.service.BoardService;
@@ -39,10 +41,17 @@ public class BoardController {
         if(board.getBoardType()==1){
             return "boardList";
         }else{//当版块类型为2时为二级版块
-            List<Topic> topTopic = topicService.getTopTopic();
+            //获取当前版块的置顶主题
+            List<Topic> topTopic = topicService.getTopTopicByBoard(id);
+            //分页获取当前版块的主题
+            PageInfo<Topic> pageInfo = topicService.getPageTopicByBoardId(id,pageNo);
+            //获取当前板块所有主题
             List<Topic> topicByBoardId = topicService.getTopicByBoardId(id);
+            Integer toDayTopicNum = TopicUtils.getToDayTopicNum(topicByBoardId);
+            model.addAttribute("toDayTopicNum",toDayTopicNum);
             model.addAttribute("topTopics",topTopic);
-            model.addAttribute("topicByBoardId",topicByBoardId);
+            model.addAttribute("pageInfo",pageInfo);
+            model.addAttribute("topicByBoardId",pageInfo.getList());
             return "board";
         }
     }

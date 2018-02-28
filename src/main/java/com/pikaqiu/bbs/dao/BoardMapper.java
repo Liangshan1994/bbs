@@ -9,10 +9,10 @@ public interface BoardMapper extends BaseMapper<Board>{
 
     List<Board> getRecommendBoard();
 
-    List<Board> getBoardsByLimit(Integer boardLimit);
+    List<Board> getBoardsByLimit();
 
     List<Board> getBoardsByParents(Integer parentId);
 
-    List<Board> getParentsBoards(Integer parentBoardLimit);
+    List<Board> getParentsBoards();
 
 }

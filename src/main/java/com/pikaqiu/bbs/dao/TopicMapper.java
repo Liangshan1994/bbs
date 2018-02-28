@@ -11,8 +11,9 @@ public interface TopicMapper extends BaseMapper<Topic>{
 
     List<Topic> getTopTopic();
 
-    List<Topic> getNewTopic(Integer size);
+    List<Topic> getNewTopic();
 
-    List<Topic> getEliteTopic(Integer size);
+    List<Topic> getEliteTopic();
 
+    List<Topic> getTopTopicByBoard(Integer boardId);
 }

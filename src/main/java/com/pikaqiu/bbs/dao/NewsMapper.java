@@ -5,4 +5,5 @@ import com.pikaqiu.common.base.BaseMapper;
 
 public interface NewsMapper extends BaseMapper<News> {
 
+    News isExist(String links);
 }

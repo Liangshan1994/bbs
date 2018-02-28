@@ -1,5 +1,6 @@
 package com.pikaqiu.bbs.service;
 
+import com.pikaqiu.common.pagehelper.PageInfo;
 import com.pikaqiu.bbs.entity.Topic;
 import com.pikaqiu.common.base.BaseService;
 
@@ -15,8 +16,11 @@ public interface TopicService extends BaseService<Topic> {
 
     Topic getTopicById(Integer id);
 
-    List<Topic> getNewTopic(Integer size);
+    List<Topic> getNewTopic();
 
-    List<Topic> getEliteTopic(Integer size);
+    List<Topic> getEliteTopic();
 
+    PageInfo<Topic> getPageTopicByBoardId(Integer id, Integer pageNo);
+
+    List<Topic> getTopTopicByBoard(Integer id);
 }

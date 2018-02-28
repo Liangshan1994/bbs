@@ -18,33 +18,51 @@
             <a href="${base}" class="nvhm" title="首页"></a><em>»</em>
             <a rel="/" href="${base}">网站</a> <em>›</em>
             <#if board.parentBoard?exists>
-                <a href="${base}/board-${board.parentBoard.id}-1.html">【${board.parentBoard.boardName}】</a> <em>›</em>
+                <a href="${base}/board-${board.parentBoard.id}-1.html">${board.parentBoard.boardName}</a> <em>›</em>
             </#if>
-            <a href="${base}/board-${board.id}-1.html">『${board.boardName}』</a> <em>›</em>
+            <a href="${base}/board-${board.id}-1.html">${board.boardName}</a> <em>›</em>
             <a href="${base}/topic-${topic.id}-1.html">${topic.title}</a>
         </div>
     </div>
     <div id="ct" class="wp cl">
         <div id="pgt" class="pgs mbm cl ">
             <div class="pgt">
-                <div class="pg"><strong>1</strong>
-                    <a href="${base}/topic-${topic.id}-1.html">2</a>
-                    <a href="${base}/topic-${topic.id}-1.html">3</a>
-                    <a href="${base}/topic-${topic.id}-1.html">4</a>
-                    <a href="${base}/topic-${topic.id}-1.html">5</a>
-                    <a href="${base}/topic-${topic.id}-1.html">6</a>
-                    <a href="${base}/topic-${topic.id}-1.html">7</a>
-                    <a href="${base}/topic-${topic.id}-1.html">8</a>
-                    <a href="${base}/topic-${topic.id}-1.html">9</a>
-                    <a href="${base}/topic-${topic.id}-1.html">10</a>
-                    <a href="${base}/topic-${topic.id}-1.html" class="last">... 35</a><label><input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" ><span title="共 35 页"> / 35 页</span></label>
-                    <a href="${base}/topic-${topic.id}-1.html" class="nxt">下一页</a>
+                <div class="pg">
+                <#if pageInfo.hasPreviousPage>
+                    <a href="${base}/topic-${topic.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
+                <#else >
+                    <strong>上一页</strong>
+                </#if>
+                    <#if replyList?size gt 0>
+                        <#list 1..pageInfo.pages as page>
+                            <#if page=pageInfo.pageNum>
+                                <strong>${page}</strong>
+                            <#else >
+                                <a href="${base}/topic-${topic.id}-${page}.html" class="nxt">${page}</a>
+                            </#if>
+                        </#list>
+                        <#else >
+                            <strong>1</strong>
+                    </#if>
+                    <label>
+                        <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/topic-${topic.id}-'+this.value+'.html';}">
+                        <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
+                    </label>
+                <#if pageInfo.hasNextPage>
+                    <a href="${base}/topic-${topic.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
+                <#else >
+                    <strong>下一页</strong>
+                </#if>
                 </div>
             </div>
-            <span class="y pgb" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';showMenu({'ctrlid':this.id,'pos':'34'})" initialized="true"><a href="forum-13-1.html">返回列表</a></span>
+            <span class="y pgb">
+                <a href="${base}/board-${board.id}-1.html">返回列表</a>
+            </span>
             <a id="newspecial"  href="${base}/newTopic-${board.id}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖"></a>
-            <a id="post_reply" href="javascript:alert('等待开发')" title="回复"><img src="${base}/static/img/pn_reply.png" alt="回复"></a>
+            <a id="post_reply" href="#f_pst" title="回复">
+                <img src="${base}/static/img/pn_reply.png" alt="回复">
+            </a>
         </div>
         <div id="postlist" class="pl bm">
             <table cellspacing="0" cellpadding="0">
@@ -52,7 +70,11 @@
                 <tr>
                     <td class="pls ptn pbn">
                         <div class="hm ptn">
-                            <span class="xg1">查看:</span> <span class="xi1">4049</span><span class="pipe">|</span><span class="xg1">回复:</span> <span class="xi1">344</span>
+                            <span class="xg1">查看:</span>
+                            <span class="xi1">${topic.view}</span>
+                            <span class="pipe">|</span>
+                            <span class="xg1">回复:</span>
+                            <span class="xi1">${replyNum}</span>
                         </div>
                     </td>
                     <td class="plc ptm pbn vwthd">
@@ -79,7 +101,11 @@
             </table>
             <div>
                 <div id="threadstamp">
-                    <img src="${base}/static/img/stamp/005.gif" title="置顶">
+                    <#if topic.isTop==1>
+                        <img src="${base}/static/img/stamp/005.gif" title="置顶">
+                    <#elseif topic.isElite==1>
+                        <img src="${base}/static/img/stamp/001.gif" title="置顶">
+                    </#if>
                 </div>
                 <table class="plhin" cellspacing="0" cellpadding="0">
                     <tbody>
@@ -88,7 +114,7 @@
                             <div class="pls favatar" style="top: 33px;">
                                 <div class="pi">
                                     <div class="authi">
-                                        <a target="_blank" class="xw1" style="color: #FF0000">${topic.userInfo.userName}</a>
+                                        <a target="_blank" class="xw1" style="color: #FF0000">${topic.userInfo.userName?if_exists}</a>
                                         <a target="_blank">
                                             <img src="${base}/static/img/verify_icon.gif" class="vm" alt="论坛大牛" title="论坛大牛">
                                         </a>
@@ -96,8 +122,8 @@
                                 </div>
                                 <div>
                                     <div class="avatar">
-                                        <a href="${base}/home-${topic.userInfo.userId}.html" class="avtm" target="_blank">
-                                            <img src="${base}${topic.userInfo.userHeadImg}">
+                                        <a href="${base}/home-${topic.userInfo.userId?if_exists}.html" class="avtm" target="_blank">
+                                            <img src="${base}${topic.userInfo.userHeadImg?if_exists}">
                                         </a>
                                     </div>
                                 </div>
@@ -105,8 +131,8 @@
                                     <table cellspacing="0" cellpadding="0">
                                         <tbody>
                                         <tr>
-                                            <th><p><a href="javascript:void(0)" class="xi2">${topic.userInfo.userTopicNum}</a></p>主题</th>
-                                            <th><p><a href="javascript:void(0)" class="xi2">${topic.userInfo.userReplyNum}</a></p>帖子</th>
+                                            <th><p><a href="javascript:void(0)" class="xi2">${topic.userInfo.userTopicNum?if_exists}</a></p>主题</th>
+                                            <th><p><a href="javascript:void(0)" class="xi2">${topic.userInfo.userReplyNum?if_exists}</a></p>帖子</th>
                                             <td><p><a href="javascript:void(0)" class="xi2">5078</a></p>积分</td>
                                         </tr>
                                         </tbody>
@@ -188,8 +214,8 @@
             </div>
             <#if replyList?exists>
                 <#list  replyList as reply>
-                    <div>
-                        <table class="plhin" cellspacing="0" cellpadding="0">
+                    <div id="post_${reply.id}">
+                        <table id="pid${reply.id}" class="plhin" cellspacing="0" cellpadding="0">
                             <tbody>
                                 <tr>
                                     <td class="pls" rowspan="2">
@@ -274,33 +300,41 @@
             </#if>
         </div>
         <div class="pgbtn">
-            <a href="${base}/topic-${topic.id}-1.html" hidefocus="true" class="bm_h">下一页 »</a>
+            <#if pageInfo.hasNextPage>
+                <a class="bm_h" href="${base}/topic-${topic.id}-${pageInfo.nextPage}.html" id="autopbn" >下一页 »</a>
+            </#if>
         </div>
         <div class="pgs mtm mbm cl">
-            <div class="pg"><strong>1</strong>
-                <a href="${base}/topic-${topic.id}-1.html">2</a>
-                <a href="${base}/topic-${topic.id}-1.html">3</a>
-                <a href="${base}/topic-${topic.id}-1.html">4</a>
-                <a href="${base}/topic-${topic.id}-1.html">5</a>
-                <a href="${base}/topic-${topic.id}-1.html">6</a>
-                <a href="${base}/topic-${topic.id}-1.html">7</a>
-                <a href="${base}/topic-${topic.id}-1.html">8</a>
-                <a href="${base}/topic-${topic.id}-1.html">9</a>
-                <a href="${base}/topic-${topic.id}-1.html">10</a>
-                <a href="${base}/topic-${topic.id}-1.html" class="last">... 35</a>
-                <label>
-                    <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="1" onkeydown="if(event.keyCode==13) {window.location='forum.php?mod=viewthread&amp;tid=688978&amp;extra=page%3D1&amp;page='+this.value;; doane(event);}">
-                    <span title="共 35 页"> / 35 页</span>
-                </label>
-                <a href="${base}/topic-${topic.id}-1.html" class="nxt">下一页</a>
+            <div class="pg">
+                <#if pageInfo.hasPreviousPage>
+                    <a href="${base}/topic-${topic.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
+                <#else >
+                    <strong>上一页</strong>
+                </#if>
+                <#list 1..pageInfo.pages as page>
+                    <#if page=pageInfo.pageNum>
+                        <strong>${page}</strong>
+                    <#else >
+                        <a href="${base}/topic-${topic.id}-${page}.html" class="nxt">${page}</a>
+                    </#if>
+                </#list>
+                    <label>
+                        <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/topic-${topic.id}-'+this.value+'.html';}">
+                        <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
+                    </label>
+                <#if pageInfo.hasNextPage>
+                    <a href="${base}/topic-${topic.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
+                <#else >
+                    <strong>下一页</strong>
+                </#if>
             </div>
             <span class="pgb y" id="visitedforumstmp" >
-                <a href="${base}/topic-${topic.id}-1.html">返回列表</a>
+                <a href="${base}/board-${board.id}-1.html">返回列表</a>
             </span>
             <a id="newspecialtmp" href="${base}/newTopic-${board.id}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖">
             </a>
-            <a id="post_replytmp"  href="javascript:;" title="回复">
+            <a id="post_replytmp"  href="#f_pst" title="回复">
                 <img src="${base}/static/img/pn_reply.png" alt="回复">
             </a>
         </div>
@@ -312,35 +346,35 @@
                 <input type="hidden" name="referer" id="referer">
                 <table cellspacing="0" cellpadding="0">
                     <tbody>
-                    <tr>
-                        <td class="pls">
-                            <div class="avatar avtm">
-                                <#if loginUser?exists>
-                                    <img src="${base}${loginUser.userHeadImg}">
-                                <#else >
-                                    <img src="${base}/static/img/defaultImg.jpg">
-                                </#if>
-                            </div>
-                        </td>
-                        <td class="plc">
-                            <script id="editor" name="content" style="width:800px;height:200px">
+                        <tr>
+                            <td class="pls">
+                                <div class="avatar avtm">
+                                    <#if loginUser?exists>
+                                        <img src="${base}${loginUser.userHeadImg}">
+                                    <#else >
+                                        <img src="${base}/static/img/defaultImg.jpg">
+                                    </#if>
+                                </div>
+                            </td>
+                            <td class="plc">
+                                <script id="editor" name="content" style="width:800px;height:200px">
 
-                            </script>
-                            <script>
-                                var ue = UE.getEditor('editor',{
-                                    imageUrlPrefix:"${base}",
-                                    toolbars: [
-                                        ['bold','forecolor', 'link', 'blockquote','insertcode','emotion']
-                                    ]});
-                            </script>
-                            </div>
-                            <p class="ptm pnpost">
-                                <button type="submit" name="replysubmit" class="pn pnc vm">
-                                    <strong>发表回复</strong>
-                                </button>
-                            </p>
-                        </td>
-                    </tr>
+                                </script>
+                                <script>
+                                    var ue = UE.getEditor('editor',{
+                                        imageUrlPrefix:"${base}",
+                                        toolbars: [
+                                            ['bold','forecolor', 'link', 'blockquote','insertcode','emotion']
+                                        ]});
+                                </script>
+                                </div>
+                                <p class="ptm pnpost">
+                                    <button type="submit" name="replysubmit" class="pn pnc vm">
+                                        <strong>发表回复</strong>
+                                    </button>
+                                </p>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </form>

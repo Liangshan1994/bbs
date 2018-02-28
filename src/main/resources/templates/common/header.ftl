@@ -2,6 +2,7 @@
 	$(function(){
         getAllNav();
         getRecommendBoard();
+        $("#referer").val(window.location.href)
 	})
     //获取所有nav
     function getAllNav(){
@@ -69,7 +70,6 @@
 				</div>
 			<#else>
 				<form method="post" id="loginForm" action="${base}/login">
-					<input type="hidden" value="header" name="loginFrom">
 					<div class="fastlg cl">
 						<div class="y pns">
 							<table cellspacing="0" cellpadding="0">
@@ -96,6 +96,7 @@
 										</td>
 										<td>
 											<input type="password" name="password" id="ls_password" class="px vm">
+											<input type="hidden" name="referer" id="referer" class="px vm">
 										</td>
 										<td class="fastlg_l">
 											<button type="submit" class="pn vm" style="width: 75px;"><em>登录</em></button>
@@ -118,7 +119,7 @@
 
 		</div>
 		<div id="scbar" class="scbar_narrow cl">
-			<form id="scbar_form" method="post" autocomplete="off" onsubmit="searchFocus($('scbar_txt'))" action="search.php?searchsubmit=yes" target="_blank">
+			<form id="scbar_form" method="post" autocomplete="off" onsubmit="searchFocus($('scbar_txt'))" action="/${base}/search" target="_blank">
 				<input type="hidden" name="mod" id="scbar_mod" value="search">
 				<input type="hidden" name="srchtype" value="title">
 				<input type="hidden" name="srhfid" value="">
@@ -134,7 +135,7 @@
 								<a href="javascript:;" id="scbar_type" class="xg1" >搜索</a>
 							</td>
 							<td class="scbar_btn_td">
-								<button type="submit" name="searchsubmit" id="scbar_btn" sc="1" class="pn pnc" value="true">
+								<button type="button" name="searchsubmit" id="scbar_btn" sc="1" class="pn pnc" value="true">
 									<strong class="xi2">搜索</strong>
 								</button>
 							</td>

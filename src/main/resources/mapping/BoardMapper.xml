@@ -16,14 +16,24 @@
     <result column="board_admin" property="boardAdmin" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, board_name,board_info, board_admin, board_parent_id, board_type, is_recommend, create_by,
-    create_date, update_by, update_date, del_flag
+    a.id,
+    a.board_name,
+    a.board_info,
+    a.board_admin,
+    a.board_parent_id,
+    a.board_type,
+    a.is_recommend,
+    a.create_by,
+    a.create_date,
+    a.update_by,
+    a.update_date,
+    a.del_flag
   </sql>
   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
     <include refid="Base_Column_List" />
-    from tb_board
-    where id = #{id,jdbcType=INTEGER}
+    from tb_board a
+    where a.id = #{id,jdbcType=INTEGER}
   </select>
   <update id="delete" parameterType="java.lang.Integer" >
     UPDATE tb_board SET del_flag = 1
@@ -153,14 +163,14 @@
     <include refid="Base_Column_List" />
     from tb_board a
     WHERE
-    a.del_flag = 0 AND is_recommend = 1 and board_type = 2
+    a.del_flag = 0 AND a.is_recommend = 1 and a.board_type = 2
   </select>
   <select id="getBoardsByLimit" resultMap="BaseResultMap" parameterType="java.lang.Integer">
     select
     <include refid="Base_Column_List" />
     from tb_board a
     WHERE
-    a.del_flag = 0 and board_type = 2
+    a.del_flag = 0 and a.board_type = 2
     limit #{boardLimit}
   </select>
   <select id="getBoardsByParents" resultMap="BaseResultMap" parameterType="java.lang.Integer">
@@ -168,13 +178,13 @@
     <include refid="Base_Column_List" />
     from tb_board a
     WHERE
-    a.del_flag = 0 and board_type = 2 AND a.board_parent_id = #{parentId}
+    a.del_flag = 0 and a.board_type = 2 AND a.board_parent_id = #{parentId}
   </select>
-  <select id="getParentsBoards" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  <select id="getParentsBoards" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_board a
     WHERE
-    a.del_flag = 0 and board_type = 1 limit #{parentBoardLimit}
+    a.del_flag = 0 and a.board_type = 1
   </select>
 </mapper>

@@ -1,5 +1,7 @@
 package com.pikaqiu.common.base;
 
+import com.github.pagehelper.Page;
+
 import java.util.List;
 
 /**

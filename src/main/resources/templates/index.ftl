@@ -10,12 +10,12 @@
         getEliteTopic();
         getHotTopic();
         getActiveUser();
+        getTopicAndUserNum();
     })
     function getNewTopic(){
         $.ajax({
             url:'${base}/getNewTopic',
             asynx:false,
-            data:{"size":10},
             type:"post",
             success:function(result){
                 if(result!=null){
@@ -34,7 +34,6 @@
         $.ajax({
             url:'${base}/getEliteTopic',
             asynx:false,
-            data:{"size":10},
             type:"post",
             success:function(result){
                 if(result!=null){
@@ -53,7 +52,6 @@
         $.ajax({
             url:'${base}/getEliteTopic',
             asynx:false,
-            data:{"size":10},
             type:"post",
             success:function(result){
                 if(result!=null){
@@ -72,7 +70,6 @@
         $.ajax({
             url:'${base}/getEliteTopic',
             asynx:false,
-            data:{"size":10},
             type:"post",
             success:function(result){
                 if(result!=null){
@@ -91,7 +88,6 @@
         $.ajax({
             url:'${base}/getActiveUser',
             asynx:false,
-            data:{"size":10},
             type:"post",
             success:function(result){
                 if(result!=null){
@@ -104,6 +100,20 @@
                     })
                     $("#activeUserList").html(html);
                 }
+            }
+        })
+    }
+    function getTopicAndUserNum(){
+        $.ajax({
+            url:'${base}/getTopicAndUserNum',
+            asynx:false,
+            type:"post",
+            success:function(result){
+                $("#toDayNum").text(result.toDayNum);
+                $("#lastDayNum").text(result.lastDayNum);
+                $("#topicNum").text(result.topicNum);
+                $("#userNum").text(result.userNum);
+                $("#newUser").text(result.newUser.userName);
             }
         })
     }
@@ -137,11 +147,11 @@
     <div id="ct" class="wp cl">
         <div id="chart" class="bm bw0 cl">
             <p class="chart z">
-                今日: <em>5719</em><span class="pipe">|</span>
-                昨日: <em>13158</em><span class="pipe">|</span>
-                帖子: <em>15443950</em><span class="pipe">|</span>
-                会员: <em>581649</em><span class="pipe">|</span>
-                欢迎新会员: <em>huangnanqu</em>
+                今日: <em id="toDayNum"></em><span class="pipe">|</span>
+                昨日: <em id="lastDayNum"></em><span class="pipe">|</span>
+                帖子: <em id="topicNum"></em><span class="pipe">|</span>
+                会员: <em id="userNum"></em><span class="pipe">|</span>
+                欢迎新会员: <em id="newUser"></em>
             </p>
         </div>
         <div class="mn">
@@ -243,16 +253,18 @@
                                             </#if>
                                                 <td class="fl_icn">
                                                     <a href="${base}/board-${childrenBoard.id}-1.html">
-                                                        <img src="${base}/static/img/forum_new.gif" alt="『${childrenBoard.boardName}』">
+                                                        <img src="${base}/static/img/forum_new.gif" alt="${childrenBoard.boardName}">
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <h2>
-                                                        <a href="${base}/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
+                                                        <a href="${base}/board-${childrenBoard.id}-1.html">${childrenBoard.boardName}</a>
                                                         <em class="xw0 xi1" title="今日">
                                                             (
                                                                 <#if childrenBoard.topicList?exists>
                                                                     ${childrenBoard.topicList?size}
+                                                                <#else >
+                                                                    0
                                                                 </#if>
                                                             )</em>
                                                     </h2>
@@ -265,22 +277,32 @@
                                                 </td>
                                                 <td class="fl_i">
                                                     <span class="xi2">
-                                                        <span title="62779">6万</span>
+                                                        <#if childrenBoard.topicList?exists>
+                                                            <span title="${childrenBoard.topicList?size}">
+                                                                ${childrenBoard.topicList?size}
+                                                            </span>
+                                                            <#else >
+                                                                0
+                                                        </#if>
                                                     </span>
                                                     <span class="xg1"> /
-                                                        <span title="671279">67万</span>
+                                                        <span title="${childrenBoard.viewTotal?if_exists}">${childrenBoard.viewTotal?if_exists}</span>
                                                     </span>
                                                 </td>
                                                 <td class="fl_by">
                                                     <div>
-                                                        <a href="${base}/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
-                                                            ${childrenBoard.lastTopic.title}
-                                                        </a>
-                                                        <cite>${childrenBoard.lastTopic.createDate?datetime}
-                                                            <#if childrenBoard.lastTopic.userInfo?exists>
-                                                                <a href="home-${childrenBoard.lastTopic.userInfo.userId}.html">${childrenBoard.lastTopic.userInfo.userName}</a>
-                                                            </#if>
-                                                        </cite>
+                                                        <#if childrenBoard.lastTopic?exists>
+                                                            <a href="${base}/topic-${childrenBoard.lastTopic.id}-1.html" class="xi2">
+                                                                ${childrenBoard.lastTopic.title}
+                                                            </a>
+                                                            <cite>${childrenBoard.lastTopic.createDate?datetime}
+                                                                <#if childrenBoard.lastTopic.userInfo?exists>
+                                                                    <a href="home-${childrenBoard.lastTopic.userInfo.userId}.html">${childrenBoard.lastTopic.userInfo.userName}</a>
+                                                                </#if>
+                                                            </cite>
+                                                            <#else >
+                                                            <a>暂无主题</a>
+                                                        </#if>
                                                     </div>
                                                 </td>
                                             </tr>

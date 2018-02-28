@@ -10,5 +10,7 @@ import java.util.List;
  */
 public interface UserInfoService extends BaseService<UserInfo>{
 
-    List<UserInfo> getActiveUser(Integer size);
+    List<UserInfo> getActiveUser();
+
+    List<UserInfo> getAllUser();
 }

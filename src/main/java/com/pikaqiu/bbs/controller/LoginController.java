@@ -26,7 +26,7 @@ public class LoginController {
 
     @RequestMapping("/toLogin")
     public String toLogin(HttpServletRequest request, HttpServletResponse response,Model model) {
-        String referer = request.getParameter("referer");
+        String referer = (String)request.getSession().getAttribute("referer");
         model.addAttribute("referer",referer);
         return "login";
     }
@@ -39,16 +39,12 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(User user,HttpSession session,HttpServletRequest request,String referer,String loginFrom){
+    public String login(User user,HttpSession session,HttpServletRequest request,String referer){
         User user1 = userService.checkPassword(user);
-        UserInfo userInfo = userInfoService.get(user1.getId());
         if(user1!=null){
+            UserInfo userInfo = userInfoService.get(user1.getId());
             session.setAttribute(Global.SESSION_LOGIN_USER, userInfo);
-            if("header".equals(loginFrom)){
-                return "redirect:index";
-            }else{
-                return "redirect:" + referer==null?"index":referer;
-            }
+            return "redirect:" + referer;
         }else{
             return "toLogin";
         }

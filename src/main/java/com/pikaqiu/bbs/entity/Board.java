@@ -30,6 +30,8 @@ public class Board extends BaseEntity<Board>{
 
     private Topic lastTopic;
 
+    private Integer viewTotal = 0;
+
     public String getBoardName() {
         return boardName;
     }
@@ -124,5 +126,13 @@ public class Board extends BaseEntity<Board>{
 
     public void setLastTopic(Topic lastTopic) {
         this.lastTopic = lastTopic;
+    }
+
+    public Integer getViewTotal() {
+        return viewTotal;
+    }
+
+    public void setViewTotal(Integer viewTotal) {
+        this.viewTotal = viewTotal;
     }
 }

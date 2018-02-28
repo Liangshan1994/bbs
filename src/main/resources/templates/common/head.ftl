@@ -10,3 +10,4 @@
 <script src="${base}/static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 <link rel="stylesheet" href="${base}/static/css/bbs.css" />
+<link rel="stylesheet" href="${base}/static/plugins/ueditor/themes/default/css/ueditor.min.css" />

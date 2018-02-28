@@ -9,6 +9,7 @@
     <result column="link" property="link" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="push_date" property="pushDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
@@ -19,7 +20,7 @@
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, info, source, link, author, type, create_by, create_date, update_by, update_date, 
+    id, title, info, source, link, author, type, push_date, create_by, create_date, update_by, update_date,
     del_flag
   </sql>
   <sql id="Blob_Column_List" >
@@ -33,6 +34,14 @@
     from tb_news
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="findList" resultMap="ResultMapWithBLOBs">
+    SELECT
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_news
+    where del_flag = 0
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_news
     where id = #{id,jdbcType=INTEGER}
@@ -40,12 +49,12 @@
   <insert id="insert" parameterType="com.pikaqiu.bbs.entity.News" >
     insert into tb_news (id, title, info, 
       source, link, author, 
-      type, create_by, create_date, 
+      type, push_date, create_by, create_date,
       update_by, update_date, del_flag, 
       content)
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
       #{source,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{createBy,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP},
       #{updateBy,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
@@ -72,6 +81,9 @@
       </if>
       <if test="type != null" >
         type,
+      </if>
+      <if test="pushDate != null" >
+        push_date,
       </if>
       <if test="createBy != null" >
         create_by,
@@ -114,6 +126,9 @@
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
       </if>
+      <if test="pushDate != null" >
+        #{pushDate,jdbcType=TIMESTAMP},
+      </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=INTEGER},
       </if>
@@ -134,7 +149,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.pikaqiu.bbs.entity.News" >
+  <update id="update" parameterType="com.pikaqiu.bbs.entity.News" >
     update tb_news
     <set >
       <if test="title != null" >
@@ -154,6 +169,9 @@
       </if>
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="pushDate != null" >
+        push_date = #{pushDate,jdbcType=TIMESTAMP},
       </if>
       <if test="createBy != null" >
         create_by = #{createBy,jdbcType=INTEGER},
@@ -176,35 +194,13 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.pikaqiu.bbs.entity.News" >
-    update tb_news
-    set title = #{title,jdbcType=VARCHAR},
-      info = #{info,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      link = #{link,jdbcType=VARCHAR},
-      author = #{author,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=INTEGER},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=INTEGER},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.pikaqiu.bbs.entity.News" >
-    update tb_news
-    set title = #{title,jdbcType=VARCHAR},
-      info = #{info,jdbcType=VARCHAR},
-      source = #{source,jdbcType=INTEGER},
-      link = #{link,jdbcType=VARCHAR},
-      author = #{author,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=INTEGER},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      update_by = #{updateBy,jdbcType=INTEGER},
-      update_date = #{updateDate,jdbcType=TIMESTAMP},
-      del_flag = #{delFlag,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+  <select id="isExist" parameterType="String" resultMap="BaseResultMap">
+    SELECT 
+    <include refid="Base_Column_List"/>
+    FROM
+    tb_news
+    WHERE
+    del_flag = 0
+    AND link = #{link}
+  </select>
 </mapper>

@@ -34,8 +34,8 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("getActiveUser")
-    public List<UserInfo> getActiveUser(Integer size){
-        return userInfoService.getActiveUser(size);
+    public List<UserInfo> getActiveUser(){
+        return userInfoService.getActiveUser();
     }
 
 }

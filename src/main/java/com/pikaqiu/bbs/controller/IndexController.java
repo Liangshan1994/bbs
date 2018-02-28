@@ -1,11 +1,14 @@
 package com.pikaqiu.bbs.controller;
 
 import com.pikaqiu.bbs.entity.Board;
+import com.pikaqiu.bbs.entity.Topic;
+import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.BoardService;
+import com.pikaqiu.bbs.service.TopicService;
 import com.pikaqiu.bbs.service.UserInfoService;
+import com.pikaqiu.bbs.utils.TopicUtils;
 import com.pikaqiu.common.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,22 +26,17 @@ import java.util.Map;
 public class IndexController {
 
     @Autowired
+    private TopicService topicService;
+    @Autowired
     private BoardService boardService;
     @Autowired
     private UserInfoService userInfoService;
     @Autowired
     private MailService mailService;
 
-    @Value("${pikaqiu.board.limit}")
-    private Integer boardLimit;
-
-    @Value("${pikaqiu.board.parentLimit}")
-    private Integer parentBoardLimit;
-
     @RequestMapping(value={"/","/index"})
     public String index(Model model) {
-        mailService.sendSimpleMail("758831364@qq.com","这是一个简单邮件","这是邮件内容");
-        List<Board> parentsBoards = boardService.getParentsBoards(parentBoardLimit);
+        List<Board> parentsBoards = boardService.getParentsBoards();
         model.addAttribute("parentsBoards",parentsBoards);
         return "index";
     }
@@ -47,10 +45,30 @@ public class IndexController {
     @ResponseBody
     public List<Map<String,Object>> getAllNav() {
         List<Map<String,Object>> list = new ArrayList<>();
-        Map<String,Object> map = new HashMap<>();
-        map.put("title","首页");
-        map.put("url","/index");
-        list.add(map);
+        Map<String,Object> index = new HashMap<>();
+        index.put("title","首页");
+        index.put("url","/index");
+        list.add(index);
+        Map<String,Object> news = new HashMap<>();
+        news.put("title","新闻");
+        news.put("url","/news");
+        list.add(news);
         return list;
+    }
+
+    @RequestMapping(value="/getTopicAndUserNum")
+    @ResponseBody
+    public Map<String,Object> getTopicAndUserNum() {
+        Map<String,Object> map = new HashMap<>();
+        List<UserInfo> allUserInfo = userInfoService.getAllUser();
+        List<Topic> list = topicService.findList(new Topic());
+        int toDayNum = TopicUtils.getToDayTopicNum(list);
+        int lastDayNum = TopicUtils.getLastDayTopicNum(list);
+        map.put("newUser",allUserInfo.get(0));
+        map.put("userNum",allUserInfo.size());
+        map.put("topicNum",list.size());
+        map.put("toDayNum",toDayNum);
+        map.put("lastDayNum",lastDayNum);
+        return map;
     }
 }

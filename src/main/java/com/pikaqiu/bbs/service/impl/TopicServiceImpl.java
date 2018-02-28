@@ -1,11 +1,14 @@
 package com.pikaqiu.bbs.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.pikaqiu.bbs.dao.TopicMapper;
 import com.pikaqiu.bbs.dao.UserInfoMapper;
 import com.pikaqiu.bbs.entity.Topic;
 import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.TopicService;
 import com.pikaqiu.common.base.BaseServiceImpl;
+import com.pikaqiu.common.config.Global;
+import com.pikaqiu.common.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,13 +52,35 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
     }
 
     @Override
-    public List<Topic> getNewTopic(Integer size) {
-        return topicMapper.getNewTopic(size);
+    public List<Topic> getNewTopic() {
+        PageHelper.startPage(0,Global.INDEX_PAGE_SIZE);
+        List<Topic> newTopic = topicMapper.getNewTopic();
+        return newTopic;
     }
 
     @Override
-    public List<Topic> getEliteTopic(Integer size) {
-        return topicMapper.getEliteTopic(size);
+    public List<Topic> getEliteTopic() {
+        PageHelper.startPage(0,Global.INDEX_PAGE_SIZE);
+        List<Topic> eliteTopic = topicMapper.getEliteTopic();
+        return eliteTopic;
+    }
+
+    @Override
+    public PageInfo<Topic> getPageTopicByBoardId(Integer boardId, Integer pageNo) {
+        //使用分页插件,核心代码就这一行
+        PageHelper.startPage(pageNo, Global.PAGE_SIZE);
+        List<Topic> topics = topicMapper.selectByBoardId(boardId);
+        setUserInfoToTopic(topics);
+        PageInfo<Topic> pageInfo = new PageInfo<>(topics);
+        return pageInfo;
+    }
+
+    @Override
+    public List<Topic> getTopTopicByBoard(Integer id) {
+        PageHelper.startPage(0,Global.INDEX_PAGE_SIZE);
+        List<Topic> topTopicByBoard = topicMapper.getTopTopicByBoard(id);
+        setUserInfoToTopic(topTopicByBoard);
+        return topTopicByBoard;
     }
 
 }

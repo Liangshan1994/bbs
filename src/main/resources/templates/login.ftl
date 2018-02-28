@@ -21,7 +21,7 @@
                     <div>
                         <div>
                             <form method="post" autocomplete="off" name="login" class="cl" action="${base}/login">
-                                <input type="hidden" name="referer" value="">
+                                <input type="hidden" name="referer" value="${referer}">
                                 <div class="c cl">
                                     <div class="rfm">
                                         <table>

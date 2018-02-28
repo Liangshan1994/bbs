@@ -15,7 +15,7 @@ public interface BoardService extends BaseService<Board>{
 
     List<Board> getBoardsByParents(Integer parentId);
 
-    List<Board> getParentsBoards(Integer parentBoardLimit);
+    List<Board> getParentsBoards();
 
     Board getBoardById(Integer id);
 

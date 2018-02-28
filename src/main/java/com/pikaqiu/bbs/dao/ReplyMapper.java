@@ -9,4 +9,6 @@ public interface ReplyMapper extends BaseMapper<Reply>{
     List<Reply> selectByTopicId(Integer topicId);
 
     Integer getReplyNumByTopicId(Integer topicId);
+
+    List<Reply> selectPageByTopicId(Integer topicId);
 }

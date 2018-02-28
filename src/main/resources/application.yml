@@ -30,7 +30,10 @@ spring:
       request-context-attribute: request
       cache: false
     mvc:
-      static-path-pattern: classpath:${base}/static/**
+#      static-path-pattern: classpath:${base}/static/**
+      static-path-pattern: /**
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
     thymeleaf:
       cache: false
     mail:
@@ -64,12 +67,10 @@ sitemesh:
     contentPath: /admin/*
     decoratorPath: /admin/index
     excludedPaths: /plugin/*,/test
+web:
+  upload-path: E:/
 pikaqiu:
-    board:
-        limit: 10
-        parentLimit: 3
-    page:
-        pageSize: 10
     images:
         topicImgPath: /images/topicImage/
+        uploadPath: /images/upload/
 

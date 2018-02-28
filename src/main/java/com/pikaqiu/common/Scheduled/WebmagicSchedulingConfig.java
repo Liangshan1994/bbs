@@ -1,4 +1,4 @@
-package com.pikaqiu.common.config;
+package com.pikaqiu.common.Scheduled;
 
 import com.pikaqiu.common.processor.JianShuProcessor;
 import com.pikaqiu.common.processor.NewsPipeline;
@@ -26,9 +26,9 @@ public class WebmagicSchedulingConfig {
     /**
      * 简书
      */
-    @Scheduled(cron = "0 0 3 * * ? ")//3点触发
+    @Scheduled(cron = "0 0 0/1 * * ? ")
     public void jianShuScheduled() {
-        logger.info(new Date()+"----开始执行简书定时任务");
+        logger.info(new Date()+"----执行简书定时任务开始");
         Spider spider = Spider.create(new JianShuProcessor());
         spider.addUrl("http://www.jianshu.com");
         spider.addPipeline(newsPipeline);
@@ -36,6 +36,21 @@ public class WebmagicSchedulingConfig {
         spider.setExitWhenComplete(true);
         spider.start();
         spider.stop();
-        logger.info(new Date()+"----开始执行简书定时任务");
+        logger.info(new Date()+"----执行简书定时任务结束");
     }
+    /**
+     * 36氪
+     */
+//    @Scheduled(cron = "0 0/2 10-11 * * ? ")
+//    public void keScheduled() {
+//        logger.info(new Date()+"----执行36氪定时任务开始");
+//        Spider spider = Spider.create(new JianShuProcessor());
+//        spider.addUrl("http://36kr.com/");
+//        spider.addPipeline(newsPipeline);
+//        spider.thread(5);
+//        spider.setExitWhenComplete(true);
+//        spider.start();
+//        spider.stop();
+//        logger.info(new Date()+"----执行36氪定时任务结束");
+//    }
 }

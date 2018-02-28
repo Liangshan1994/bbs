@@ -25,15 +25,15 @@ public class GlobalDefaultExceptionHandler {
      *            exception
      * @return
      */
-    @ExceptionHandler({ Exception.class })
-    @ResponseStatus(HttpStatus.OK)
-    public ModelAndView processException(HttpServletRequest request ,RuntimeException exception) {
-        logger.error("Request: " + request.getRequestURL() + " raised " + exception);
-        ModelAndView m = new ModelAndView();
-        m.addObject("roncooException", exception.getMessage());
-        m.addObject("url", request.getRequestURL());
-        m.setViewName("error/error");
-        return m;
-    }
+//    @ExceptionHandler({ Exception.class })
+//    @ResponseStatus(HttpStatus.OK)
+//    public ModelAndView processException(HttpServletRequest request ,RuntimeException exception) {
+//        logger.error("Request: " + request.getRequestURL() + " raised " + exception);
+//        ModelAndView m = new ModelAndView();
+//        m.addObject("roncooException", exception.getMessage());
+//        m.addObject("url", request.getRequestURL());
+//        m.setViewName("error/error");
+//        return m;
+//    }
 
 }

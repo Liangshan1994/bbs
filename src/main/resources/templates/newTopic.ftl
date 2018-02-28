@@ -12,8 +12,8 @@
         <div class="z">
             <a href="${base}/" class="nvhm" title="首页"></a>  <em>›</em>
             <a rel="index" href="${base}/">网站</a> <em>›</em>
-            <a href="${base}/board-${board.parentBoard.id}.html">${board.parentBoard.boardName}</a> <em>›</em>
-            <a href="${base}/board-${board.id}.html">${board.boardName}</a><em>›</em>
+            <a href="${base}/board-${board.parentBoard.id}-1.html">${board.parentBoard.boardName}</a> <em>›</em>
+            <a href="${base}/board-${board.id}-1.html">${board.boardName}</a><em>›</em>
             发表帖子
         </div>
     </div>
@@ -63,7 +63,15 @@
         </div>
     </form>
     <script>
-        var ue = UE.getEditor('editor',{imageUrlPrefix:"${base}"});
+        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+        UE.Editor.prototype.getActionUrl = function(action) {
+            if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+                return '${base}/imgUpload';
+            } else {
+                return this._bkGetActionUrl.call(this, action);
+            }
+        }
+        var ue = UE.getEditor('editor');
     </script>
 </div>
 
