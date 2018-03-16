@@ -12,7 +12,7 @@
         <div class="z">
             <a href="${base}" class="nvhm" title="首页"></a><em>»</em>
             <a rel="index" href="${base}">网站</a><em>›</em>
-            <a href="${base}/board-${board.id}-1.html">【${board.boardName}】</a>
+            <a href="${base}/board-${board.id}-1.html">${board.boardName}</a>
         </div>
     </div>
     <div id="ct" class="wp cl">
@@ -48,7 +48,7 @@
                                         </td>
                                         <td>
                                             <h2>
-                                                <a href="${base}/board-${childrenBoard.id}-1.html">『${childrenBoard.boardName}』</a>
+                                                <a href="${base}/board-${childrenBoard.id}-1.html">${childrenBoard.boardName}</a>
                                                 <em class="xw0 xi1" title="今日">
                                                     (
                                                         <#if childrenBoard.topicList?exists>
@@ -65,10 +65,16 @@
                                         </td>
                                         <td class="fl_i">
                                             <span class="xi2">
-                                                <span title="62779">6万</span>
+                                                <#if childrenBoard.topicList?exists>
+                                                    <span title="${childrenBoard.topicList?size}">
+                                                        ${childrenBoard.topicList?size}
+                                                    </span>
+                                                <#else >
+                                                    0
+                                                </#if>
                                             </span>
                                             <span class="xg1"> /
-                                                <span title="671279">67万</span>
+                                                <span title="${childrenBoard.viewTotal?if_exists}">${childrenBoard.viewTotal?if_exists}</span>
                                             </span>
                                         </td>
                                         <td class="fl_by">

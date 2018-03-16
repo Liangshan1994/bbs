@@ -5,6 +5,7 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="board_name" property="boardName" jdbcType="VARCHAR" />
     <result column="board_info" property="boardInfo" jdbcType="VARCHAR" />
+    <result column="board_admin" property="boardAdmin" jdbcType="INTEGER" />
     <result column="board_parent_id" property="boardParentId" jdbcType="INTEGER" />
     <result column="board_type" property="boardType" jdbcType="INTEGER" />
     <result column="is_recommend" property="isRecommend" jdbcType="INTEGER" />
@@ -13,7 +14,23 @@
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
-    <result column="board_admin" property="boardAdmin" jdbcType="INTEGER" />
+    <collection property="adminUserInfo" ofType="com.pikaqiu.bbs.entity.UserInfo">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="user_id" property="userId" jdbcType="INTEGER" />
+      <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="childrenBoardList" ofType="com.pikaqiu.bbs.entity.Board" column="id" select="findChildren">
+    </collection>
+  </resultMap>
+  <resultMap id="childrenBoardResultMap" type="com.pikaqiu.bbs.entity.Board" extends="BaseResultMap">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="board_name" property="boardName" jdbcType="VARCHAR" />
+    <result column="board_info" property="boardInfo" jdbcType="VARCHAR" />
+    <collection property="adminUserInfo" ofType="com.pikaqiu.bbs.entity.UserInfo">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="user_id" property="userId" jdbcType="INTEGER" />
+      <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     a.id,
@@ -31,8 +48,12 @@
   </sql>
   <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select
-    <include refid="Base_Column_List" />
-    from tb_board a
+    <include refid="Base_Column_List" />,
+    tui.user_id,
+    tui.user_name
+    from
+    tb_board a
+    LEFT JOIN tb_user_info tui ON tui.user_id = a.board_admin
     where a.id = #{id,jdbcType=INTEGER}
   </select>
   <update id="delete" parameterType="java.lang.Integer" >
@@ -180,11 +201,48 @@
     WHERE
     a.del_flag = 0 and a.board_type = 2 AND a.board_parent_id = #{parentId}
   </select>
-  <select id="getParentsBoards" resultMap="BaseResultMap">
+ <!-- <select id="getParentsBoards" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from tb_board a
     WHERE
     a.del_flag = 0 and a.board_type = 1
+  </select>-->
+  <select id="getParentsBoards" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    tui.user_id,
+    tui.user_name,
+    child.id,
+    child.board_name
+    from
+      tb_board a
+    LEFT JOIN tb_user_info tui ON tui.user_id = a.board_admin
+    INNER JOIN tb_board child ON child.board_parent_id = a.id
+    <where>
+    a.del_flag = 0 and a.board_type = 1
+    </where>
+  </select>
+  <select id="findChildren" resultMap="childrenBoardResultMap">
+    SELECT
+    <include refid="Base_Column_List" />,
+    tui.user_id,
+    tui.user_name
+    from
+    tb_board a
+    LEFT JOIN tb_user_info tui ON tui.user_id = a.board_admin
+    <where>
+      a.del_flag = 0 and a.board_parent_id = #{id}
+    </where>
+  </select>
+  <select id="getParentBoard" parameterType="Integer">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM
+      tb_board
+    <where>
+      id = #{parentBoardId}
+    </where>
   </select>
 </mapper>

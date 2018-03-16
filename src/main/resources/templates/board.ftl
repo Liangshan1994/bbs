@@ -44,7 +44,7 @@
                     <div class="bm_c cl pbn">
                         <div>版主:
                             <span class="xi2">
-                                <a href="${base}/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a>,
+                                <a href="${base}/home-${board.boardAdmin}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a>,
                             </span>
                         </div>
                         <div id="forum_rules_29" style=";">
@@ -132,7 +132,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="bm_c">
+                    <div>
                         <table  cellspacing="0" cellpadding="0">
                             <#if topTopics?exists>
                                 <#list topTopics as topTopic>
@@ -140,7 +140,7 @@
                                     <tr>
                                         <td class="icn">
                                             <a href="${base}/topic-${topTopic.id}-1.html" title="全局置顶主题 - 新窗口打开" target="_blank">
-                                                <img src="${base}/static/img/pin_${topTopic_index + 1}.gif" alt="全局置顶">
+                                                <img src="${base}/static/img/pin_1.gif" alt="全局置顶">
                                             </a>
                                         </td>
                                         <th class="common">
@@ -156,7 +156,7 @@
                                             <em><span>${topTopic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="${base}/topic-${topTopic.id}-1.html" class="xi2">${topTopic.replyNum}</a><em>${topTopic.view}</em></td>
+                                            <a href="${base}/topic-${topTopic.id}-1.html" class="xi2"><#if topTopic.replyNum?exists>${topTopic.replyNum} <#else >0</#if></a><em>${topTopic.view}</em></td>
                                         <td class="by">
                                             <cite><a href="${base}/home-${topTopic.userId}.html">${topTopic.userInfo.userName}</a></cite>
                                             <em><a href="${base}/home-${topTopic.userId}.html">${topTopic.createDate?datetime}</a></em>
@@ -201,7 +201,7 @@
                                             <em><span>${topic.createDate?datetime}</span></em>
                                         </td>
                                         <td class="num">
-                                            <a href="${base}/topic-${topic.id}-1.html" class="xi2">${topic.replyNum}</a><em>${topic.view}</em></td>
+                                            <a href="${base}/topic-${topic.id}-1.html" class="xi2"><#if topic.replyNum?exists>${topic.replyNum} <#else >0</#if></a><em>${topic.view}</em></td>
                                         <td class="by">
                                             <cite><a href="${base}/home-${topic.userId}.html">${topic.userInfo.userName}</a></cite>
                                             <em><a>${topic.createDate?datetime}</a></em>

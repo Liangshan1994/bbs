@@ -21,19 +21,20 @@
                     <div>
                         <div>
                             <form method="post" autocomplete="off" name="login" class="cl" action="${base}/login">
-                                <input type="hidden" name="referer" value="${referer}">
+                                <input type="hidden" name="referer" value="${referer?if_exists}">
                                 <div class="c cl">
                                     <div class="rfm">
                                         <table>
                                             <tbody>
-                                            <tr>
-                                                <th>
-                                                    <label for="username_Ldm0V">帐号:</label></th>
-                                                <td><input type="text" name="loginName" id="username_Ldm0V" class="px p_fre" tabindex="1" value=""></td>
-                                                <td class="tipcol">
-                                                    <a href="${base}/toRegister">注册[Register] </a>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <th>
+                                                        <label for="username_Ldm0V">帐号:</label>
+                                                    </th>
+                                                    <td><input type="text" name="loginName" id="username_Ldm0V" class="px p_fre" tabindex="1" value=""></td>
+                                                    <td class="tipcol">
+                                                        <a href="${base}/toRegister">注册[Register] </a>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>

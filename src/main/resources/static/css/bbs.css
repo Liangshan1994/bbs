@@ -820,6 +820,7 @@ ul#navmenu ul {
 .tl .num {
     width: 60px;
     line-height: 14px;
+    text-align: center;
 }
 .tl cite, .tl .num em {
     display: block;

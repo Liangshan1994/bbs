@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.pikaqiu.bbs.dao.UserMapper;
 import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.service.UserService;
+import com.pikaqiu.common.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by lvls on 2018/1/23.
  */
 @Service(value = "userService")
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceImpl<UserMapper,User> implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Override
@@ -37,5 +38,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public User checkPassword(User user) {
         return userMapper.checkPassword(user);
+    }
+
+    @Override
+    public User findRoleByLoginName(String loginName) {
+        return userMapper.findRoleByLoginName(loginName);
     }
 }

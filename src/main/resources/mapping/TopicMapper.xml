@@ -15,9 +15,20 @@
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
+    <collection property="board" ofType="com.pikaqiu.bbs.entity.Board">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="board_name" property="boardName" jdbcType="VARCHAR" />
+    </collection>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.pikaqiu.bbs.entity.Topic" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithUserInfo" type="com.pikaqiu.bbs.entity.Topic" extends="BaseResultMap" >
+    <collection property="userInfo" ofType="com.pikaqiu.bbs.entity.UserInfo">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="user_id" property="userId" jdbcType="INTEGER" />
+      <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     a.id,
@@ -41,8 +52,11 @@
     select 
     <include refid="Base_Column_List" />
     ,
-    <include refid="Blob_Column_List" />
+    <include refid="Blob_Column_List" />,
+    b.id,
+    b.board_name
     from tb_topic a
+    left join tb_board b ON a.board_id = b.id
     where a.id = #{id,jdbcType=INTEGER}
   </select>
   <update id="delete" parameterType="java.lang.Integer" >
@@ -221,12 +235,14 @@
         AND update_by = #{updateBy,jdbcType=INTEGER},
       </if>
   </select>
-  <select id="selectByBoardId"  resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer">
+  <select id="selectByBoardId"  resultMap="ResultMapWithUserInfo" parameterType="java.lang.Integer">
     SELECT
     <include refid="Base_Column_List" />,
+    ui.user_name,
     (SELECT count(*) FROM tb_reply r WHERE r.topic_id = a.id and r.del_flag = 0) as "replyNum"
     FROM
       tb_topic a
+    left join tb_user_info ui ON  ui.user_id = a.user_id
     WHERE
       a.del_flag = 0 AND
       a.board_id = #{boardId}

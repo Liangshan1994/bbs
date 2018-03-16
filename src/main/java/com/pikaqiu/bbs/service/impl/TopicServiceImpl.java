@@ -70,7 +70,6 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
         //使用分页插件,核心代码就这一行
         PageHelper.startPage(pageNo, Global.PAGE_SIZE);
         List<Topic> topics = topicMapper.selectByBoardId(boardId);
-        setUserInfoToTopic(topics);
         PageInfo<Topic> pageInfo = new PageInfo<>(topics);
         return pageInfo;
     }

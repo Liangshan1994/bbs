@@ -2,10 +2,12 @@ package com.pikaqiu.bbs.controller;
 
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.entity.Topic;
+import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.bbs.service.TopicService;
 import com.pikaqiu.bbs.service.UserInfoService;
+import com.pikaqiu.bbs.service.UserService;
 import com.pikaqiu.bbs.utils.TopicUtils;
 import com.pikaqiu.common.mail.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class IndexController {
     private TopicService topicService;
     @Autowired
     private BoardService boardService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private UserInfoService userInfoService;
     @Autowired

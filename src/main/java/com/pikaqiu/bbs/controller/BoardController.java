@@ -35,7 +35,7 @@ public class BoardController {
     }
     @RequestMapping("/board-{id}-{pageNo}.html")
     public String goBoard(@PathVariable("id") Integer id, @PathVariable("pageNo") Integer pageNo, Model model){
-        Board board = boardService.getBoardDetail(id);
+        Board board = boardService.get(id);
         model.addAttribute("board",board);
         //当版块类型为1时为一级版块
         if(board.getBoardType()==1){

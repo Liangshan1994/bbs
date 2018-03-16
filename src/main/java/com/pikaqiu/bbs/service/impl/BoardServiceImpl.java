@@ -62,64 +62,38 @@ public class BoardServiceImpl extends BaseServiceImpl<BoardMapper,Board> impleme
         PageHelper.startPage(1,Global.BOARD_SIZE);
         List<Board> parentsBoards = boardMapper.getParentsBoards();
         for (Board parentsBoard : parentsBoards) {
-            getChildrenDetilList(parentsBoard);
+//            getChildrenDetilList(parentsBoard);
+            List<Board> childrenBoardList = parentsBoard.getChildrenBoardList();
+            for (Board board : childrenBoardList) {
+                //如果不是一级版块获取该板块最新一条主题
+                if(board.getBoardType()!=1){
+                    getLastTopic(board);
+                }
+            }
         }
         return parentsBoards;
     }
 
-    /**
-     * 查询出一个版块下的所有子版块和对应的管理员以及最新帖子
-     */
-    private void getChildrenDetilList(Board board) {
-        //遍历获取一级版块下的子版块
-        //设置版块管理员信息
-        UserInfo userInfo = userInfoMapper.get(board.getBoardAdmin());
-        board.setAdminUserInfo(userInfo);
-        List<Board> boardsByParents = boardMapper.getBoardsByParents(board.getId());
-        if(boardsByParents.size()> Global.INDEX_BOARD_SIZE){
-            board.setChildrenBoardList(boardsByParents.subList(0,Global.INDEX_BOARD_SIZE));
-        }else{
-            board.setChildrenBoardList(boardsByParents);
-        }
-        List<Board> childrenBoardList = board.getChildrenBoardList();
-        //遍历二级板块，设置版块管理员信息和最新主题
-        for (Board children : childrenBoardList) {
-            UserInfo childrenBoardAdminUserInfo = userInfoMapper.get(children.getBoardAdmin());
-            children.setAdminUserInfo(childrenBoardAdminUserInfo);
-            //获取该板块最新一条主题
-            List<Topic> newTopic = topicMapper.selectByBoardId(children.getId());
-            if(newTopic.size()>0){
-                int viewTotal = 0;
-                for (Topic topic : newTopic) {
-                    viewTotal += topic.getView();
-                }
-                children.setViewTotal(viewTotal);
-                Topic topic = newTopic.get(0);
-                UserInfo topicUserInfo = userInfoMapper.get(topic.getUserId());
-                topic.setUserInfo(topicUserInfo);
-                children.setLastTopic(topic);
-                children.setTopicList(newTopic);
-            }
-        }
-    }
-
-    /**
-     * 获取父级版块
-     */
     @Override
-    public Board getBoardById(Integer id) {
-        Board board = boardMapper.get(id);
+    public Board get(Integer boardId){
+        Board board = boardMapper.get(boardId);
         Board parentBoard = boardMapper.get(board.getBoardParentId());
-        if(parentBoard!=null){
-            board.setParentBoard(parentBoard);
-        }
+        board.setParentBoard(parentBoard);
+        getLastTopic(board);
         return board;
     }
 
-    @Override
-    public Board getBoardDetail(Integer id) {
-        Board board = getBoardById(id);
-        getChildrenDetilList(board);
-        return board;
+    private void getLastTopic(Board board) {
+        List<Topic> newTopic = topicMapper.selectByBoardId(board.getId());
+        if(newTopic.size()>0){
+            int viewTotal = 0;
+            for (Topic topic : newTopic) {
+                viewTotal += topic.getView();
+            }
+            board.setViewTotal(viewTotal);
+            Topic topic = newTopic.get(0);
+            board.setLastTopic(topic);
+            board.setTopicList(newTopic);
+        }
     }
 }

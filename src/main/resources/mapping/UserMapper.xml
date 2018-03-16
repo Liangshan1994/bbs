@@ -14,6 +14,16 @@
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
+  <resultMap id="ResultMapWithRole" type="com.pikaqiu.bbs.entity.User" extends="BaseResultMap" >
+    <collection property="roles" ofType="com.pikaqiu.bbs.entity.Role">
+      <id property="id" column="id"/>
+      <result property="name" column="name"/>
+      <collection property="permissions" ofType="com.pikaqiu.bbs.entity.Permission">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+      </collection>
+    </collection>
+  </resultMap>
   <sql id="Base_Column_List" >
     id, login_name, password, user_phone, user_email, user_role_id, create_by, create_date, 
     update_by, update_date, del_flag
@@ -147,5 +157,15 @@
   </update>
   <select id="checkPassword" parameterType="user" resultMap="BaseResultMap">
     SELECT * FROM  tb_user a where a.login_name = #{loginName} and a.password = #{password}
+  </select>
+  <select id="findRoleByLoginName" parameterType="String" resultMap="ResultMapWithRole">
+    SELECT u.*,sr.*,sp.*
+      FROM
+        tb_user u
+        inner join sys_user_role sur on sur.user_id = u.id
+        inner join sys_role sr on sr.id = sur.role_id
+        inner join sys_role_permission srp on srp.role_id = sr.id
+        inner join sys_permission sp on sp.id = srp.permission_id
+        WHERE u.login_name = #{loginName};
   </select>
 </mapper>

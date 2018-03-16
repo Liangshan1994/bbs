@@ -10,4 +10,6 @@ public interface UserMapper extends BaseMapper<User> {
     List<User> selectAllUser();
 
     User checkPassword(User user);
+
+    User findRoleByLoginName(String loginName);
 }

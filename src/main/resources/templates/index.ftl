@@ -238,7 +238,7 @@
 								<img id="category_26_img" src="${base}/static/img/collapsed_no.gif" title="收起/展开" alt="收起/展开" onclick="toggle_collapse('category_26');">
 							</span>
                                 <span class="y">分区版主: <a href="${base}/home-${board.adminUserInfo.userId}.html" class="notabs" c="1">${board.adminUserInfo.userName}</a></span>
-                                <h2><a href="javascript:alert('等待开发')" style="">${board.boardName}</a></h2>
+                                <h2><a href="${base}/board-${board.id}-1.html" style="">${board.boardName}</a></h2>
                             </div>
                             <div id="category_26" class="bm_c" style="">
                                 <#if board.childrenBoardList?exists>

@@ -18,7 +18,7 @@
             <a href="${base}" class="nvhm" title="首页"></a><em>»</em>
             <a rel="/" href="${base}">网站</a> <em>›</em>
             <#if board.parentBoard?exists>
-                <a href="${base}/board-${board.parentBoard.id}-1.html">${board.parentBoard.boardName}</a> <em>›</em>
+                <a href="${base}/board-${board.parentBoardId}-1.html">${board.parentBoard.boardName}</a> <em>›</em>
             </#if>
             <a href="${base}/board-${board.id}-1.html">${board.boardName}</a> <em>›</em>
             <a href="${base}/topic-${topic.id}-1.html">${topic.title}</a>

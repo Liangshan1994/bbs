@@ -2,17 +2,22 @@ package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class User extends BaseEntity<User>{
 
-    private String loginName;
+    private String loginName;//登录名
 
-    private String password;
+    private String password;//密码
 
-    private String userPhone;
+    private String userPhone;//用户手机
 
-    private String userEmail;
+    private String userEmail;//用户邮箱
 
     private Integer userRoleId;
+
+    private Set<Role> roles = new HashSet<>();
 
     public String getLoginName() {
         return loginName;
@@ -54,4 +59,11 @@ public class User extends BaseEntity<User>{
         this.userRoleId = userRoleId;
     }
 
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 }

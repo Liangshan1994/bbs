@@ -40,12 +40,11 @@ public class TopicController {
         topic.setUserInfo(userInfo);
         topic.setView(topic.getView() + 1);
         topicService.update(topic);
-        Board board = boardService.getBoardById(topic.getBoardId());
         PageInfo<Reply> pageInfo = replyService.selectPageByTopicId(topic.getId(), pageNo);
         List<Reply> replyList = pageInfo.getList();
         model.addAttribute("replyNum",replyList.size());
         model.addAttribute("topic",topic);
-        model.addAttribute("board",board);
+        model.addAttribute("board",topic.getBoard());
         model.addAttribute("replyList",replyList);
         model.addAttribute("pageInfo",pageInfo);
         return "topic";
@@ -54,7 +53,7 @@ public class TopicController {
     @LoginAuth
     @RequestMapping("/newTopic-{boardId}.html")
     public String NewTopic(@PathVariable("boardId") Integer boardId,Model model){
-        Board board = boardService.getBoardById(boardId);
+        Board board = boardService.get(boardId);
         model.addAttribute("board",board);
         return "newTopic";
     }
