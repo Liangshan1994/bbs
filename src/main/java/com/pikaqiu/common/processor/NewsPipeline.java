@@ -1,6 +1,8 @@
 package com.pikaqiu.common.processor;
 
 import com.pikaqiu.bbs.entity.News;
+import com.pikaqiu.bbs.entity.NewsContent;
+import com.pikaqiu.bbs.service.NewsContentService;
 import com.pikaqiu.bbs.service.NewsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,8 @@ public class NewsPipeline implements Pipeline {
 
     @Autowired
     private NewsService newsService;
+    @Autowired
+    private NewsContentService newsContentService;
 
     @Override
     public void process(ResultItems resultItems, Task task) {
@@ -32,7 +36,13 @@ public class NewsPipeline implements Pipeline {
                 if(!newsService.isExist(news.getLink())){
                     news.setCreateBy(1);
                     news.setUpdateBy(1);
+                    NewsContent newsContent = new NewsContent();
                     newsService.insert(news);
+                    newsContent.setNewsId(news.getId());
+                    newsContent.setContent(news.getContent());
+                    newsContentService.insert(newsContent);
+                    news.setContentId(newsContent.getId());
+                    newsService.update(news);
                     logger.info("保存文章：" + news.getTitle());
                 }else{
                     logger.info("文章已存在：" + news.getTitle());

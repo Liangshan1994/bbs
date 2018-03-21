@@ -26,11 +26,11 @@ public class WebmagicSchedulingConfig {
     /**
      * 简书
      */
-    @Scheduled(cron = "0 0 0/1 * * ? ")
+    @Scheduled(cron = "0 0/1 18 * * ? ")
     public void jianShuScheduled() {
         logger.info(new Date()+"----执行简书定时任务开始");
         Spider spider = Spider.create(new JianShuProcessor());
-        spider.addUrl("http://www.jianshu.com");
+        spider.addUrl("https://www.jianshu.com/c/V2CqjW");
         spider.addPipeline(newsPipeline);
         spider.thread(5);
         spider.setExitWhenComplete(true);

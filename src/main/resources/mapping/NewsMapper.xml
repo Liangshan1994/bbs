@@ -8,6 +8,7 @@
     <result column="source" property="source" jdbcType="INTEGER" />
     <result column="link" property="link" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="content_id" property="contentId" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="VARCHAR" />
     <result column="push_date" property="pushDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
@@ -16,29 +17,19 @@
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.pikaqiu.bbs.entity.News" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-  </resultMap>
   <sql id="Base_Column_List" >
-    id, title, info, source, link, author, type, push_date, create_by, create_date, update_by, update_date,
+    id, title, info, source, link, author,content_id type, push_date, create_by, create_date, update_by, update_date,
     del_flag
   </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_news
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="findList" resultMap="ResultMapWithBLOBs">
+  <select id="findList" resultMap="BaseResultMap">
     SELECT
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_news
     where del_flag = 0
   </select>
@@ -47,18 +38,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.pikaqiu.bbs.entity.News" >
-    insert into tb_news (id, title, info, 
-      source, link, author, 
-      type, push_date, create_by, create_date,
-      update_by, update_date, del_flag, 
-      content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, 
-      #{source,jdbcType=INTEGER}, #{link,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{createBy,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP},
-      #{updateBy,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=INTEGER}, 
-      #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.pikaqiu.bbs.entity.News" >
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into tb_news
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -82,6 +64,9 @@
       <if test="type != null" >
         type,
       </if>
+      <if test="contentId != null" >
+        content_id,
+      </if>
       <if test="pushDate != null" >
         push_date,
       </if>
@@ -99,9 +84,6 @@
       </if>
       <if test="delFlag != null" >
         del_flag,
-      </if>
-      <if test="content != null" >
-        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -126,6 +108,9 @@
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
       </if>
+      <if test="contentId != null" >
+        #{contentId,jdbcType=INTEGER},
+      </if>
       <if test="pushDate != null" >
         #{pushDate,jdbcType=TIMESTAMP},
       </if>
@@ -143,9 +128,6 @@
       </if>
       <if test="delFlag != null" >
         #{delFlag,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -170,6 +152,9 @@
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
       </if>
+      <if test="contentId != null" >
+        content_id = #{contentId,jdbcType=INTEGER},
+      </if>
       <if test="pushDate != null" >
         push_date = #{pushDate,jdbcType=TIMESTAMP},
       </if>
@@ -187,9 +172,6 @@
       </if>
       <if test="delFlag != null" >
         del_flag = #{delFlag,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

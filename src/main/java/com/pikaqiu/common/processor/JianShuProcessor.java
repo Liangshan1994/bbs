@@ -1,6 +1,7 @@
 package com.pikaqiu.common.processor;
 
 import com.pikaqiu.bbs.entity.News;
+import com.pikaqiu.bbs.entity.NewsContent;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
@@ -22,8 +23,8 @@ public class JianShuProcessor implements PageProcessor {
             .setSleepTime(100)
             .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
 
-    public static final String list = "http://www.jianshu.com";
-    public static final String contentLink = "http://www.jianshu.com/p/";
+    public static final String list = "https://www.jianshu.com/c/V2CqjW";
+    public static final String contentLink = "https://www.jianshu.com/p/";
 
     @Override
     public void process(Page page) {
@@ -64,7 +65,7 @@ public class JianShuProcessor implements PageProcessor {
 
 //    public static void main(String[] args) {
 //        Spider spider = Spider.create(new JianShuProcessor());
-//        spider.addUrl("http://www.jianshu.com");
+//        spider.addUrl("https://www.jianshu.com/c/V2CqjW");
 //        spider.addPipeline(new NewsPipeline());
 //        spider.thread(5);
 //        spider.setExitWhenComplete(true);

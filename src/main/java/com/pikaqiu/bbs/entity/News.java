@@ -18,9 +18,11 @@ public class News extends BaseEntity<News> {
 
     private String type;
 
-    private String content;
+    private Integer contentId;
 
     private Date pushDate;
+
+    private String content;
 
     public String getTitle() {
         return title;
@@ -67,15 +69,16 @@ public class News extends BaseEntity<News> {
     }
 
     public void setType(String type) {
+
         this.type = type == null ? null : type.trim();
     }
 
-    public String getContent() {
-        return content;
+    public Integer getContentId() {
+        return contentId;
     }
 
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
+    public void setContentId(Integer contentId) {
+        this.contentId = contentId;
     }
 
     public Date getPushDate() {
@@ -84,5 +87,13 @@ public class News extends BaseEntity<News> {
 
     public void setPushDate(Date pushDate) {
         this.pushDate = pushDate;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

@@ -77,7 +77,7 @@
             </p>
         </div>
         <div id="frt">
-            <p>Powered by <strong>Discuz!</strong></p>
+            <p>Powered by <strong>SpringBoot</strong></p>
             <p class="xs0">© 2001-2017 Comsenz Inc.</p>
         </div>
     </div>
