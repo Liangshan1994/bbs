@@ -27,7 +27,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 有 @LoginAuth 注解，需要认证
         HttpSession session = httpServletRequest.getSession();
         if (methodAnnotation != null) {
-            session.setAttribute("referer",httpServletRequest.getRequestURL().toString());
+            String referer = httpServletRequest.getParameter("referer");
+            session.setAttribute("referer",referer);
             //这里是认证的方法
             if(session.getAttribute(Global.SESSION_LOGIN_USER) != null){
                 return true;

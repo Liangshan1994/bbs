@@ -5,6 +5,7 @@ import com.pikaqiu.bbs.entity.NewsContent;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
@@ -23,6 +24,7 @@ public class JianShuProcessor implements PageProcessor {
             .setSleepTime(100)
             .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36");
 
+    //爬取简书的IT模块
     public static final String list = "https://www.jianshu.com/c/V2CqjW";
     public static final String contentLink = "https://www.jianshu.com/p/";
 
@@ -33,7 +35,8 @@ public class JianShuProcessor implements PageProcessor {
             String title = xpath.xpath("//h1[@class='title']/text()").toString();
             String author = xpath.xpath("//span[@class='name']/a/text()").toString();
             String pushDate = xpath.xpath("//span[@class='publish-time']/text()").toString().replace("*","");
-            String content = xpath.xpath("//div[@class='show-content-free']").toString();
+            String content  = xpath.xpath("//div[@class='show-content-free']/html()").toString();
+            String info = xpath.xpath("//div[@class='show-content-free']/allText()").toString();
             News news = new News();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm");
             Date parse = new Date();
@@ -44,8 +47,10 @@ public class JianShuProcessor implements PageProcessor {
             }
             news.setPushDate(parse);
             news.setAuthor(author);
-            news.setSource(1);
+            news.setSource(1);//来源简书
             news.setContent(content);
+            news.setType(1);//类型是IT互联网
+            news.setInfo(info.length()>100?info.substring(0,100):info);
             news.setLink(page.getRequest().getUrl());
             news.setTitle(title);
             page.putField("news"+title, news);
@@ -63,12 +68,14 @@ public class JianShuProcessor implements PageProcessor {
         return site;
     }
 
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        Spider spider = Spider.create(new JianShuProcessor());
-//        spider.addUrl("https://www.jianshu.com/c/V2CqjW");
-//        spider.addPipeline(new NewsPipeline());
-//        spider.thread(5);
-//        spider.setExitWhenComplete(true);
-//        spider.start();
-//    }
+//        for (int i = 1; i < 11; i++) {
+//            spider.addUrl("https://www.jianshu.com/c/V2CqjW?order_by=added_at&page="+i);
+//            spider.thread(5);
+//            spider.setExitWhenComplete(true);
+//            spider.start();
+//            spider.stop();
+//        }
+    }
 }

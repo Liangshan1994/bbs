@@ -1,8 +1,7 @@
 <script>
 	$(function(){
         getAllNav();
-        getRecommendBoard();
-        $("#referer").val(window.location.href)
+        $("#headRreferer").val(window.location.href)
 	})
     //获取所有nav
     function getAllNav(){
@@ -13,26 +12,10 @@
                 var html = '';
                 html += '<ul>';
                 $.each(result,function(key,value){
-                    html += '<li><a href="'+value.url+'" title="'+value.title+'">'+value.title+'</a></li>';
+                    html += '<li><a href="${base}'+value.url+'" title="'+value.title+'">'+value.title+'</a></li>';
                 });
                 html += '</ul>';
                 $("#headNav").html(html);
-            }
-        })
-    }
-    //获取推荐版块
-    function getRecommendBoard(){
-        $.ajax({
-            url:'${base}/board/getRecommendBoard',
-            asynx:false,
-            success:function(result){
-                var html = '';
-                html += '<ul class="nav_ico02">';
-                $.each(result,function(key,value){
-                    html += '<li><a href="${base}/board-'+value.id+'-1.html" target="_blank" title="'+value.boardName+'"><font color="green">'+value.boardName+'</font></a></li>';
-                });
-                html += '</ul>';
-                $("#recommendBoard").html(html);
             }
         })
     }
@@ -59,7 +42,7 @@
 						<span class="pipe">|</span><a href="javascript:alert('等待开发')">设置</a>
 						<span class="pipe">|</span><a href="javascript:alert('等待开发')">消息</a>
 						<span class="pipe">|</span><a href="javascript:alert('等待开发')" class="a showmenu">提醒</a>
-						<span class="pipe">|</span><a href="/logout">退出</a>
+						<span class="pipe">|</span><a href="${base}/logout">退出</a>
 					</p>
 					<p>
 						<span class="pipe">|</span>
@@ -96,7 +79,7 @@
 										</td>
 										<td>
 											<input type="password" name="password" id="ls_password" class="px vm">
-											<input type="hidden" name="referer" id="referer" class="px vm">
+											<input type="hidden" name="referer" id="headReferer" class="px vm">
 										</td>
 										<td class="fastlg_l">
 											<button type="submit" class="pn vm" style="width: 75px;"><em>登录</em></button>

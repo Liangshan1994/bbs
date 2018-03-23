@@ -28,13 +28,11 @@ public class KeProcessor implements PageProcessor {
             Selectable xpath = page.getHtml().xpath("//div[@class='mobile_article'][1]");
             String title = xpath.xpath("//h1[1]/text()").toString();
             String author = xpath.xpath("//div[@class='author am-fl']/span[@class='name']/text()").toString();
-            String type = xpath.xpath("//div[@class='author am-fl']/abbr[@class='time'][last()]/text()").toString();
             String info = xpath.xpath("//section[@class='summary']/text()").toString();
             String content = xpath.xpath("//section[@class='textblock']/node()").toString();
             News news = new News();
             news.setAuthor(author);
             news.setInfo(info);
-            news.setType(type);
             news.setSource(2);
             news.setContent(content);
             news.setLink(page.getRequest().getUrl());

@@ -1,15 +1,16 @@
-h1, h2, h3, h4, h5, h6 {
-    font-size: 1em;
-}
 * {
     word-wrap: break-word;
 }
 body {
     background: #FFF url(../img/bgimg.jpg) no-repeat 50% -30px;
+    margin: 0 10%;
 }
-body, ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
+ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
     margin: 0;
     padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1em;
 }
 a {
     color: #333;
@@ -1008,6 +1009,9 @@ ul#navmenu ul {
 /*主题*/
 .bdsharebuttonbox{
     min-height:30px;
+}
+.syntaxhighlighter .gutter{
+    display: none;
 }
 .pl table {
     table-layout: fixed;

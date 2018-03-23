@@ -32,6 +32,12 @@ public class Topic extends BaseEntity<Topic> {
 
     private Integer replyNum;
 
+    private Integer parentBoardId;
+
+    private String boardName;
+
+    private String parentBoardName;
+
     public String getTitle() {
         return title;
     }
@@ -134,5 +140,29 @@ public class Topic extends BaseEntity<Topic> {
 
     public void setReplyNum(Integer replyNum) {
         this.replyNum = replyNum;
+    }
+
+    public Integer getParentBoardId() {
+        return parentBoardId;
+    }
+
+    public void setParentBoardId(Integer parentBoardId) {
+        this.parentBoardId = parentBoardId;
+    }
+
+    public String getBoardName() {
+        return boardName;
+    }
+
+    public void setBoardName(String boardName) {
+        this.boardName = boardName;
+    }
+
+    public String getParentBoardName() {
+        return parentBoardName;
+    }
+
+    public void setParentBoardName(String parentBoardName) {
+        this.parentBoardName = parentBoardName;
     }
 }

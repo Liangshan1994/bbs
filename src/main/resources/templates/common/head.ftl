@@ -8,6 +8,17 @@
 <script src="${base}/static/plugins/ueditor/ueditor.all.min.js"></script>
 <script src="${base}/static/plugins/ueditor/ueditor.all.js"></script>
 <script src="${base}/static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="${base}/static/plugins/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
+<script src="${base}/static/plugins/ueditor/third-party/codemirror/codemirror.js"></script>
 
-<link rel="stylesheet" href="${base}/static/css/bbs.css" />
 <link rel="stylesheet" href="${base}/static/plugins/ueditor/themes/default/css/ueditor.min.css" />
+<link rel="stylesheet" href="${base}/static/plugins/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+<link rel="stylesheet" href="${base}/static/plugins/ueditor/third-party/codemirror/codemirror.css">
+<link rel="stylesheet" href="${base}/static/css/bbs.css" />
+
+<script>
+    // SyntaxHighlighter.all();
+    $(function(){
+        SyntaxHighlighter.highlight();
+    });
+</script>

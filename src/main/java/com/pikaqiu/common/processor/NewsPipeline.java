@@ -37,15 +37,14 @@ public class NewsPipeline implements Pipeline {
                     news.setCreateBy(1);
                     news.setUpdateBy(1);
                     NewsContent newsContent = new NewsContent();
-                    newsService.insert(news);
-                    newsContent.setNewsId(news.getId());
                     newsContent.setContent(news.getContent());
                     newsContentService.insert(newsContent);
                     news.setContentId(newsContent.getId());
-                    newsService.update(news);
+                    newsService.insert(news);
                     logger.info("保存文章：" + news.getTitle());
                 }else{
                     logger.info("文章已存在：" + news.getTitle());
+                    break;
                 }
             }
         }

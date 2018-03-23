@@ -3,33 +3,29 @@
 <mapper namespace="com.pikaqiu.bbs.dao.NewsContentMapper" >
   <resultMap id="BaseResultMap" type="com.pikaqiu.bbs.entity.NewsContent" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="news_id" property="newsId" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id,news_id,content
+    id,content
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_news_content
-    where news_id = #{newsId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tb_news_content
-    where news_id = #{newsId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.pikaqiu.bbs.entity.News" >
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into tb_news
+    insert into tb_news_content
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
-      </if>
-      <if test="newsId != null" >
-        news_id,
       </if>
       <if test="content != null" >
         content,
@@ -39,24 +35,18 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="newsId != null" >
-        #{newsId,jdbcType=VARCHAR},
-      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
   <update id="update" parameterType="com.pikaqiu.bbs.entity.News" >
-    update tb_news
+    update tb_news_content
     <set >
-      <if test="newsId != null" >
-        news_id = #{newsId,jdbcType=VARCHAR},
-      </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where news_id = #{newsId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

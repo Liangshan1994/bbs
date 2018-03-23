@@ -16,7 +16,7 @@ public class News extends BaseEntity<News> {
 
     private String author;
 
-    private String type;
+    private Integer type;
 
     private Integer contentId;
 
@@ -64,13 +64,13 @@ public class News extends BaseEntity<News> {
         this.author = author == null ? null : author.trim();
     }
 
-    public String getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
 
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 
     public Integer getContentId() {

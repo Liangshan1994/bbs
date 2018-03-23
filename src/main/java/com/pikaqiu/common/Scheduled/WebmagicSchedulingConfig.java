@@ -26,17 +26,23 @@ public class WebmagicSchedulingConfig {
     /**
      * 简书
      */
-    @Scheduled(cron = "0 0/1 18 * * ? ")
+    @Scheduled(cron = "0 0 0/6 * * ? ")
     public void jianShuScheduled() {
-        logger.info(new Date()+"----执行简书定时任务开始");
+        logger.info(new Date()+"=====Start JianShu =====");
+        for (int i = 1; i < 11; i++) {
+            createJianShuSpider("https://www.jianshu.com/c/V2CqjW?order_by=added_at&page="+i);
+        }
+        logger.info(new Date()+"=====End JianShu =====");
+    }
+
+    public void createJianShuSpider(String url){
         Spider spider = Spider.create(new JianShuProcessor());
-        spider.addUrl("https://www.jianshu.com/c/V2CqjW");
+        spider.addUrl(url);
         spider.addPipeline(newsPipeline);
         spider.thread(5);
         spider.setExitWhenComplete(true);
         spider.start();
         spider.stop();
-        logger.info(new Date()+"----执行简书定时任务结束");
     }
     /**
      * 36氪

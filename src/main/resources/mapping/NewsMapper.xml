@@ -9,7 +9,7 @@
     <result column="link" property="link" jdbcType="VARCHAR" />
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="content_id" property="contentId" jdbcType="INTEGER" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="push_date" property="pushDate" jdbcType="TIMESTAMP" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -106,7 +106,7 @@
         #{author,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="contentId != null" >
         #{contentId,jdbcType=INTEGER},
@@ -150,7 +150,7 @@
         author = #{author,jdbcType=VARCHAR},
       </if>
       <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="contentId != null" >
         content_id = #{contentId,jdbcType=INTEGER},
@@ -181,8 +181,28 @@
     <include refid="Base_Column_List"/>
     FROM
     tb_news
-    WHERE
-    del_flag = 0
-    AND link = #{link}
+    <where>
+      del_flag = 0
+      AND link = #{link}
+    </where>
+  </select>
+  <select id="selectPageByType" parameterType="Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tb_news
+    <where>
+      del_flag = 0
+      AND type = #{type}
+    </where>
+  </select>
+  <select id="selectPageNews" parameterType="Integer" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    tb_news
+    <where>
+      del_flag = 0
+    </where>
   </select>
 </mapper>

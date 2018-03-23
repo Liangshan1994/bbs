@@ -5,8 +5,7 @@
   <title>${topic.title} -皮卡丘</title>
     <script>
         $(function(){
-            var url = window.location.href;
-            $("#referer").val(url);
+            $("#referer").val(window.location.href);
         })
     </script>
 </head>
@@ -17,10 +16,10 @@
         <div class="z">
             <a href="${base}" class="nvhm" title="首页"></a><em>»</em>
             <a rel="/" href="${base}">网站</a> <em>›</em>
-            <#if board.parentBoard?exists>
-                <a href="${base}/board-${board.parentBoardId}-1.html">${board.parentBoard.boardName}</a> <em>›</em>
+            <#if topic.parentBoardId?exists>
+                <a href="${base}/board-${topic.parentBoardId}-1.html">${topic.parentBoardName}</a> <em>›</em>
             </#if>
-            <a href="${base}/board-${board.id}-1.html">${board.boardName}</a> <em>›</em>
+            <a href="${base}/board-${topic.boardId}-1.html">${topic.boardName}</a> <em>›</em>
             <a href="${base}/topic-${topic.id}-1.html">${topic.title}</a>
         </div>
     </div>
@@ -56,9 +55,9 @@
                 </div>
             </div>
             <span class="y pgb">
-                <a href="${base}/board-${board.id}-1.html">返回列表</a>
+                <a href="${base}/board-${topic.boardId}-1.html">返回列表</a>
             </span>
-            <a id="newspecial"  href="${base}/newTopic-${board.id}.html" title="发新帖">
+            <a id="newspecial"  href="${base}/newTopic-${topic.boardId}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖"></a>
             <a id="post_reply" href="#f_pst" title="回复">
                 <img src="${base}/static/img/pn_reply.png" alt="回复">
@@ -329,9 +328,9 @@
                 </#if>
             </div>
             <span class="pgb y" id="visitedforumstmp" >
-                <a href="${base}/board-${board.id}-1.html">返回列表</a>
+                <a href="${base}/board-${topic.boardId}-1.html">返回列表</a>
             </span>
-            <a id="newspecialtmp" href="${base}/newTopic-${board.id}.html" title="发新帖">
+            <a id="newspecialtmp" href="${base}/newTopic-${topic.boardId}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖">
             </a>
             <a id="post_replytmp"  href="#f_pst" title="回复">
@@ -341,7 +340,7 @@
         <div id="diyfastposttop" class="area"></div>
         <div id="f_pst" class="pl bm bmw">
             <form method="post" action="${base}/saveReply">
-                <input type="hidden" name="boardId" value="${board.id}">
+                <input type="hidden" name="boardId" value="${topic.boardId}">
                 <input type="hidden" name="topicId" value="${topic.id}">
                 <input type="hidden" name="referer" id="referer">
                 <table cellspacing="0" cellpadding="0">
@@ -367,7 +366,6 @@
                                             ['bold','forecolor', 'link', 'blockquote','insertcode','emotion']
                                         ]});
                                 </script>
-                                </div>
                                 <p class="ptm pnpost">
                                     <button type="submit" name="replysubmit" class="pn pnc vm">
                                         <strong>发表回复</strong>

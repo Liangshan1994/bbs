@@ -15,10 +15,6 @@
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
-    <collection property="board" ofType="com.pikaqiu.bbs.entity.Board">
-      <id column="id" property="id" jdbcType="INTEGER" />
-      <result column="board_name" property="boardName" jdbcType="VARCHAR" />
-    </collection>
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.pikaqiu.bbs.entity.Topic" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
@@ -52,11 +48,14 @@
     select 
     <include refid="Base_Column_List" />
     ,
-    <include refid="Blob_Column_List" />,
-    b.id,
-    b.board_name
+    <include refid="Blob_Column_List" />
+    ,
+    b.board_name as 'boardName',
+    pb.id as 'parentBoardId',
+    pb.board_name as 'parentBoardName'
     from tb_topic a
     left join tb_board b ON a.board_id = b.id
+    LEFT JOIN tb_board pb on pb.id = b.board_parent_id
     where a.id = #{id,jdbcType=INTEGER}
   </select>
   <update id="delete" parameterType="java.lang.Integer" >
@@ -296,5 +295,24 @@
     WHERE
       a.del_flag = 0 AND is_elite = 1
     ORDER BY create_date
+  </select>
+  <select id="findBoard"  resultType="com.pikaqiu.bbs.entity.Board" parameterType="Integer">
+    SELECT
+    a.id,
+    a.board_name,
+    a.board_info,
+    a.board_admin,
+    a.board_parent_id,
+    a.board_type,
+    a.is_recommend,
+    a.create_by,
+    a.create_date,
+    a.update_by,
+    a.update_date,
+    a.del_flag
+    FROM
+      tb_board a
+    WHERE
+      a.del_flag = 0 AND a.id = #{boardId}
   </select>
 </mapper>
