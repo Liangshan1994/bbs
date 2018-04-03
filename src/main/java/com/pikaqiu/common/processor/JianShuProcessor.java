@@ -1,11 +1,9 @@
 package com.pikaqiu.common.processor;
 
 import com.pikaqiu.bbs.entity.News;
-import com.pikaqiu.bbs.entity.NewsContent;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
@@ -68,7 +66,7 @@ public class JianShuProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        Spider spider = Spider.create(new JianShuProcessor());
 //        for (int i = 1; i < 11; i++) {
 //            spider.addUrl("https://www.jianshu.com/c/V2CqjW?order_by=added_at&page="+i);
@@ -77,5 +75,5 @@ public class JianShuProcessor implements PageProcessor {
 //            spider.start();
 //            spider.stop();
 //        }
-    }
+//    }
 }

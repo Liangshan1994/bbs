@@ -21,14 +21,27 @@ public class NewsController {
     @RequestMapping("/news-{type}-{pageNo}.html")
     public String toPageNews(@PathVariable("type") Integer type, @PathVariable("pageNo") Integer pageNo, Model model){
         PageInfo<News> newsPageInfo = newsService.selectPageByType(type,pageNo);
+        newsPageInfo.setLink("news");
+        newsPageInfo.setType(type);
         model.addAttribute("pageInfo",newsPageInfo);
-        return "news";
+        return "newsList";
     }
 
     @RequestMapping("/news")
-    public String toNews(Model model){
+    public String news(Model model){
         PageInfo<News> newsPageInfo = newsService.selectPageNews();
+        newsPageInfo.setLink("news");
+        newsPageInfo.setType(0);
         model.addAttribute("pageInfo",newsPageInfo);
+        return "newsList";
+    }
+
+    @RequestMapping("/news-{id}.html")
+    public String toNews(@PathVariable("id") Integer id,Model model){
+        News news = newsService.getNewsDetail(id);
+        news.setView(news.getView()+1);
+        newsService.update(news);
+        model.addAttribute("news",news);
         return "news";
     }
 }

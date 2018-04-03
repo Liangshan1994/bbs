@@ -24,39 +24,8 @@
         </div>
     </div>
     <div id="ct" class="wp cl">
-        <div id="pgt" class="pgs mbm cl ">
-            <div class="pgt">
-                <div class="pg">
-                <#if pageInfo.hasPreviousPage>
-                    <a href="${base}/topic-${topic.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
-                <#else >
-                    <strong>上一页</strong>
-                </#if>
-                    <#if replyList?size gt 0>
-                        <#list 1..pageInfo.pages as page>
-                            <#if page=pageInfo.pageNum>
-                                <strong>${page}</strong>
-                            <#else >
-                                <a href="${base}/topic-${topic.id}-${page}.html" class="nxt">${page}</a>
-                            </#if>
-                        </#list>
-                        <#else >
-                            <strong>1</strong>
-                    </#if>
-                    <label>
-                        <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/topic-${topic.id}-'+this.value+'.html';}">
-                        <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
-                    </label>
-                <#if pageInfo.hasNextPage>
-                    <a href="${base}/topic-${topic.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
-                <#else >
-                    <strong>下一页</strong>
-                </#if>
-                </div>
-            </div>
-            <span class="y pgb">
-                <a href="${base}/board-${topic.boardId}-1.html">返回列表</a>
-            </span>
+        <div class="pgs mbm cl ">
+        <#include "common/page.ftl">
             <a id="newspecial"  href="${base}/newTopic-${topic.boardId}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖"></a>
             <a id="post_reply" href="#f_pst" title="回复">
@@ -304,32 +273,7 @@
             </#if>
         </div>
         <div class="pgs mtm mbm cl">
-            <div class="pg">
-                <#if pageInfo.hasPreviousPage>
-                    <a href="${base}/topic-${topic.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
-                <#else >
-                    <strong>上一页</strong>
-                </#if>
-                <#list 1..pageInfo.pages as page>
-                    <#if page=pageInfo.pageNum>
-                        <strong>${page}</strong>
-                    <#else >
-                        <a href="${base}/topic-${topic.id}-${page}.html" class="nxt">${page}</a>
-                    </#if>
-                </#list>
-                    <label>
-                        <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/topic-${topic.id}-'+this.value+'.html';}">
-                        <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
-                    </label>
-                <#if pageInfo.hasNextPage>
-                    <a href="${base}/topic-${topic.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
-                <#else >
-                    <strong>下一页</strong>
-                </#if>
-            </div>
-            <span class="pgb y" id="visitedforumstmp" >
-                <a href="${base}/board-${topic.boardId}-1.html">返回列表</a>
-            </span>
+            <#include "common/page.ftl">
             <a id="newspecialtmp" href="${base}/newTopic-${topic.boardId}.html" title="发新帖">
                 <img src="${base}/static/img/pn_post.png" alt="发新帖">
             </a>

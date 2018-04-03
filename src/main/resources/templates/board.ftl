@@ -58,37 +58,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="pgt" class="bm bw0 pgs cl">
-                    <span id="fd_page_top">
-                        <div class="pg">
-                            <#if pageInfo.hasPreviousPage>
-                                <a href="${base}/board-${board.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
-                            <#else >
-                                <strong>上一页</strong>
-                            </#if>
-                            <#list 1..pageInfo.pages as page>
-                            <#if page=pageInfo.pageNum>
-                                <strong>${page}</strong>
-                            <#else >
-                                <a href="${base}/board-${board.id}-${page}.html" class="nxt">${page}</a>
-                            </#if>
-                            </#list>
-                            <label>
-                                <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/board-${board.id}-'+this.value+'.html';}">
-                                <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
-                            </label>
-                            <#if pageInfo.hasNextPage>
-                                <a href="${base}/board-${board.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
-                                <#else >
-                                <strong>下一页</strong>
-                            </#if>
-                        </div>
-                    </span>
-                    <span class="pgb y" id="visitedforums">
-							<a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
-						</span>
+                <div class="bm bw0 pgs cl">
+                    <#include "common/page.ftl">
                     <a href="${base}/newTopic-${board.id}.html" title="发新帖">
-                        <img src="${base}/static/img/pn_post.png" alt="发新帖">
+                         <img src="${base}/static/img/pn_post.png" alt="发新帖">
                     </a>
                 </div>
                 <ul id="thread_types" class="ttp bm cl">
@@ -217,31 +190,7 @@
                 <a class="bm_h" href="${base}/board-${board.id}-${pageInfo.nextPage}.html" id="autopbn" >下一页 »</a>
             </#if>
                 <div class="bm bw0 pgs cl">
-					<span id="fd_page_bottom">
-						<div class="pg">
-							<#if pageInfo.hasPreviousPage>
-                                <a href="${base}/board-${board.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
-                            <#else >
-                                <strong>上一页</strong>
-                            </#if>
-                            <#list 1..pageInfo.pages as page>
-                                <#if page=pageInfo.pageNum>
-                                    <strong>${page}</strong>
-                                <#else >
-                                    <a href="${base}/board-${board.id}-${page}.html" class="nxt">${page}</a>
-                                </#if>
-                            </#list>
-                                <label>
-                                <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/board-${board.id}-'+this.value+'.html';}">
-                                <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
-                            </label>
-                            <#if pageInfo.hasNextPage>
-                                <a href="${base}/board-${board.id}-${pageInfo.nextPage}.html" class="nxt">下一页</a>
-                            <#else >
-                                <strong>下一页</strong>
-                            </#if>
-						</div>
-					</span>
+					<#include "common/page.ftl">
                     <span class="pgb y">
                         <a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
                     </span>

@@ -20,9 +20,11 @@ public class News extends BaseEntity<News> {
 
     private Integer contentId;
 
-    private Date pushDate;
+    private Date pushDate;//发表时间
 
     private String content;
+
+    private Integer view;//阅读量
 
     public String getTitle() {
         return title;
@@ -95,5 +97,13 @@ public class News extends BaseEntity<News> {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getView() {
+        return view;
+    }
+
+    public void setView(Integer view) {
+        this.view = view;
     }
 }

@@ -41,6 +41,8 @@ public class TopicController {
         topic.setView(topic.getView() + 1);
         topicService.update(topic);
         PageInfo<Reply> pageInfo = replyService.selectPageByTopicId(topic.getId(), pageNo);
+        pageInfo.setType(id);
+        pageInfo.setLink("topic");
         List<Reply> replyList = pageInfo.getList();
         model.addAttribute("replyNum",replyList.size());
         model.addAttribute("topic",topic);

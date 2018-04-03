@@ -8,17 +8,17 @@
   <sql id="Base_Column_List" >
     id,content
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_news_content
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="delete" parameterType="java.lang.Integer" >
     delete from tb_news_content
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.pikaqiu.bbs.entity.News" >
+  <insert id="insert" parameterType="com.pikaqiu.bbs.entity.NewsContent" >
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -40,7 +40,7 @@
       </if>
     </trim>
   </insert>
-  <update id="update" parameterType="com.pikaqiu.bbs.entity.News" >
+  <update id="update" parameterType="com.pikaqiu.bbs.entity.NewsContent" >
     update tb_news_content
     <set >
       <if test="content != null" >

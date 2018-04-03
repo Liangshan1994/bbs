@@ -1,9 +1,7 @@
 package com.pikaqiu.common.pagehelper;
 
-import java.io.Serializable;
-import java.util.Collection;
-
 import com.github.pagehelper.Page;
+
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -28,6 +26,9 @@ public class PageInfo<T> implements Serializable {
     private int[] navigatepageNums;
     private int navigateFirstPage;
     private int navigateLastPage;
+
+    private String link;//分页跳转地址
+    private Integer type;//分页父级id
 
     public PageInfo() {
         this.isFirstPage = false;
@@ -304,6 +305,22 @@ public class PageInfo<T> implements Serializable {
 
     public void setNavigateLastPage(int navigateLastPage) {
         this.navigateLastPage = navigateLastPage;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public String toString() {

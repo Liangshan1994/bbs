@@ -26,7 +26,7 @@ public class WebmagicSchedulingConfig {
     /**
      * 简书
      */
-    @Scheduled(cron = "0 0 0/6 * * ? ")
+    @Scheduled(cron = "0 0 0/1 * * ? ")
     public void jianShuScheduled() {
         logger.info(new Date()+"=====Start JianShu =====");
         for (int i = 1; i < 11; i++) {

@@ -5,13 +5,13 @@ import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.UserInfoService;
 import com.pikaqiu.bbs.service.UserService;
 import com.pikaqiu.common.config.Global;
+import com.pikaqiu.common.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -25,7 +25,7 @@ public class LoginController {
     private UserInfoService userInfoService;
 
     @RequestMapping("/toLogin")
-    public String toLogin(HttpServletRequest request, HttpServletResponse response,Model model) {
+    public String toLogin(HttpServletRequest request, Model model) {
         String referer = (String)request.getSession().getAttribute("referer");
         model.addAttribute("referer",referer);
         return "login";
@@ -39,12 +39,17 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(User user,HttpSession session,HttpServletRequest request,String referer){
-        User user1 = userService.checkPassword(user);
-        if(user1!=null){
-            UserInfo userInfo = userInfoService.get(user1.getId());
+    public String login(User user,HttpSession session,String referer){
+        user.setPassword(MD5Util.MD5(user.getPassword()+Global.PWD_STR));
+        User loginUser = userService.checkPassword(user);
+        if(loginUser!=null){
+            UserInfo userInfo = userInfoService.get(loginUser.getId());
             session.setAttribute(Global.SESSION_LOGIN_USER, userInfo);
-            return "redirect:" + referer;
+            if(referer!=null && referer != ""){
+                return "redirect:" + referer;
+            }else{
+                return "redirect:index";
+            }
         }else{
             return "toLogin";
         }
@@ -57,6 +62,7 @@ public class LoginController {
 
     @RequestMapping("/register")
     public String register(User user,String referer){
+        user.setPassword(MD5Util.MD5(user.getPassword()+Global.PWD_STR));
         userService.save(user);
         UserInfo userInfo = new UserInfo();
         userInfo.setUserId(user.getId());

@@ -45,6 +45,8 @@ public class BoardController {
             List<Topic> topTopic = topicService.getTopTopicByBoard(id);
             //分页获取当前版块的主题
             PageInfo<Topic> pageInfo = topicService.getPageTopicByBoardId(id,pageNo);
+            pageInfo.setLink("board");
+            pageInfo.setType(id);
             //获取当前板块所有主题
             List<Topic> topicByBoardId = topicService.getTopicByBoardId(id);
             Integer toDayTopicNum = TopicUtils.getToDayTopicNum(topicByBoardId);

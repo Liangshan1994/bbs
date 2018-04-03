@@ -7,36 +7,31 @@
 <body>
 <#include "common/header.ftl">
 
-<div id="pgt" class="bm bw0 pgs cl">
-    <span id="fd_page_top">
-        <div class="pg">
-            <#if pageInfo.hasPreviousPage>
-                <a href="${base}/board-${board.id}-${pageInfo.prePage}.html" class="nxt">上一页</a>
-            <#else >
-                <strong>上一页</strong>
-            </#if>
-            <#list 1..pageInfo.pages as page>
-              <#if page=pageInfo.pageNum>
-                <strong>${page}</strong>
-              <#else >
-                <a href="${base}/news-${page}.html" class="nxt">${page}</a>
-              </#if>
-            </#list>
-            <label>
-                <input type="text" name="custompage" class="px" size="2" title="输入页码，按回车快速跳转" value="${pageInfo.pageNum}" onkeydown="if(event.keyCode==13) {window.location='${base}/-'+this.value+'.html';}">
-                <span title="共 ${pageInfo.pages} 页"> / ${pageInfo.pages} 页</span>
-            </label>
-            <#if pageInfo.hasNextPage>
-                <a href="${base}/board-${pageInfo.nextPage}.html" class="nxt">下一页</a>
-            <#else >
-                <strong>下一页</strong>
-            </#if>
+<div class="container clearfix">
+    <nav class="clearfix" id="nav">
+        <div class="clearfix">
+            <div class="nav_com">
+                <ul>
+                    <li class=""><a href="/">推荐</a></li>
+                    <li class="active"><a href="//news">最新文章</a></li>
+                    <li class=""><a href="${base}/news">关注</a></li>
+                    <li class=""><a href="${base}/news-1-1.html">IT互联网</a></li>
+                    <li class=""><a href="${base}/news">人工智能</a></li>
+                    <li class=""><a href="${base}/news">云计算/大数据</a></li>
+                    <li class=""><a href="${base}/news">区块链</a></li>
+                    <li class=""><a href="${base}/news">数据库</a></li>
+                </ul>
+            </div>
         </div>
-    </span>
-    <span class="pgb y" id="visitedforums">
-        <a rel="index" href="javascript:history.go(-1)">返&nbsp;回</a>
-    </span>
+    </nav>
+    <div class="fixed_content">
+    <main>
+    ${news.content}
+    </main>
+    </div>
 </div>
+
+<#--<#include "common/page.ftl">-->
 <#include "common/footer.ftl">
 </body>
 </html>

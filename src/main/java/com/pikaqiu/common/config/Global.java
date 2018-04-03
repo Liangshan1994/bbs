@@ -1,7 +1,5 @@
 package com.pikaqiu.common.config;
 
-import org.springframework.beans.factory.annotation.Value;
-
 /**
  * Created by lvls on 2018/1/26.
  */
@@ -34,4 +32,8 @@ public class Global {
      * 新闻列表的pageSize
      */
     public static final Integer NEWS_SIZE = 10;
+    /**
+     * 密码加密字符串
+     */
+    public static final String PWD_STR = "lls19940420";
 }

@@ -11,6 +11,7 @@
     <result column="content_id" property="contentId" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="push_date" property="pushDate" jdbcType="TIMESTAMP" />
+    <result column="view" property="view" jdbcType="INTEGER" />
     <result column="create_by" property="createBy" jdbcType="INTEGER" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
     <result column="update_by" property="updateBy" jdbcType="INTEGER" />
@@ -18,10 +19,10 @@
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, title, info, source, link, author,content_id type, push_date, create_by, create_date, update_by, update_date,
+    id, title, info, source, link, author,content_id, type, push_date,view, create_by, create_date, update_by, update_date,
     del_flag
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tb_news
@@ -33,10 +34,10 @@
     from tb_news
     where del_flag = 0
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from tb_news
+  <update id="delete" parameterType="java.lang.Integer" >
+    UPDATE tb_news set del_flag = 1
     where id = #{id,jdbcType=INTEGER}
-  </delete>
+  </update>
   <insert id="insert" parameterType="com.pikaqiu.bbs.entity.News" >
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
       SELECT LAST_INSERT_ID()
@@ -69,6 +70,9 @@
       </if>
       <if test="pushDate != null" >
         push_date,
+      </if>
+      <if test="view != null" >
+        view,
       </if>
       <if test="createBy != null" >
         create_by,
@@ -114,6 +118,9 @@
       <if test="pushDate != null" >
         #{pushDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="view != null" >
+        #{view,jdbcType=INTEGER},
+      </if>
       <if test="createBy != null" >
         #{createBy,jdbcType=INTEGER},
       </if>
@@ -158,6 +165,9 @@
       <if test="pushDate != null" >
         push_date = #{pushDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="view != null" >
+        view = #{view,jdbcType=INTEGER},
+      </if>
       <if test="createBy != null" >
         create_by = #{createBy,jdbcType=INTEGER},
       </if>
@@ -193,8 +203,11 @@
     tb_news
     <where>
       del_flag = 0
-      AND type = #{type}
+      <if test="type != null and test!=0">
+        AND type = #{type},
+      </if>
     </where>
+    ORDER BY push_date desc
   </select>
   <select id="selectPageNews" parameterType="Integer" resultMap="BaseResultMap">
     SELECT
@@ -204,5 +217,6 @@
     <where>
       del_flag = 0
     </where>
+    ORDER BY push_date desc
   </select>
 </mapper>
