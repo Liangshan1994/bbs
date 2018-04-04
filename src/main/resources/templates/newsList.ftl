@@ -28,7 +28,7 @@
         <main>
             <ul class="feedlist_mod" id="feedlist_id" style="padding-top: 0px;">
                 <#list pageInfo.list as news>
-                    <li class="clearfix" data-type="blog" data-id="${news.id}">
+                    <li class="clearfix" data-type="blog" data-id="${news.id?c}">
                         <div class="list_con">
                             <div class="title">
                                 <h2 class="csdn-tracking-statistics">
@@ -44,7 +44,7 @@
                                     <a strategy="watchers" href="${base}/news-${news.id?c}.html" target="_blank">${news.pushDate?string('yyyy-MM-dd HH:mm')}</a>
                                 </dd>
                                 <dd class="strategy">
-                                    <a strategy="watchers" href="${base}/news-${type}-1.html" target="_blank">IT互联网</a>
+                                    <a strategy="watchers" href="${base}/news-${news.type}-1.html" target="_blank">IT互联网</a>
                                 </dd>
                                 <!--新增评论数+阅读 begin-->
                             <#--
@@ -54,7 +54,7 @@
                             </dl>
                             <!--阅读 begin-->
                             <div class="read_num">
-                                <p class="num">${news.view}</p>
+                                <p class="num">${news.view?c}</p>
                                 <p class="text">阅读量</p>
                             </div>
                             <!--阅读 end-->
