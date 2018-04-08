@@ -1,15 +1,16 @@
-package com.pikaqiu.common.utils;
+package com.pikaqiu.bbs.utils;
 
 import com.pikaqiu.bbs.dao.DictMapper;
 import com.pikaqiu.bbs.entity.Dict;
 import org.apache.commons.lang3.StringUtils;
 import org.assertj.core.util.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 字典工具
@@ -18,10 +19,20 @@ import java.util.Map;
 @Component
 public class DictUtils {
 
-    @Autowired
+    @Resource
+    private DictMapper dictMapper1;
+
     private static DictMapper dictMapper;
 
     public static final String CACHE_DICT_MAP = "dictMap";
+
+    @PostConstruct
+    public void init() {
+        this.dictMapper = dictMapper1;
+    }
+
+    public static List<Dict> dictAllList = null;
+
 
     public static String getDictLabel(String value, String type, String defaultValue){
         if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(value)){
@@ -45,7 +56,7 @@ public class DictUtils {
         return defaultValue;
     }
 
-    public static String getDictValue(String label, String type, String defaultLabel){
+    public static Integer getDictValue(String label, String type, Integer defaultLabel){
         if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(label)){
             for (Dict dict : getDictList(type)){
                 if (type.equals(dict.getType()) && label.equals(dict.getLabel())){
@@ -56,23 +67,32 @@ public class DictUtils {
         return defaultLabel;
     }
 
-    public static List<Dict> getDictList(String type){
-        @SuppressWarnings("unchecked")
-//        Map<String, List<Dict>> dictMap = (Map<String, List<Dict>>)CacheUtils.get(CACHE_DICT_MAP);
-                Map<String, List<Dict>> dictMap = new HashMap();
-//        if (dictMap==null){
-//            dictMap = new HashMap();
-        for (Dict dict : dictMapper.findAllList(new Dict())){
-            List<Dict> dictList = dictMap.get(dict.getType());
-            if (dictList != null){
-                dictList.add(dict);
-            }else{
-                dictMap.put(dict.getType(), Lists.newArrayList(dict));
+    public static Integer getDictValue(String label, String type){
+        if (StringUtils.isNotBlank(type) && StringUtils.isNotBlank(label)){
+            for (Dict dict : getDictList(type)){
+                if (type.equals(dict.getType()) && label.equals(dict.getLabel())){
+                    return dict.getValue();
+                }
             }
-//            }
-//            CacheUtils.put(CACHE_DICT_MAP, dictMap);
         }
-        List<Dict> dictList = dictMap.get(type);
+        return 0;
+    }
+
+    /**
+     * 根据type获取该类的所有字典数据
+     * @param type
+     * @return
+     */
+    public static List<Dict> getDictList(String type){
+        if(dictAllList==null){
+            dictAllList = dictMapper.findAllList();
+        }
+        List<Dict> dictList = new ArrayList<>();
+        for (Dict dict : dictAllList) {
+            if(StringUtils.equals(type,dict.getType())){
+                dictList.add(dict);
+            }
+        }
         if (dictList == null){
             dictList = Lists.newArrayList();
         }
@@ -80,11 +100,30 @@ public class DictUtils {
     }
 
     /**
-     * 返回字典列表（JSON）
+     * 查询该label是否已存在
      * @param type
      * @return
      */
-//    public static String getDictListJson(String type){
-//        return JsonMapper.toJsonString(getDictList(type));
-//    }
+    public static boolean isLabelExistByType(String label,String type) {
+        List<Dict> dictList = dictMapper.getDicByType(type);
+        for (Dict dict : dictList) {
+            if(StringUtils.equals(label,dict.getLabel())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int getMaxValueByType(String type) {
+        return dictMapper.getMaxValueByType(type);
+    }
+
+    public static void saveDict(Dict dict){
+        dict.setCreateBy(1);
+        dict.setCreateDate(new Date());
+        dict.setUpdateBy(1);
+        dict.setUpdateDate(new Date());
+        dict.setDelFlag(0);
+        dictMapper.insert(dict);
+    }
 }

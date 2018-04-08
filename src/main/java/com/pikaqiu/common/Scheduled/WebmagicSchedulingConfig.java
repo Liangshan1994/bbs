@@ -1,5 +1,6 @@
 package com.pikaqiu.common.Scheduled;
 
+import com.pikaqiu.common.processor.ItHomeProcessor;
 import com.pikaqiu.common.processor.JianShuProcessor;
 import com.pikaqiu.common.processor.NewsPipeline;
 import org.slf4j.Logger;
@@ -44,6 +45,24 @@ public class WebmagicSchedulingConfig {
         spider.start();
         spider.stop();
     }
+
+    /**
+     * IT之家
+     */
+    @Scheduled(cron = "0 0/5 * * * ? ")
+    public void itHomeScheduled() {
+        logger.info(new Date()+"=====Start ItHome =====");
+        Spider spider = Spider.create(new ItHomeProcessor());
+        spider.addUrl("https://www.ithome.com/");
+        spider.addPipeline(newsPipeline);
+        spider.thread(1);
+        spider.setExitWhenComplete(true);
+        spider.start();
+        spider.stop();
+        logger.info(new Date()+"=====End ItHome =====");
+    }
+
+
     /**
      * 36氪
      */

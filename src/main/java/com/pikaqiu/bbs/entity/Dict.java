@@ -4,7 +4,7 @@ import com.pikaqiu.common.base.BaseEntity;
 
 public class Dict extends BaseEntity<Dict>{
 
-    private String value;
+    private Integer value;
 
     private String label;
 
@@ -12,18 +12,18 @@ public class Dict extends BaseEntity<Dict>{
 
     private String description;
 
-    private Long sort;
+    private Integer sort;
 
     private Integer isUpdate;
 
     private String remarks;
 
-    public String getValue() {
+    public Integer getValue() {
         return value;
     }
 
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();
+    public void setValue(Integer value) {
+        this.value = value;
     }
 
     public String getLabel() {
@@ -50,11 +50,11 @@ public class Dict extends BaseEntity<Dict>{
         this.description = description == null ? null : description.trim();
     }
 
-    public Long getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(Long sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 

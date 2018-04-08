@@ -157,4 +157,21 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getDicByType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
+  <select id="findAllList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_dict
+  </select>
+  <select id="getMaxValueByType" resultType="Integer" parameterType="java.lang.String" >
+    select
+    MAX(value)
+    from sys_dict
+    where type = #{type,jdbcType=VARCHAR}
+  </select>
 </mapper>

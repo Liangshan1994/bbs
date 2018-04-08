@@ -41,9 +41,9 @@ public class NewsPipeline implements Pipeline {
                     newsContentService.insert(newsContent);
                     news.setContentId(newsContent.getId());
                     newsService.insert(news);
-                    logger.info("保存文章：" + news.getTitle());
+                    logger.info("================save news：" + news.getTitle());
                 }else{
-                    logger.info("文章已存在：" + news.getTitle());
+                    logger.info("================news isExist：" + news.getTitle());
                     break;
                 }
             }

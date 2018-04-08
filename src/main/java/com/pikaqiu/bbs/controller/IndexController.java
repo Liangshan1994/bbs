@@ -2,7 +2,6 @@ package com.pikaqiu.bbs.controller;
 
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.entity.Topic;
-import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.bbs.service.TopicService;
@@ -10,6 +9,7 @@ import com.pikaqiu.bbs.service.UserInfoService;
 import com.pikaqiu.bbs.service.UserService;
 import com.pikaqiu.bbs.utils.TopicUtils;
 import com.pikaqiu.common.mail.MailService;
+import com.pikaqiu.common.processor.NewsPipeline;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +37,9 @@ public class IndexController {
     private UserInfoService userInfoService;
     @Autowired
     private MailService mailService;
+
+    @Autowired
+    private NewsPipeline newsPipeline;
 
     @RequestMapping(value={"/","/index"})
     public String index(Model model) {
@@ -75,4 +78,15 @@ public class IndexController {
         map.put("lastDayNum",lastDayNum);
         return map;
     }
+    /*@RequestMapping(value="/start")
+    public void start() {
+        System.out.println(new Date()+"=====Start ItHome =====");
+        Spider spider = Spider.create(new ItHomeProcessor());
+        spider.addUrl("https://www.ithome.com/");
+        spider.addPipeline(newsPipeline);
+        spider.setExitWhenComplete(true);
+        spider.start();
+        spider.stop();
+        System.out.println(new Date()+"=====End ItHome =====");
+    }*/
 }
