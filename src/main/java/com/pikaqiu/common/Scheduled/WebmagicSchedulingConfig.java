@@ -49,7 +49,7 @@ public class WebmagicSchedulingConfig {
     /**
      * IT之家
      */
-    @Scheduled(cron = "0 0/5 * * * ? ")
+    @Scheduled(cron = "0 0 0/1 * * ? ")
     public void itHomeScheduled() {
         logger.info(new Date()+"=====Start ItHome =====");
         Spider spider = Spider.create(new ItHomeProcessor());

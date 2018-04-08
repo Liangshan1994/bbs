@@ -6,7 +6,6 @@ import com.pikaqiu.bbs.utils.DictUtils;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Request;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
@@ -45,13 +44,13 @@ public class ItHomeProcessor implements PageProcessor {
                 if(dictList!=null && dictList.size()>0){
                     String dict_type = dictList.get(0).getType();
                     String dict_description = dictList.get(0).getDescription();
-                    int value = DictUtils.getMaxValueByType(NEWS_TYPE)+1;
+                    type_value = DictUtils.getMaxValueByType(NEWS_TYPE)+1;
                     Dict dict = new Dict();
-                    dict.setValue(value);
+                    dict.setValue(type_value);
                     dict.setDescription(dict_description);
                     dict.setLabel(type_label);
                     dict.setType(dict_type);
-                    dict.setSort(value * 10);
+                    dict.setSort(type_value * 10);
                     DictUtils.saveDict(dict);
                 }
             }else{
@@ -92,14 +91,5 @@ public class ItHomeProcessor implements PageProcessor {
     @Override
     public Site getSite() {
         return site;
-    }
-
-    public static void main(String[] args) {
-        Spider spider = Spider.create(new ItHomeProcessor());
-        spider.addUrl("https://www.ithome.com/");
-        spider.thread(5);
-        spider.setExitWhenComplete(true);
-        spider.start();
-        spider.stop();
     }
 }
