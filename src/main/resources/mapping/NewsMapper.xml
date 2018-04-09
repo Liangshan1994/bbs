@@ -203,8 +203,8 @@
     tb_news
     <where>
       del_flag = 0
-      <if test="type != null and test!=0">
-        AND type = #{type},
+      <if test="type != null">
+        AND type = #{type,jdbcType=INTEGER},
       </if>
     </where>
     ORDER BY push_date desc

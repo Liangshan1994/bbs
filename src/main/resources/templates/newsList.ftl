@@ -18,14 +18,14 @@
         <div class="clearfix">
             <div class="nav_com">
                 <ul>
-                    <li class=""><a href="/">推荐</a></li>
-                    <li class="active"><a href="//news">最新文章</a></li>
+                    <li class=""><a href="${base}/news">推荐</a></li>
+                    <li class="active"><a href="${base}/news">最新文章</a></li>
                     <li class=""><a href="${base}/news">关注</a></li>
-                    <li class=""><a href="${base}/news-1-1.html">IT互联网</a></li>
-                    <li class=""><a href="${base}/news">人工智能</a></li>
-                    <li class=""><a href="${base}/news">云计算/大数据</a></li>
-                    <li class=""><a href="${base}/news">区块链</a></li>
-                    <li class=""><a href="${base}/news">数据库</a></li>
+                    <@dict_tag type="news_type">
+                        <#list dictList as dict>
+                            <li class=""><a href="${base}/news-${dict.value?if_exists}-1.html">${dict.label?if_exists}</a></li>
+                        </#list>
+                    </@dict_tag>
                 </ul>
             </div>
         </div>
@@ -38,15 +38,19 @@
                         <div class="list_con">
                             <div class="title">
                                 <h2 class="csdn-tracking-statistics">
-                                    <a strategy="watchers" href="${base}/news-${news.id?c}.html" target="_blank">${news.title}</a>
+                                    <a strategy="watchers" href="${base}/news/${news.id?c}.html" target="_blank">${news.title}</a>
                                 </h2>
                             </div>
                             <dl class="list_userbar">
                                 <dd class="time csdn-tracking-statistics tracking-click">
-                                    <a strategy="watchers" href="${base}/news-${news.id?c}.html" target="_blank">${news.pushDate?string('yyyy-MM-dd HH:mm')}</a>
+                                    <a strategy="watchers" href="${base}/news/${news.id?c}.html" target="_blank">${news.pushDate?string('yyyy-MM-dd HH:mm')}</a>
                                 </dd>
-                                <dd class="strategy">来源:${news.source?if_exists}</dd>
-                                <dd class="name">作者:<a href="javascript:;">${news.author?if_exists}</a></dd>
+                                <dd class="strategy">来源:
+                                    <@dict_tag type="news_source" value="${news.source}">
+                                        ${dict.label}
+                                    </@dict_tag>
+                                </dd>
+                                <dd class="name">作者:<a href="javascript:;">${news.author}</a></dd>
                                 <dd class="strategy">
                                     <a strategy="watchers" href="${base}/news-${news.type}-1.html" target="_blank">标签：${news.type?if_exists}</a>
                                 </dd>

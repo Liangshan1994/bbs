@@ -19,8 +19,8 @@ public class NewsController {
     private NewsService newsService;
 
     @RequestMapping("/news-{type}-{pageNo}.html")
-    public String toPageNews(@PathVariable("type") Integer type, @PathVariable("pageNo") Integer pageNo, Model model){
-        PageInfo<News> newsPageInfo = newsService.selectPageByType(type,pageNo);
+    public String toPageNews(@PathVariable("type") Integer type, @PathVariable("pageNo") String pageNo, Model model){
+        PageInfo<News> newsPageInfo = newsService.selectPageByType(type,Integer.parseInt(pageNo));
         newsPageInfo.setLink("news");
         newsPageInfo.setType(type);
         model.addAttribute("pageInfo",newsPageInfo);
@@ -36,7 +36,7 @@ public class NewsController {
         return "newsList";
     }
 
-    @RequestMapping("/news-{id}.html")
+    @RequestMapping("/news/{id}.html")
     public String toNews(@PathVariable("id") Integer id,Model model){
         News news = newsService.getNewsDetail(id);
         news.setView(news.getView()+1);
