@@ -6,9 +6,15 @@
 </head>
 <body>
 <#include "common/header.ftl">
-
+<div id="wp" class="wp">
+    <div id="pt" class="bm cl">
+        <div class="z">
+            <a href="${base}/" class="nvhm" title="首页"></a><em>»</em>
+            <a href="${base}/news">新闻</a>
+        </div>
+    </div>
 <div class="container clearfix">
-    <nav class="clearfix" id="nav">
+    <nav class="clearfix col-1" id="nav">
         <div class="clearfix">
             <div class="nav_com">
                 <ul>
@@ -24,7 +30,7 @@
             </div>
         </div>
     </nav>
-    <div class="fixed_content">
+    <div class="news_list col-8">
         <main>
             <ul class="feedlist_mod" id="feedlist_id" style="padding-top: 0px;">
                 <#list pageInfo.list as news>
@@ -36,15 +42,13 @@
                                 </h2>
                             </div>
                             <dl class="list_userbar">
-                                <dd class="strategy">来源:简书</dd>
-                                <dd class="name">
-                                    作者:<a href="javascript:;">${news.author}</a>
-                                </dd>
                                 <dd class="time csdn-tracking-statistics tracking-click">
                                     <a strategy="watchers" href="${base}/news-${news.id?c}.html" target="_blank">${news.pushDate?string('yyyy-MM-dd HH:mm')}</a>
                                 </dd>
+                                <dd class="strategy">来源:${news.source?if_exists}</dd>
+                                <dd class="name">作者:<a href="javascript:;">${news.author?if_exists}</a></dd>
                                 <dd class="strategy">
-                                    <a strategy="watchers" href="${base}/news-${news.type}-1.html" target="_blank">IT互联网</a>
+                                    <a strategy="watchers" href="${base}/news-${news.type}-1.html" target="_blank">标签：${news.type?if_exists}</a>
                                 </dd>
                                 <!--新增评论数+阅读 begin-->
                             <#--
@@ -67,7 +71,7 @@
 
 </div>
 
-
+</div>
 <#--<#include "common/page.ftl">-->
 <#include "common/footer.ftl">
 </body>

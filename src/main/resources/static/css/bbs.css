@@ -11,10 +11,17 @@ ul, ol, li, dl, dd, p, h1, h2, h3, h4, h5, h6, form, fieldset, .pr, .pc {
 }
 h1, h2, h3, h4, h5, h6 {
     font-size: 1em;
+    line-height: 2;
 }
 a {
     color: #333;
     text-decoration: none;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+*, ::after, ::before {
+    box-sizing: content-box;
 }
 a img {
     border: none;
@@ -29,6 +36,7 @@ caption, th {
 }
 label {
     cursor: pointer;
+    display: contents;
 }
 body, input, button, select, textarea {
     font: 13px/1.5 'Segoe UI',Tahoma,'Hiragino Sans GB','Microsoft Yahei','Simsun';

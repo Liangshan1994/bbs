@@ -1,7 +1,6 @@
 .container {
     max-width: 100%;
-    padding-right: 22px;
-    padding-top: 10px;
+    padding-left: 0px;
 }
 a:hover, a:active, a:focus {
     text-decoration: none;
@@ -19,11 +18,12 @@ nav {
     -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
 }
+.news_list{
+    display: table;
+}
 main {
-    float: left;
-    width: 70%;
+    width: 100%;
     min-height: 500px;
-    margin-right: 8px;
 }
 .nav_com a:hover{
     color: red;
@@ -131,4 +131,97 @@ main ul.feedlist_mod li .list_con dl.list_userbar dd svg {
 }
 .image-container-fill{
     padding-bottom: 0px;
+}
+
+
+/*简书*/
+.image-package {
+    padding-bottom: 25px;
+    margin-left: -40px;
+    text-align: center;
+}
+.image-package .image-container {
+    z-index: 100;
+    position: relative;
+    background-color: #eee;
+    transition: background-color .1s linear;
+    margin: 0 auto;
+}
+.image-package .image-container .image-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.image-package img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border: 0;
+    cursor: -webkit-zoom-in;
+    transition: all .25s ease-in-out;
+}
+.image-package .image-container .image-view img {
+    display: block;
+    transition: all .15s linear;
+    z-index: 100;
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+}
+.fixed_content{
+    display: table;
+    background: #E8EFF5;
+    padding: 10px 20px;
+}
+.fixed_content h1 {
+    font-weight: 500;
+    font-size: 2.2em;
+    font-family: Microsoft YaHei;
+    line-height: 1.5;
+}
+.fixed_content .post_title {
+    padding: 0 0 10px 0;
+    border-bottom: 1px dashed #CDCDCD;
+}
+.fixed_content .post_title span.pt_info {
+    padding-top: 5px;
+    color: #888;
+}
+.fixed_content .post_title span {
+    padding: 0 0px;
+}
+.fixed_content .post_title .pt_info a{
+    color: #888;
+    float: right;
+}
+.fixed_content .post_title .pt_info a:hover {
+    color: #d22222;
+}
+.fixed_content .post_content {
+    margin-top: 10px;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    word-wrap: break-word;
+}
+
+.fixed_content .post_content p strong {
+    font-weight: 700;
+}
+.fixed_content .post_content p a {
+    padding-bottom: 2px;
+    height: 26px;
+    box-shadow: 0 1px;
+    color: #d22222;
+}
+
+.fixed_content .post_content p {
+    padding: 10px 0;
+    color: #424242;
+}
+.fixed_content .fs2 p, .content .post_content p {
+    font-size: 1pc;
+    line-height: 30px;
 }

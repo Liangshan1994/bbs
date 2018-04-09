@@ -66,14 +66,4 @@ public class JianShuProcessor implements PageProcessor {
         return site;
     }
 
-//    public static void main(String[] args) {
-//        Spider spider = Spider.create(new JianShuProcessor());
-//        for (int i = 1; i < 11; i++) {
-//            spider.addUrl("https://www.jianshu.com/c/V2CqjW?order_by=added_at&page="+i);
-//            spider.thread(5);
-//            spider.setExitWhenComplete(true);
-//            spider.start();
-//            spider.stop();
-//        }
-//    }
 }

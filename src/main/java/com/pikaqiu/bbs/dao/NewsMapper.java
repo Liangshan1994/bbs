@@ -12,4 +12,6 @@ public interface NewsMapper extends BaseMapper<News> {
     List<News> selectPageByType(Integer type);
 
     List<News> selectPageNews();
+
+    List<String> getAllLink();
 }

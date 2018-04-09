@@ -219,4 +219,14 @@
     </where>
     ORDER BY push_date desc
   </select>
+  <select id="getAllLink" resultType="String">
+    SELECT
+      link
+    FROM
+      tb_news
+    <where>
+      del_flag = 0
+    </where>
+    ORDER BY push_date desc
+  </select>
 </mapper>
