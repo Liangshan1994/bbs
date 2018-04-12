@@ -39,12 +39,11 @@
             <div class="clearfix">
                 <div class="nav_com">
                     <ul>
-                        <li class=""><a href="/">推荐</a></li>
-                        <li class="active"><a href="//news">最新文章</a></li>
+                        <li class=""><a href="${base}/news">最新文章</a></li>
                         <li class=""><a href="${base}/news">关注</a></li>
                         <@dict_tag type="news_type">
                             <#list dictList as dict>
-                                <li class=""><a href="${base}/news-${dict.value}-1.html">${dict.label}</a></li>
+                                <li class="<#if news.type==dict.value>active</#if>"><a href="${base}/news-${dict.value}-1.html">${dict.label}</a></li>
                             </#list>
                         </@dict_tag>
                     </ul>

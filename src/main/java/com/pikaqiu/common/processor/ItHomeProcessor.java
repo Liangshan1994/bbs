@@ -31,7 +31,10 @@ public class ItHomeProcessor implements PageProcessor {
 
         if(page.getUrl().regex(topicLink).match()){
             List<Selectable> nodes = page.getHtml().xpath("//div[@class='current_nav']/a/text()").nodes();
-            String type_label = nodes.get(nodes.size() - 1).toString();
+            String type_label = nodes.get(nodes.size() - 2).toString();
+            if(type_label.contains("之家")){
+                type_label.replace("之家","");
+            }
             String title = page.getHtml().xpath("//div[@class='post_title']/h1/text()").toString();
             String pushTime = page.getHtml().xpath("//span[@id='pubtime_baidu']/text()").toString();
             String author = page.getHtml().xpath("//span[@id='author_baidu']/strong/text()").toString();
@@ -46,18 +49,18 @@ public class ItHomeProcessor implements PageProcessor {
                 //如果不存在，则新建一个
                 if (!bool) {
                     List<Dict> dictList = DictUtils.getDictList(NEWS_TYPE);
-                    if (dictList != null && dictList.size() > 0) {
-                        String dict_type = dictList.get(0).getType();
-                        String dict_description = dictList.get(0).getDescription();
-                        type_value = DictUtils.getMaxValueByType(NEWS_TYPE) + 1;
-                        Dict dict = new Dict();
-                        dict.setValue(type_value);
-                        dict.setDescription(dict_description);
-                        dict.setLabel(type_label);
-                        dict.setType(dict_type);
-                        dict.setSort(type_value * 10);
-                        DictUtils.saveDict(dict);
-                    }
+                    String dict_type = dictList.get(0).getType();
+                    String dict_description = dictList.get(0).getDescription();
+                    type_value = DictUtils.getMaxValueByType(NEWS_TYPE) + 1;
+                    Dict dict = new Dict();
+                    dict.setValue(type_value);
+                    dict.setDescription(dict_description);
+                    dict.setLabel(type_label);
+                    dict.setType(dict_type);
+                    dict.setSort(type_value * 10);
+                    DictUtils.saveDict(dict);
+                    //新增后刷新字典表
+                    DictUtils.reflushDict();
                 } else {
                     type_value = DictUtils.getDictValue(type_label, NEWS_TYPE);
                 }

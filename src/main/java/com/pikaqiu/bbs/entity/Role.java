@@ -2,11 +2,13 @@ package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Role extends BaseEntity<Role>{
+public class Role extends BaseEntity<Role> implements Serializable {
 
+    private static final long serialVersionUID = -4676110179352450129L;
     private String name;
 
     private String info;

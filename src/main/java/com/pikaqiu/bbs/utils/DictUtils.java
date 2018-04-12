@@ -126,4 +126,8 @@ public class DictUtils {
         dict.setDelFlag(0);
         dictMapper.insert(dict);
     }
+
+    public static void reflushDict(){
+        dictAllList = null;
+    }
 }

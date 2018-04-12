@@ -2,10 +2,12 @@ package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Topic extends BaseEntity<Topic> {
+public class Topic extends BaseEntity<Topic> implements Serializable {
 
+    private static final long serialVersionUID = -6534180201589188003L;
     private String title;   //主题标题
 
     private Integer userId;     //用户id

@@ -3,10 +3,12 @@ package com.pikaqiu.bbs.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Reply extends BaseEntity<Reply>{
+public class Reply extends BaseEntity<Reply> implements Serializable {
 
+    private static final long serialVersionUID = 8782112534436293581L;
     private Integer topicId;//主题id
 
     private Integer userId; //回复人id

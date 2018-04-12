@@ -2,12 +2,13 @@ package com.pikaqiu.common.base;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by lvls on 2018/1/31.
  */
-public class BaseEntity<T> {
+public class BaseEntity<T>{
 
     private Integer id;
 

@@ -78,6 +78,9 @@ ul li, .xl li {
     width: 98%;
     margin: 0 auto;
 }
+#wp {
+    margin: 0 auto 20px auto;
+}
 /*head部分开始*/
 .head {
     border-bottom: 0 solid #C2D5E3;
@@ -1623,3 +1626,6 @@ ul#navmenu ul {
 
 
 /*个人资料结束*/
+#pageDiv{
+    padding-top: 10px;
+}

@@ -70,6 +70,7 @@
                 <a href="javascript:void(0)">手机版</a><span class="pipe">|</span>
                 <a href="javascript:void(0)">小黑屋</a><span class="pipe">|</span>
                 <a href="mailto:758831364@qq.com" target="_blank">联系我们</a><span class="pipe">|</span>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank">鄂ICP备18007216号</a><span class="pipe"></span>
             </p>
             <p class="xs0">
 			${.now}<span id="debuginfo">

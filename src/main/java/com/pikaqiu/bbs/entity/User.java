@@ -2,11 +2,13 @@ package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class User extends BaseEntity<User>{
+public class User extends BaseEntity<User> implements Serializable {
 
+    private static final long serialVersionUID = 4576559585313999221L;
     private String loginName;//登录名
 
     private String password;//密码

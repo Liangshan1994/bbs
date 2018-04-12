@@ -18,6 +18,9 @@ nav {
     -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,0.04);
 }
+#nav{
+    padding: 0 0;
+}
 .news_list{
     display: table;
 }
@@ -26,7 +29,13 @@ main {
     min-height: 500px;
 }
 .nav_com a:hover{
-    color: red;
+    color: #333;
+}
+.nav_com li:hover{
+    background: #2B7ACD;
+}
+.nav_com .active{
+    background: #2B7ACD;
 }
 main ul.feedlist_mod li {
     padding: 20px 24px;

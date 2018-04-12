@@ -2,10 +2,12 @@ package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Board extends BaseEntity<Board>{
+public class Board extends BaseEntity<Board> implements Serializable {
 
+    private static final long serialVersionUID = 2722251319255085485L;
     private String boardName;
 
     private String boardInfo;
