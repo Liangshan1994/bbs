@@ -33,7 +33,7 @@ public class ItHomeProcessor implements PageProcessor {
             List<Selectable> nodes = page.getHtml().xpath("//div[@class='current_nav']/a/text()").nodes();
             String type_label = nodes.get(nodes.size() - 2).toString();
             if(type_label.contains("之家")){
-                type_label.replace("之家","");
+                type_label = type_label.replace("之家","");
             }
             String title = page.getHtml().xpath("//div[@class='post_title']/h1/text()").toString();
             String pushTime = page.getHtml().xpath("//span[@id='pubtime_baidu']/text()").toString();

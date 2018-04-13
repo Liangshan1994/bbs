@@ -45,6 +45,7 @@ public class LoginController {
         if(loginUser!=null){
             UserInfo userInfo = userInfoService.get(loginUser.getId());
             session.setAttribute(Global.SESSION_LOGIN_USER, userInfo);
+
             if(referer!=null && referer != ""){
                 return "redirect:" + referer;
             }else{

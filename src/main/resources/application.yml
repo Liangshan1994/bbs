@@ -64,6 +64,11 @@ spring:
         max-idle: 8
         # 连接池中的最小空闲连接
         min-idle: 0
+    activemq:
+      broker-url: tcp://39.107.113.188:61616
+      in-memory: true
+      pool:
+        enabled: false
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.pikaqiu.bbs.entity
