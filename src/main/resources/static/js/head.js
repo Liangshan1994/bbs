@@ -4,4 +4,4 @@ $(function() {
 	}, function() {
 		$(".mn_Na063_menu ").hide();
 	});
-})
+});

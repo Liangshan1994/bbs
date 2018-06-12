@@ -1,6 +1,5 @@
 package com.pikaqiu.common.shiro;
 
-import com.pikaqiu.common.processor.NewsPipeline;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;

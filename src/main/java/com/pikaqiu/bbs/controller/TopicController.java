@@ -1,6 +1,9 @@
 package com.pikaqiu.bbs.controller;
 
-import com.pikaqiu.bbs.entity.*;
+import com.pikaqiu.bbs.entity.Board;
+import com.pikaqiu.bbs.entity.Reply;
+import com.pikaqiu.bbs.entity.Topic;
+import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.bbs.service.ReplyService;
 import com.pikaqiu.bbs.service.TopicService;

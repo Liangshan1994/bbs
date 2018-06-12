@@ -1,7 +1,7 @@
 <footer>
     <div id="jz52top">
 		<span>
-			<a rel="nofollow" title="搜索" class="jzsoso" href="javascript:;" onclick="showWindow('jzso','plugin.php?id=jz52_top:jz52_so')">
+			<a rel="nofollow" title="搜索" class="jzsoso" href="javascript:" onclick="showWindow('jzso','plugin.php?id=jz52_top:jz52_so')">
 				<b>搜索</b>
 			</a>
 		</span>

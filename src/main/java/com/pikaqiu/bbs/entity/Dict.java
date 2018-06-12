@@ -1,8 +1,10 @@
 package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
+import com.pikaqiu.common.base.BaseEntity;
+import com.pikaqiu.common.base.BaseEntity;
 
-public class Dict extends BaseEntity<Dict>{
+public class Dict extends BaseEntity<Dict> {
 
     private Integer value;
 

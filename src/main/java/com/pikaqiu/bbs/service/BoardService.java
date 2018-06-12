@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by lvls on 2018/1/30.
  */
-public interface BoardService extends BaseService<Board>{
+public interface BoardService extends BaseService<Board> {
     List<Board> getRecommendBoard();
 
     List<Board> getLimitBoards(Integer boardLimit);

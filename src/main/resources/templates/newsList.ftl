@@ -56,7 +56,7 @@
                                         </@dict_tag>
                                     </dd>
                                     <dd class="name">作者:
-                                        <a href="javascript:;">${news.author}</a>
+                                        <a href="javascript:">${news.author}</a>
                                     </dd>
                                     <dd class="strategy">标签：
                                         <a strategy="watchers" href="${base}/news-${news.type}-1.html" target="_blank">

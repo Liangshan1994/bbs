@@ -6,7 +6,7 @@
 <script>
     $(function(){
 
-    })
+    });
     //防止重复提交
     var registerFlag = true;
     function checksubmit(){
@@ -130,7 +130,7 @@
                                     <td>
                                         <span id="reginfo_a_btn">
                                             <em>&nbsp;</em><button class="pn pnc" id="registerformsubmit" type="submit" name="regsubmit" value="true" tabindex="1"><strong>提交</strong></button>
-                                            <input type="checkbox" class="pc" name="agreebbrule" value="2000ff90" id="agreebbrule" checked="checked"> <label for="agreebbrule">同意<a href="javascript:;" onclick="showBBRule()">网站服务条款</a></label>
+                                            <input type="checkbox" class="pc" name="agreebbrule" value="2000ff90" id="agreebbrule" checked="checked"> <label for="agreebbrule">同意<a href="javascript:" onclick="showBBRule()">网站服务条款</a></label>
                                         </span>
                                     </td>
                                 </tr>

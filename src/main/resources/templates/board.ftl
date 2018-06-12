@@ -91,7 +91,7 @@
                                         <a href="javascript:alert('等待开发')" class="xi2">热门</a>&nbsp;
                                         <a href="javascript:alert('等待开发')" class="xi2">热帖</a>&nbsp;
                                         <a href="javascript:alert('等待开发')" class="xi2">精华</a>&nbsp;
-                                        <a id="filter_dateline" href="javascript:;" class="showmenu xi2">更多</a>&nbsp;
+                                        <a id="filter_dateline" href="javascript:" class="showmenu xi2">更多</a>&nbsp;
                                         <span id="clearstickthread" style="display: none;">
 											<span class="pipe">|</span>
 											<a href="javascript:alert('等待开发')" class="xi2" title="显示置顶">显示置顶</a>

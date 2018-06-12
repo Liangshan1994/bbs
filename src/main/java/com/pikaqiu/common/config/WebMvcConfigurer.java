@@ -1,6 +1,8 @@
 package com.pikaqiu.common.config;
 
 import com.pikaqiu.common.interceptor.LoginInterceptor;
+import com.pikaqiu.common.interceptor.LoginInterceptor;
+import com.pikaqiu.common.interceptor.LoginInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;

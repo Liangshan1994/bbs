@@ -27,8 +27,14 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 有 @LoginAuth 注解，需要认证
         HttpSession session = httpServletRequest.getSession();
         if (methodAnnotation != null) {
-            String referer = httpServletRequest.getParameter("referer");
-            session.setAttribute("referer",referer);
+//            String referer = httpServletRequest.getParameter("referer");
+//            if(referer==null){
+//                String uri = httpServletRequest.getRequestURI();
+//                String uri2 = uri.replace(httpServletRequest.getContextPath(), "");
+//                session.setAttribute("referer",uri2);
+//            }else{
+//                session.setAttribute("referer",referer);
+//            }
             //这里是认证的方法
             if(session.getAttribute(Global.SESSION_LOGIN_USER) != null){
                 return true;
@@ -43,12 +49,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) {
 
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
 
     }
 }

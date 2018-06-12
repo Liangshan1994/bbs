@@ -1,8 +1,8 @@
 package com.pikaqiu.bbs.service;
 
-import com.pikaqiu.common.pagehelper.PageInfo;
 import com.pikaqiu.bbs.entity.Topic;
 import com.pikaqiu.common.base.BaseService;
+import com.pikaqiu.common.pagehelper.PageInfo;
 
 import java.util.List;
 
@@ -23,4 +23,6 @@ public interface TopicService extends BaseService<Topic> {
     PageInfo<Topic> getPageTopicByBoardId(Integer id, Integer pageNo);
 
     List<Topic> getTopTopicByBoard(Integer id);
+
+    List<Topic> findListTestRedis();
 }

@@ -30,7 +30,7 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         newPath = topicImgPath+FileUtils.getNewFileName(suffix)+fileSuffix;
         File newFile = new File(newPath);
         try(BufferedInputStream bis = new BufferedInputStream(inFile);
-            FileOutputStream fos = new FileOutputStream(newFile);
+            FileOutputStream fos = new FileOutputStream(newFile)
         ){
             //检查存放的文件夹,没有则新建
             File directory = new File(topicImgPath);

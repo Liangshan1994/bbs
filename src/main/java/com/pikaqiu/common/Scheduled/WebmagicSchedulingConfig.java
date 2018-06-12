@@ -55,7 +55,7 @@ public class WebmagicSchedulingConfig {
         Spider spider = Spider.create(new ItHomeProcessor());
         spider.addUrl("https://www.ithome.com/");
         spider.addPipeline(newsPipeline);
-        spider.thread(1);
+        spider.thread(5);
         spider.setExitWhenComplete(true);
         spider.start();
         spider.stop();

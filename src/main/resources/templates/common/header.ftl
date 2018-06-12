@@ -1,8 +1,10 @@
 <script>
 	$(function(){
         getAllNav();
-        $("#headRreferer").val(window.location.href)
-	})
+        var pathName=window.document.location.pathname;
+        var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+        $("#headRreferer").val(pathName.replace(projectName,''));
+	});
     //获取所有nav
     function getAllNav(){
         $.ajax({
@@ -53,6 +55,7 @@
 				</div>
 			<#else>
 				<form method="post" id="loginForm" action="${base}/login">
+					<input type="hidden" id="headRreferer" name="headRreferer">
 					<div class="fastlg cl">
 						<div class="y pns">
 							<table cellspacing="0" cellpadding="0">
@@ -115,7 +118,7 @@
 								<input type="text" name="srchtxt" id="scbar_txt" value="请输入搜索内容" class=" xg1" placeholder="请输入搜索内容">
 							</td>
 							<td class="scbar_type_td">
-								<a href="javascript:;" id="scbar_type" class="xg1" >搜索</a>
+								<a href="javascript:" id="scbar_type" class="xg1" >搜索</a>
 							</td>
 							<td class="scbar_btn_td">
 								<button type="button" name="searchsubmit" id="scbar_btn" sc="1" class="pn pnc" value="true">
@@ -125,8 +128,8 @@
 							<td class="scbar_hot_td">
 								<div id="scbar_hot">
 									<strong class="xw1">热搜: </strong>
-									<a href="javascript:;" target="_blank" class="xi2" sc="1">热搜词汇</a>
-									<a href="javascript:;" target="_blank" class="xi2" sc="1">热搜词汇</a>
+									<a href="javascript:" target="_blank" class="xi2" sc="1">热搜词汇</a>
+									<a href="javascript:" target="_blank" class="xi2" sc="1">热搜词汇</a>
 								</div>
 							</td>
 						</tr>

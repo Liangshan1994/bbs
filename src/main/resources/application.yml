@@ -52,7 +52,7 @@ spring:
       database: 0
       host: 39.107.113.188
       port: 6379
-      password:
+      password: lls19940420
       # 连接超时时间（毫秒）
       timeout: 0
       pool:

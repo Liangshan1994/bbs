@@ -80,7 +80,7 @@ public class UeditorController {
             return;
         }
         try(BufferedOutputStream bos=new BufferedOutputStream(response.getOutputStream());
-            FileInputStream fis = new FileInputStream(file);){
+            FileInputStream fis = new FileInputStream(file)){
             byte[] b = new byte[1024*1024];
             int length;
             while((length = fis.read(b, 0, b.length)) != -1){

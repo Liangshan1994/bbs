@@ -7,6 +7,7 @@ import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.bbs.service.TopicService;
 import com.pikaqiu.bbs.service.UserInfoService;
 import com.pikaqiu.bbs.service.UserService;
+import com.pikaqiu.bbs.utils.RedisUtil;
 import com.pikaqiu.bbs.utils.TopicUtils;
 import com.pikaqiu.common.mail.MailService;
 import com.pikaqiu.common.processor.NewsPipeline;
@@ -44,6 +45,10 @@ public class IndexController {
     @RequestMapping(value={"/","/index"})
     public String index(Model model) {
         List<Board> parentsBoards = boardService.getParentsBoards();
+//        RedisUtil.setList("test",parentsBoards);
+        RedisUtil.set("test","hello world");
+        String test = RedisUtil.get("test");
+        System.out.println(test);
         model.addAttribute("parentsBoards",parentsBoards);
         return "index";
     }

@@ -5,7 +5,7 @@ import com.pikaqiu.common.base.BaseMapper;
 
 import java.util.List;
 
-public interface BoardMapper extends BaseMapper<Board>{
+public interface BoardMapper extends BaseMapper<Board> {
 
     List<Board> getRecommendBoard();
 

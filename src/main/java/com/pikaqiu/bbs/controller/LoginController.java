@@ -1,7 +1,9 @@
 package com.pikaqiu.bbs.controller;
 
+import com.pikaqiu.bbs.entity.LoginInfo;
 import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.entity.UserInfo;
+import com.pikaqiu.bbs.service.LoginInfoService;
 import com.pikaqiu.bbs.service.UserInfoService;
 import com.pikaqiu.bbs.service.UserService;
 import com.pikaqiu.common.config.Global;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 /**
  * Created by lvls on 2018/1/24.
@@ -23,6 +26,8 @@ public class LoginController {
     private UserService userService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private LoginInfoService loginInfoService;
 
     @RequestMapping("/toLogin")
     public String toLogin(HttpServletRequest request, Model model) {
@@ -39,17 +44,23 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(User user,HttpSession session,String referer){
-        user.setPassword(MD5Util.MD5(user.getPassword()+Global.PWD_STR));
+    public String login(User user,HttpSession session,String headRreferer,HttpServletRequest request){
+        user.setPassword(MD5Util.MD5(user.getPassword()+ Global.PWD_STR));
         User loginUser = userService.checkPassword(user);
         if(loginUser!=null){
             UserInfo userInfo = userInfoService.get(loginUser.getId());
             session.setAttribute(Global.SESSION_LOGIN_USER, userInfo);
-
-            if(referer!=null && referer != ""){
-                return "redirect:" + referer;
+            LoginInfo loginInfo = new LoginInfo();
+            loginInfo.setLoginDate(new Date());
+            loginInfo.setLoginIp(getIp(request));
+            loginInfo.setUserId(loginUser.getId());
+            loginInfoService.insert(loginInfo);
+            if(headRreferer!=null){
+                return "redirect:" + headRreferer;
             }else{
-                return "redirect:index";
+                String uri = request.getRequestURI();
+                String uri2 = uri.replace(request.getContextPath(), "");
+                return "redirect:" + uri2;
             }
         }else{
             return "toLogin";
@@ -76,5 +87,13 @@ public class LoginController {
         }else{
             return "index";
         }
+    }
+
+    public String getIp(HttpServletRequest request) {
+        String ip = request.getHeader("X-Real-IP");
+        if (ip!=null && ip!="") {
+            ip = request.getRemoteAddr();
+        }
+        return ip;
     }
 }

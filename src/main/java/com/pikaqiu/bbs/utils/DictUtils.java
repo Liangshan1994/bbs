@@ -28,7 +28,7 @@ public class DictUtils {
 
     @PostConstruct
     public void init() {
-        this.dictMapper = dictMapper1;
+        dictMapper = dictMapper1;
     }
 
     public static List<Dict> dictAllList = null;

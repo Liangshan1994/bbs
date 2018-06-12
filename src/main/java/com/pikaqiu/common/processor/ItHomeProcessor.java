@@ -33,7 +33,7 @@ public class ItHomeProcessor implements PageProcessor {
             List<Selectable> nodes = page.getHtml().xpath("//div[@class='current_nav']/a/text()").nodes();
             String type_label = nodes.get(nodes.size() - 2).toString();
             if(type_label.contains("之家")){
-                type_label = type_label.replace("之家","");
+                 type_label = type_label.replace("之家","");
             }
             String title = page.getHtml().xpath("//div[@class='post_title']/h1/text()").toString();
             String pushTime = page.getHtml().xpath("//span[@id='pubtime_baidu']/text()").toString();
@@ -43,27 +43,7 @@ public class ItHomeProcessor implements PageProcessor {
             List<String> allLink = NewsUtils.getAllLink();
             boolean contains = allLink.contains(page.getUrl().toString());
             if(!contains) {
-                int type_value = 0;
-                //查询该类是否已在字典表中存在
-                boolean bool = DictUtils.isLabelExistByType(type_label, NEWS_TYPE);
-                //如果不存在，则新建一个
-                if (!bool) {
-                    List<Dict> dictList = DictUtils.getDictList(NEWS_TYPE);
-                    String dict_type = dictList.get(0).getType();
-                    String dict_description = dictList.get(0).getDescription();
-                    type_value = DictUtils.getMaxValueByType(NEWS_TYPE) + 1;
-                    Dict dict = new Dict();
-                    dict.setValue(type_value);
-                    dict.setDescription(dict_description);
-                    dict.setLabel(type_label);
-                    dict.setType(dict_type);
-                    dict.setSort(type_value * 10);
-                    DictUtils.saveDict(dict);
-                    //新增后刷新字典表
-                    DictUtils.reflushDict();
-                } else {
-                    type_value = DictUtils.getDictValue(type_label, NEWS_TYPE);
-                }
+                int type_value = saveDict(type_label);
                 //新建一个新闻对象
                 News news = new News();
                 news.setLink(page.getUrl().toString());
@@ -96,6 +76,31 @@ public class ItHomeProcessor implements PageProcessor {
                 }
             }
         }
+    }
+
+    private synchronized int saveDict(String type_label) {
+        int type_value = 0;
+        //查询该类是否已在字典表中存在
+        boolean bool = DictUtils.isLabelExistByType(type_label, NEWS_TYPE);
+        //如果不存在，则新建一个
+        if (!bool) {
+            List<Dict> dictList = DictUtils.getDictList(NEWS_TYPE);
+            String dict_type = dictList.get(0).getType();
+            String dict_description = dictList.get(0).getDescription();
+            type_value = DictUtils.getMaxValueByType(NEWS_TYPE) + 1;
+            Dict dict = new Dict();
+            dict.setValue(type_value);
+            dict.setDescription(dict_description);
+            dict.setLabel(type_label);
+            dict.setType(dict_type);
+            dict.setSort(type_value * 10);
+            DictUtils.saveDict(dict);
+            //新增后刷新字典表
+            DictUtils.reflushDict();
+        } else {
+            type_value = DictUtils.getDictValue(type_label, NEWS_TYPE);
+        }
+        return type_value;
     }
 
     @Override

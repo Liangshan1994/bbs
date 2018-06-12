@@ -12,7 +12,7 @@
         getActiveUser();
         getTopicAndUserNum();
         getRecommendBoard();
-    })
+    });
     //获取推荐版块
     function getRecommendBoard(){
         $.ajax({
@@ -38,10 +38,10 @@
                 if(result!=null){
                     var html = '';
                     $.each(result,function(key,value){
-                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">';
                         html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
-                    })
+                    });
                     $("#newTopicList").html(html);
                 }
             }
@@ -56,10 +56,10 @@
                 if(result!=null){
                     var html = '';
                     $.each(result,function(key,value){
-                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">';
                         html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
-                    })
+                    });
                     $("#eliteTopicList").html(html);
                 }
             }
@@ -74,10 +74,10 @@
                 if(result!=null){
                     var html = '';
                     $.each(result,function(key,value){
-                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">';
                         html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
-                    })
+                    });
                     $("#hotTopicList").html(html);
                 }
             }
@@ -92,10 +92,10 @@
                 if(result!=null){
                     var html = '';
                     $.each(result,function(key,value){
-                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">';
                         html += '<a href="${base}/topic-'+value.id+'-1.html" target="_blank">'+value.title+'</a>';
                         html += '</div>';
-                    })
+                    });
                     $("#typeTopicList").html(html);
                 }
             }
@@ -110,11 +110,11 @@
                 if(result!=null){
                     var html = '';
                     $.each(result,function(key,value){
-                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">'
+                        html += '<div class="threadline_7ree" style="border-bottom:1px dashed #CDCDCD;">';
                         html += '<span class="y" style="margin-right:5px; color:#999999;">'+value.userTopicNum+'</span>';
                         html += '<a href="${base}/home-'+value.userId+'.html" target="_blank" c="1">'+value.userName+'</a>';
                         html += '</div>';
-                    })
+                    });
                     $("#activeUserList").html(html);
                 }
             }
@@ -147,8 +147,8 @@
                     <dd>
                         <div class="announcement_list">
                             <ul class="announcement_list_ul">
-                                <li><span><a href="javascript:;" target="_blank" class="xi2"><font color="#0000CC">公告标题</font></a></span><em>(2018-1-11)</em></li>
-                                <li><span><a href="javascript:;" target="_blank" class="xi2"><font color="#0000CC">公告标题</font></a></span><em>(2018-1-11)</em></li>
+                                <li><span><a href="javascript:" target="_blank" class="xi2"><font color="#0000CC">公告标题</font></a></span><em>(2018-1-11)</em></li>
+                                <li><span><a href="javascript:" target="_blank" class="xi2"><font color="#0000CC">公告标题</font></a></span><em>(2018-1-11)</em></li>
                             </ul>
                         </div>
                     </dd>

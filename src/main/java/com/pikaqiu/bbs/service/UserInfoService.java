@@ -1,6 +1,8 @@
 package com.pikaqiu.bbs.service;
 
+import com.pikaqiu.common.base.BaseService;
 import com.pikaqiu.bbs.entity.UserInfo;
+import com.pikaqiu.common.base.BaseService;
 import com.pikaqiu.common.base.BaseService;
 
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.List;
 /**
  * Created by lvls on 2018/2/2.
  */
-public interface UserInfoService extends BaseService<UserInfo>{
+public interface UserInfoService extends BaseService<UserInfo> {
 
     List<UserInfo> getActiveUser();
 

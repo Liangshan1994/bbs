@@ -1,6 +1,8 @@
 package com.pikaqiu.bbs.entity;
 
 import com.pikaqiu.common.base.BaseEntity;
+import com.pikaqiu.common.base.BaseEntity;
+import com.pikaqiu.common.base.BaseEntity;
 
 import java.io.Serializable;
 import java.util.Date;

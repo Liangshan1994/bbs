@@ -45,7 +45,7 @@
                                                 <th><label for="password3_Ldm0V">密码:</label></th>
                                                 <td><input type="password" id="password3_Ldm0V" name="password"></td>
                                                 <td class="tipcol">
-                                                    <a href="javascript:;" title="找回密码">找回密码</a>
+                                                    <a href="javascript:" title="找回密码">找回密码</a>
                                                 </td>
                                             </tr>
                                             </tbody>

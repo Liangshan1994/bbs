@@ -23,6 +23,6 @@
 
 <script>
     $(function(){
-        SyntaxHighlighter.highlight();
+        // SyntaxHighlighter.all();
     });
 </script>

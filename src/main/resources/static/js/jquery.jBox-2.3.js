@@ -16,14 +16,14 @@
 		c.isMessager = c.isMessager || false;
 		if (b == undefined) {
 			b = ''
-		};
-		if (c.border < 0x0) {
+        }
+        if (c.border < 0x0) {
 			c.border = 0x0
-		};
-		if (c.id == undefined) {
+        }
+        if (c.id == undefined) {
 			c.id = 'jBox_' + Math.floor(Math.random() * 0xf4240)
-		};
-		var d = (a.browser.msie && parseInt(a.browser.version) < 0x7);
+        }
+        var d = (a.browser.msie && parseInt(a.browser.version) < 0x7);
 		var e = a('#' + c.id);
 		if (e.length > 0x0) {
 			c.zIndex = a.jBox.defaults.zIndex++;
@@ -34,8 +34,8 @@
 				zIndex : c.zIndex + 0x1
 			});
 			return e
-		};
-		var f = {
+        }
+        var f = {
 			url : '',
 			type : '',
 			html : '',
@@ -57,13 +57,13 @@
 			else {
 				b = 'html:' + b;
 				f.type = 'HTML'
-			};
-			b = b.substring(b.indexOf(":") + 0x1, b.length)
-		};
-		if (!c.isTip && !c.isMessager && !c.showScrolling) {
+            }
+            b = b.substring(b.indexOf(":") + 0x1, b.length)
+        }
+        if (!c.isTip && !c.isMessager && !c.showScrolling) {
 			a(a.browser.msie ? 'body' : 'body').attr('style', 'overflow:hidden;padding-right:17px;')
-		};
-		var g = !c.isTip && !(c.title == undefined);
+        }
+        var g = !c.isTip && !(c.title == undefined);
 		var h = f.type == 'GET' || f.type == 'POST' || f.type == 'IFRAME';
 		var i = typeof c.width == 'number' ? (c.width - 0x32) + 'px' : "90%";
 		var j = [];
@@ -72,7 +72,7 @@
 			iframe.each(function(){
 				var ifr = a(this).contents();
 				if (ifr.find('object, applet').length > 0){
-					var mf = a('#mainFrame')
+					var mf = a('#mainFrame');
 					var mt = mf.offset()?mf.offset().top:0;
 					var ml = mf.offset()?mf.offset().left:0;
 					var tt = a(this).offset().top;
@@ -95,8 +95,8 @@
 			} else {
 				if (d) {
 					a('select').css('visibility', 'hidden')
-				};
-				j.push('<div id="jbox-fade" class="jbox-fade" style="position:absolute;"></div>');
+                }
+                j.push('<div id="jbox-fade" class="jbox-fade" style="position:absolute;"></div>');
 			}
 			// 解决框架内object和applet被遮住问题
 			fade(a('iframe'), function(obj, ifr){
@@ -107,12 +107,12 @@
 			fade(a('body, iframe'), function(obj, ifr){
 				ifr.find('body').append(iframeA + 'jbox-fade2' + iframeB);
 			});
-		};
-		j.push('<div id="jbox-temp" class="jbox-temp" style="width:0px;height:0px;background-color:#ff3300;position:absolute;z-index:1984;fdisplay:none;"></div>');
+        }
+        j.push('<div id="jbox-temp" class="jbox-temp" style="width:0px;height:0px;background-color:#ff3300;position:absolute;z-index:1984;fdisplay:none;"></div>');
 		if (c.draggable) {
 			j.push('<div id="jbox-drag" class="jbox-drag" style="position:absolute;z-index:1984;display:none;"></div>')
-		};
-		j.push('<div id="jbox" class="jbox" style="position:absolute;width:auto;height:auto;">');
+        }
+        j.push('<div id="jbox" class="jbox" style="position:absolute;width:auto;height:auto;">');
 		j.push('<div class="jbox-help-title jbox-title-panel" style="height:25px;display:none;"></div>');
 		j.push('<div class="jbox-help-button jbox-button-panel" style="height:25px;padding:5px 0 5px 0;display:none;"></div>');
 		j.push('<table border="0" cellpadding="0" cellspacing="0" style="margin:0px;padding:0px;border:none;">');
@@ -122,8 +122,8 @@
 			j.push('<td class="jbox-border" style="margin:0px;padding:0px;border:none;height:' + c.border + 'px;overflow: hidden;"></td>');
 			j.push('<td class="jbox-border" style="margin:0px;padding:0px;border:none;border-radius:0 ' + c.border + 'px 0 0;width:' + c.border + 'px;height:' + c.border + 'px;"></td>');
 			j.push('</tr>')
-		};
-		j.push('<tr>');
+        }
+        j.push('<tr>');
 		j.push('<td class="jbox-border" style="margin:0px;padding:0px;border:none;"></td>');
 		j.push('<td valign="top" style="margin:0px;padding:0px;border:none;">');
 		j.push('<div class="jbox-container" style="width:auto; height:auto;">');
@@ -132,8 +132,8 @@
 			j.push('<div class="jbox-title-panel" style="height:25px;">');
 			j.push('<div class="jbox-title' + (c.showIcon == true ? ' jbox-title-icon' : (c.showIcon == false ? '' : ' ' + c.showIcon)) + '" style="float:left; width:' + i + '; line-height:' + (a.browser.msie ? 0x19 : 0x18) + 'px; padding-left:' + (c.showIcon ? 0x12 : 0x5) + 'px;overflow:hidden;text-overflow:ellipsis;word-break:break-all;">' + (c.title == '' ? '&nbsp;' : c.title) + '</div>');
 			j.push('</div>')
-		};
-		j.push('<div id="jbox-states"></div></div>');
+        }
+        j.push('<div id="jbox-states"></div></div>');
 		j.push('</div>');
 		j.push('</td>');
 		j.push('<td class="jbox-border" style="margin:0px;padding:0px;border:none;"></td>');
@@ -144,8 +144,8 @@
 			j.push('<td class="jbox-border" style="margin:0px;padding:0px;border:none;height:' + c.border + 'px;overflow: hidden;"></td>');
 			j.push('<td class="jbox-border" style="margin:0px;padding:0px;border:none;border-radius:0 0 ' + c.border + 'px 0; width:' + c.border + 'px; height:' + c.border + 'px;"></td>');
 			j.push('</tr>')
-		};
-		j.push('</table>');
+        }
+        j.push('</table>');
 		j.push('</div>');
 		j.push('</div>');
 		var k = '<iframe name="jbox-iframe-'+c.id+'" id="jbox-iframe" width="100%" height="100%" marginheight="0" marginwidth="0" frameborder="0" scrolling="' 
@@ -170,16 +170,16 @@
 				f.html = b;
 				break;
 			case "IFRAME":
-				f.html = k
+				f.html = k;
 				if (b.indexOf('#') == -0x1) {
 					f.url = b + (b.indexOf('?') == -0x1 ? '?___t' : '&___t') + Math.random()
 				} else {
 					var N = b.split('#');
 					f.url = N[0x0] + (N[0x0].indexOf('?') == -0x1 ? '?___t' : '&___t') + Math.random() + '#' + N[0x1]
-				};
-				break
-			};
-			b = {
+                }
+                break
+            }
+            b = {
 				state0 : {
 					content : f.html,
 					buttons : c.buttons,
@@ -187,21 +187,21 @@
 					submit : c.submit
 				}
 			}
-		};
-		var r = [];
+        }
+        var r = [];
 		var s = o.find('.jbox-help-title').outerHeight(true);
 		var t = o.find('.jbox-help-button').outerHeight(true);
 		var u = a.browser.msie ? 'line-height:19px;padding:0px 6px 0px 6px;' : 'padding:0px 10px 0px 10px;';
 		a.each(b, function (N, O) {
 			if (f.isObject) {
 				O = a.extend({}, a.jBox.stateDefaults, O)
-			};
-			b[N] = O;
+            }
+            b[N] = O;
 			if (O.buttons == undefined) {
 				O.buttons = {}
-
-			};
-			var P = false;
+            
+}
+            var P = false;
 			a.each(O.buttons, function (T, U) {
 				P = true
 			});
@@ -210,35 +210,35 @@
 				Q = c.height;
 				if (g) {
 					Q = Q - s
-				};
-				if (P) {
+                }
+                if (P) {
 					Q = Q - t
-				};
-				Q = (Q - 0x1) + 'px'
-			};
-			var R = '';
+                }
+                Q = (Q - 0x1) + 'px'
+            }
+            var R = '';
 			var S = '25px';
 			if (!f.isObject && h) {
 				var T = c.height;
 				if (typeof c.height == 'number') {
 					if (g) {
 						T = T - s
-					};
-					if (P) {
+                    }
+                    if (P) {
 						T = T - t
-					};
-					S = ((T / 0x5) * 0x2) + 'px';
+                    }
+                    S = ((T / 0x5) * 0x2) + 'px';
 					T = (T - 0x1) + 'px'
-				};
-				R = ['<div id="jbox-content-loading" class="jbox-content-loading" style="min-height:70px;height:' + T + '; text-align:center;">', '<div class="jbox-content-loading-image" style="display:block; margin:auto; width:220px; height:19px; padding-top: ' + S + ';"></div>', '</div>'].join('')
-			};
-			r.push('<div id="jbox-state-' + N + '" class="jbox-state" style="display:none;">');
+                }
+                R = ['<div id="jbox-content-loading" class="jbox-content-loading" style="min-height:70px;height:' + T + '; text-align:center;">', '<div class="jbox-content-loading-image" style="display:block; margin:auto; width:220px; height:19px; padding-top: ' + S + ';"></div>', '</div>'].join('')
+            }
+            r.push('<div id="jbox-state-' + N + '" class="jbox-state" style="display:none;">');
 			r.push('<div style="min-width:50px;width:' + (typeof c.width == 'number' ? c.width + 'px' : 'auto') + '; height:' + Q + ';">' + R + '<div id="jbox-content" class="jbox-content" style="height:' + Q + ';overflow:hidden;overflow-y:auto;">' + O.content + '</div></div>');
 			r.push('<div class="jbox-button-panel" style="height:25px;padding:5px 0 5px 0;text-align: right;' + (P ? '' : 'display:none;') + '">');
 			if (!c.isTip) {
 				r.push('<span class="jbox-bottom-text" style="float:left;display:block;line-height:25px;"></span>')
-			};
-			a.each(O.buttons, function (T, U) {
+            }
+            a.each(O.buttons, function (T, U) {
 				r.push('<button class="jbox-button" value="' + U + '" style="' + u + '">' + T + '</button>')
 			});
 			r.push('</div></div>')
@@ -249,8 +249,8 @@
 					position : (d) ? "absolute" : "fixed",
 					left : -0x2710
 				})
-		};
-		a.each(b, function (N, O) {
+        }
+        a.each(b, function (N, O) {
 			var P = o.find('#jbox-state-' + N);
 			P.children('.jbox-button-panel').children('button').click(function () {
 				var Q = P.find('#jbox-content');
@@ -303,8 +303,8 @@
 		var y = function () {
 			if (!c.showFade) {
 				return
-			};
-			if (c.persistent) {
+            }
+            if (c.persistent) {
 				var N = 0x0;
 				n.addClass('jbox-warning');
 				var O = setInterval(function () {
@@ -321,12 +321,12 @@
 		var z = function (N) {
 			if (c.isTip || c.isMessager) {
 				return false
-			};
-			var O = (window.event) ? event.keyCode : N.keyCode;
+            }
+            var O = (window.event) ? event.keyCode : N.keyCode;
 			if (O == 0x1b) {
 				I()
-			};
-			if (O == 0x9) {
+            }
+            if (O == 0x9) {
 				var P = a(':input:enabled:visible', n);
 				var Q = !N.shiftKey && N.target == P[P.length - 0x1];
 				var R = N.shiftKey && N.target == P[0x0];
@@ -387,8 +387,8 @@
 					top : q.offset().top + (c.isTip ? l.scrollTop() : 0x0),
 					left : ((l.width() - o.outerWidth()) / 0x2)
 				})
-			};
-			if ((c.showFade && !c.isTip) || (!c.showFade && !c.isTip && !c.isMessager)) {
+            }
+            if ((c.showFade && !c.isTip) || (!c.showFade && !c.isTip && !c.isMessager)) {
 				n.css({
 					position : (d) ? "absolute" : "fixed",
 					height : c.showFade ? l.height() : 0x0,
@@ -398,8 +398,8 @@
 					right : 0x0,
 					bottom : 0x0
 				})
-			};
-			A()
+            }
+            A()
 		};
 		var C = function () {
 			c.zIndex = a.jBox.defaults.zIndex++;
@@ -439,8 +439,8 @@
 					width : O.target.width() + 0x2,
 					height : O.target.height() + 0x2
 				}).show()
-			};
-			return false
+            }
+            return false
 		};
 		var F = function (N) {
 			var O = N.data;
@@ -459,8 +459,8 @@
 					P = T + (c.dragClone ? 0x2 : 0x0);
 				if (P > U)
 					P = U - (c.dragClone ? 0x2 : 0x0)
-			};
-			if (c.dragClone) {
+            }
+            if (c.dragClone) {
 				O.target.prev().css({
 					left : P,
 					top : Q
@@ -469,7 +469,7 @@
 				O.target.css({
 					left : P,
 					top : Q
-				})
+				});
 				// 解决框架内object和applet被遮住问题
 				fade(a('body, iframe'), function(obj, ifr, top, left){
 					if (ifr.find('object, applet').length > 0x0){
@@ -479,8 +479,8 @@
 						});
 					}
 				});
-			};
-			return false
+            }
+            return false
 		};
 		var G = function (N) {
 			a(document).unbind('.draggable');
@@ -492,8 +492,8 @@
 				}).find('iframe').show()
 			} else {
 				N.data.target.find('iframe').show()
-			};
-			return false
+            }
+            return false
 		};
 		var H = function (N) {
 			var O = N.data.target.position();
@@ -510,8 +510,8 @@
 			if (!c.isTip && !c.isMessager) {
 				if (a('.jbox-body').length == 0x1) {
 					a(a.browser.msie ? 'body' : 'body').removeAttr('style')
-				};
-				J();
+                }
+                J();
 				// 解决框架内object和applet被遮住问题
 				fade(a('body, iframe'), function(obj, ifr){
 					if (ifr.find('object, applet').length > 0x0){
@@ -569,26 +569,26 @@
 			l.unbind('resize', A);
 			if (c.draggable && !c.isTip && !c.isMessager) {
 				o.find('.jbox-title-panel').unbind('mousedown', H)
-			};
-			if (f.type != 'IFRAME') {
+            }
+            if (f.type != 'IFRAME') {
 				o.find('#jbox-iframe').attr({
 					'src' : 'about:blank'
 				})
-			};
-			o.html('').remove();
+            }
+            o.html('').remove();
 			if (d && !c.isTip) {
 				m.unbind('scroll', v)
-			};
-			if (c.showFade) {
+            }
+            if (c.showFade) {
 				p.fadeOut('fast', function () {
 					p.unbind('click', y).unbind('mousedown', C).html('').remove()
 				})
-			};
-			n.unbind('keydown keypress', z).html('').remove();
+            }
+            n.unbind('keydown keypress', z).html('').remove();
 			if (d && c.showFade) {
 				a('select').css('visibility', 'visible')
-			};
-			if (typeof c.closed == 'function') {
+            }
+            if (typeof c.closed == 'function') {
 				c.closed()
 			}
 		};
@@ -652,28 +652,28 @@
 				o.find('#jbox-content').show();
 				break
 			}
-		};
-		B();
+        }
+        B();
 		D();
 		if (d && !c.isTip) {
 			l.scroll(v)
-		};
-		if (c.showFade) {
+        }
+        if (c.showFade) {
 			p.click(y)
-		};
-		l.resize(A);
+        }
+        l.resize(A);
 		n.bind('keydown keypress', z);
 		o.find('.jbox-close').click(I);
 		if (c.showFade) {
 			p.fadeIn('fast')
-		};
-		var M = 'show';
+        }
+        var M = 'show';
 		if (c.showType == 'slide') {
 			M = 'slideDown'
 		} else if (c.showType == 'fade') {
 			M = 'fadeIn'
-		};
-		if (c.isMessager) {
+        }
+        if (c.isMessager) {
 			o[M](c.showSpeed, K)
 		} else {
 			var tip = a(document.body).data('tip');
@@ -691,27 +691,27 @@
 					o[M](c.showSpeed, L);
 				}
 			}
-		};
-		if (!c.isTip) {
+        }
+        if (!c.isTip) {
 			o.find('.jbox-bottom-text').html(c.bottomText)
 		} else {
 			o.find('.jbox-container,.jbox-content').addClass('jbox-tip-color')
-		};
-		if (f.type != 'IFRAME') {
+        }
+        if (f.type != 'IFRAME') {
 			o.find('#jbox-states .jbox-state:first .jbox-button-focus').focus()
 		} else {
 			o.focus()
-		};
-		if (!c.isMessager) {
+        }
+        if (!c.isMessager) {
 			K()
-		};
-		n.bind('mousedown', C);
+        }
+        n.bind('mousedown', C);
 		if (c.draggable && !c.isTip && !c.isMessager) {
 			o.find('.jbox-title-panel').bind('mousedown', {
 				target : o
 			}, H).css('cursor', 'move')
-		};
-		return n
+        }
+        return n
 	};
 	a.jBox.version = 2.3;
 	a.jBox.defaults = {
@@ -834,8 +834,8 @@
 				e = d.find('#jbox-state-' + b)
 			} else {
 				e = b ? d.find('.jbox-state:visible').next() : d.find('.jbox-state:visible').prev()
-			};
-			e.slideDown(0x15e, function () {
+            }
+            e.slideDown(0x15e, function () {
 				window.setTimeout(function () {
 					e.find('.jbox-button-focus').focus();
 					if (c != undefined) {
@@ -891,12 +891,12 @@
 		e = a.extend({}, a.jBox.defaults, e);
 		if (e.border < 0x0) {
 			e.border = 0x0
-		};
-		if (e.icon != 'info' && e.icon != 'warning' && e.icon != 'success' && e.icon != 'error' && e.icon != 'question') {
+        }
+        if (e.icon != 'info' && e.icon != 'warning' && e.icon != 'success' && e.icon != 'error' && e.icon != 'question') {
 			padding = '';
 			e.icon = 'none'
-		};
-		var f = e.title == undefined ? 0xa : 0x23;
+        }
+        var f = e.title == undefined ? 0xa : 0x23;
 		var g = e.icon == 'none' ? 'height:auto;' : 'min-height:30px;' + ((a.browser.msie && parseInt(a.browser.version) < 0x7) ? 'height:auto !important;height:100%;_height:30px;' : 'height:auto;');
 		var h = [];
 		h.push('html:');
@@ -929,8 +929,8 @@
 			defaults.submit = function (f, g, h) {
 				return true
 			}
-		};
-		e = a.extend({}, defaults, e);
+        }
+        e = a.extend({}, defaults, e);
 		a.jBox.prompt(b, c, 'question', e)
 	};
 	a.jBox.warning = function (b, c, d, e) {
@@ -943,8 +943,8 @@
 			defaults.submit = function (f, g, h) {
 				return true
 			}
-		};
-		e = a.extend({}, defaults, e);
+        }
+        e = a.extend({}, defaults, e);
 		a.jBox.prompt(b, c, 'warning', e)
 	};
 	a.jBox.tip = function (b, c, d) {
@@ -960,20 +960,20 @@
 		if (defaults.icon == 'loading') {
 			defaults.timeout = 0x0;
 			defaults.opacity = 0.1
-		};
-		d = a.extend({}, defaults, d);
+        }
+        d = a.extend({}, defaults, d);
 		d = a.extend({}, a.jBox.tipDefaults, d);
 		d = a.extend({}, a.jBox.defaults, d);
 		if (d.timeout < 0x0) {
 			d.timeout = 0x0
-		};
-		if (d.border < 0x0) {
+        }
+        if (d.border < 0x0) {
 			d.border = 0x0
-		};
-		if (d.icon != 'info' && d.icon != 'warning' && d.icon != 'success' && d.icon != 'error' && d.icon != 'loading') {
+        }
+        if (d.icon != 'info' && d.icon != 'warning' && d.icon != 'success' && d.icon != 'error' && d.icon != 'loading') {
 			d.icon = 'info'
-		};
-		var e = [];
+        }
+        var e = [];
 		e.push('html:');
 		e.push('<div style="min-height:18px;height:auto;margin:10px;padding-left:30px;padding-top:0px;text-align:left;">');
 		e.push('<span class="jbox-icon jbox-icon-' + d.icon + '" style="position:absolute;top:' + (0x4 + d.border) + 'px;left:' + (0x4 + d.border) + 'px; width:32px; height:32px;"></span>');
@@ -986,12 +986,12 @@
 				options : d
 			});
 			a.jBox.closeTip()
-		};
-		if (d.focusId != undefined) {
+        }
+        if (d.focusId != undefined) {
 			a('#' + d.focusId).focus();
 			top.$('#' + d.focusId).focus()
-		};
-		a.jBox(d.content, d)
+        }
+        a.jBox(d.content, d)
 	};
 	a.jBox.closeTip = function () {
 		a.jBox.close(false, 'tip')
@@ -1014,12 +1014,12 @@
 		e = a.extend({}, f, e);
 		if (e.border < 0x0) {
 			e.border = 0x0
-		};
-		if (e.icon != 'info' && e.icon != 'warning' && e.icon != 'success' && e.icon != 'error' && e.icon != 'question') {
+        }
+        if (e.icon != 'info' && e.icon != 'warning' && e.icon != 'success' && e.icon != 'error' && e.icon != 'question') {
 			padding = '';
 			e.icon = 'none'
-		};
-		var g = e.title == undefined ? 0xa : 0x23;
+        }
+        var g = e.title == undefined ? 0xa : 0x23;
 		var h = e.icon == 'none' ? 'height:auto;' : 'min-height:30px;' + ((a.browser.msie && parseInt(a.browser.version) < 0x7) ? 'height:auto !important;height:100%;_height:30px;' : 'height:auto;');
 		var i = [];
 		i.push('html:');

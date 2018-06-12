@@ -2,9 +2,9 @@ package com.pikaqiu.common.base;
 
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,6 +54,9 @@ public abstract class BaseServiceImpl<D extends BaseMapper<T>, T extends BaseEnt
     @Transactional(readOnly = false)
     public void insert(T entity) {
         entity.preInsert();
+        entity.setDelFlag(0);
+        entity.setCreateDate(new Date());
+        entity.setUpdateDate(new Date());
         dao.insert(entity);
     }
     /**

@@ -10,6 +10,7 @@ import com.pikaqiu.common.base.BaseServiceImpl;
 import com.pikaqiu.common.config.Global;
 import com.pikaqiu.common.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
 
     @Override
     public List<Topic> getNewTopic() {
-        PageHelper.startPage(0,Global.INDEX_PAGE_SIZE);
+        PageHelper.startPage(0, Global.INDEX_PAGE_SIZE);
         List<Topic> newTopic = topicMapper.getNewTopic();
         return newTopic;
     }
@@ -80,6 +81,14 @@ public class TopicServiceImpl extends BaseServiceImpl<TopicMapper,Topic> impleme
         List<Topic> topTopicByBoard = topicMapper.getTopTopicByBoard(id);
         setUserInfoToTopic(topTopicByBoard);
         return topTopicByBoard;
+    }
+
+    @Cacheable(cacheNames ="findListTestRedis",keyGenerator = "wiselyKeyGenerator")//在redis中开启key为findAllUser开头的存储空间
+    @Override
+    public List<Topic> findListTestRedis() {
+        System.out.println("打印语句则没有走缓存");
+        List<Topic> list = topicMapper.getNewTopic();
+        return list;
     }
 
 }

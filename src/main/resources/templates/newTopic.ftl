@@ -1,3 +1,4 @@
+<#--noinspection ALL-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
             发表帖子
         </div>
     </div>
-    <form method="post" id="postform" action="/saveNewTopic">
+    <form method="post" id="postform" action="${base}/saveNewTopic">
         <div id="ct" class="ct2_a ct2_a_r wp cl">
             <input type="hidden" name="boardId" value="${board.id}">
             <div class="bm bw0 cl" id="editorbox">
@@ -45,8 +46,19 @@
                             </span>
                         </div>
                     </div>
-                    <script id="editor" name="content" style="height:400px;width:800px ;" >
+                    <script id="editor" name="content" style="height:400px;width:800px ;" type="text/javascript">
 
+                    </script>
+                    <script>
+                        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+                        UE.Editor.prototype.getActionUrl = function(action) {
+                            if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
+                                return '${base}/imgUpload';
+                            } else {
+                                return this._bkGetActionUrl.call(this, action);
+                            }
+                        }
+                        var ue = UE.getEditor('editor');
                     </script>
                     <div class="mtm mbm pnpost">
                         <button type="submit" class="pn pnc">
@@ -62,19 +74,7 @@
             </div>
         </div>
     </form>
-    <script>
-        UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-        UE.Editor.prototype.getActionUrl = function(action) {
-            if (action == 'uploadimage' || action == 'uploadscrawl' || action == 'uploadimage') {
-                return '${base}/imgUpload';
-            } else {
-                return this._bkGetActionUrl.call(this, action);
-            }
-        }
-        var ue = UE.getEditor('editor');
-    </script>
 </div>
-
 <#include "common/footer.ftl">
 </body>
 </html>

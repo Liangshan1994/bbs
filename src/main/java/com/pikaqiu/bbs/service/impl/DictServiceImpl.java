@@ -1,7 +1,11 @@
 package com.pikaqiu.bbs.service.impl;
 
+import com.pikaqiu.bbs.service.DictService;
+import com.pikaqiu.common.base.BaseServiceImpl;
 import com.pikaqiu.bbs.dao.DictMapper;
 import com.pikaqiu.bbs.entity.Dict;
+import com.pikaqiu.bbs.service.DictService;
+import com.pikaqiu.common.base.BaseServiceImpl;
 import com.pikaqiu.bbs.service.DictService;
 import com.pikaqiu.common.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,8 @@
 package com.pikaqiu.bbs.utils;
 
 import com.pikaqiu.bbs.dao.NewsMapper;
+import com.pikaqiu.bbs.dao.NewsMapper;
+import com.pikaqiu.bbs.dao.NewsMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +21,7 @@ public class NewsUtils {
 
     @PostConstruct
     public void init() {
-        this.newsMapper = newsMapper1;
+        newsMapper = newsMapper1;
     }
 
     public static List<String> newsAllList = null;

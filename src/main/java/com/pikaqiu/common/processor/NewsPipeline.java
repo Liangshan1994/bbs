@@ -13,6 +13,7 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  * info:新闻
@@ -30,7 +31,11 @@ public class NewsPipeline implements Pipeline {
 
     @Override
     public void process(ResultItems resultItems, Task task) {
-        for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
+        save(resultItems.getAll().entrySet());
+    }
+
+    private synchronized void save(Set<Map.Entry<String, Object>> entries) {
+        for (Map.Entry<String, Object> entry : entries) {
             if (entry.getKey().contains("news")) {
                 News news = (News) entry.getValue();
                 if(!newsService.isExist(news.getLink())){
@@ -49,4 +54,5 @@ public class NewsPipeline implements Pipeline {
             }
         }
     }
+
 }

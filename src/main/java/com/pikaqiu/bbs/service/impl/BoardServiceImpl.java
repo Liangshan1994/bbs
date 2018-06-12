@@ -6,7 +6,6 @@ import com.pikaqiu.bbs.dao.TopicMapper;
 import com.pikaqiu.bbs.dao.UserInfoMapper;
 import com.pikaqiu.bbs.entity.Board;
 import com.pikaqiu.bbs.entity.Topic;
-import com.pikaqiu.bbs.entity.UserInfo;
 import com.pikaqiu.bbs.service.BoardService;
 import com.pikaqiu.common.base.BaseServiceImpl;
 import com.pikaqiu.common.config.Global;
@@ -39,7 +38,7 @@ public class BoardServiceImpl extends BaseServiceImpl<BoardMapper,Board> impleme
     @Override
     public List<Board> getLimitBoards(Integer pageNo) {
         List<Board> boardList;
-        PageHelper.startPage(pageNo,Global.BOARD_SIZE);
+        PageHelper.startPage(pageNo, Global.BOARD_SIZE);
         boardList = boardMapper.getBoardsByLimit();
         for (Board board : boardList) {
             List<Topic> topicList = topicMapper.selectByBoardId(board.getId());

@@ -2,8 +2,12 @@ package com.pikaqiu.bbs.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.pikaqiu.bbs.dao.UserMapper;
+import com.pikaqiu.common.base.BaseServiceImpl;
+import com.pikaqiu.bbs.dao.UserMapper;
 import com.pikaqiu.bbs.entity.User;
 import com.pikaqiu.bbs.service.UserService;
+import com.pikaqiu.common.base.BaseServiceImpl;
+import com.pikaqiu.bbs.dao.UserMapper;
 import com.pikaqiu.common.base.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

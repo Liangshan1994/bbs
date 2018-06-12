@@ -303,7 +303,7 @@
                                 <script id="editor" name="content" style="width:800px;height:200px">
 
                                 </script>
-                                <script>
+                                <script>;
                                     var ue = UE.getEditor('editor',{
                                         imageUrlPrefix:"${base}",
                                         toolbars: [
