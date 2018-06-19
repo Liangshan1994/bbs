@@ -6,9 +6,12 @@ server:
 spring:
     datasource:
         name: bbs
-        url: jdbc:mysql://39.107.113.188:3306/bbs
+#        url: jdbc:mysql://39.107.113.188:3306/bbs
+#        username: root
+#        password: lls19940420
+        url: jdbc:mysql://127.0.0.1:3306/bbs
         username: root
-        password: lls19940420
+        password: root
         # 使用druid数据源
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.jdbc.Driver

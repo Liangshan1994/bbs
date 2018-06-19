@@ -11,6 +11,7 @@
 <script src="${base}/static/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script src="${base}/static/plugins/ueditor/third-party/SyntaxHighlighter/shCore.js"></script>
 <script src="${base}/static/plugins/ueditor/third-party/codemirror/codemirror.js"></script>
+<script src="${base}/static/js/jquery.cookie.min.js"></script>
 
 
 <link rel="stylesheet" href="${base}/static/bootstrap/css/bootstrap.min.css"/>
@@ -20,6 +21,8 @@
 <link rel="stylesheet" href="${base}/static/plugins/ueditor/third-party/codemirror/codemirror.css">
 <link rel="stylesheet" href="${base}/static/css/bbs.css" />
 <link rel="stylesheet" href="${base}/static/css/news.css" />
+
+<link rel="stylesheet" href="${base}/static/plugins/chat/css/chat.css">
 
 <script>
     $(function(){

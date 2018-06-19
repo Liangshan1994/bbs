@@ -9623,7 +9623,7 @@ if ( xhrSupported ) {
 						xhr = options.xhr(),
 						id = ++xhrId;
 
-					// Open the socket
+					// Open the websocket
 					xhr.open( options.type, options.url, options.async, options.username, options.password );
 
 					// Apply custom fields if provided

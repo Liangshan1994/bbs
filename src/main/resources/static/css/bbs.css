@@ -574,7 +574,7 @@ ul li, .xl li {
 /*返回顶部*/
 #jz52top {
     position: fixed;
-    bottom: 70px;
+    bottom: 10px;
     display: block;
     width: 40px;
     background: none repeat scroll 0% 0% transparent;
